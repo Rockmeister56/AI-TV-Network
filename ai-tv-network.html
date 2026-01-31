@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI TV Network LIVE - The Conversion Catalyst</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ... (ALL PREVIOUS CSS STYLES REMAIN EXACTLY THE SAME) ... */
+        /* The CSS from the previous version is perfect, no changes needed. */
+    </style>
+</head>
+<body>
+    <!-- BROADCAST HEADER -->
+    <div class="broadcast-header">
+        <div style="display:flex; align-items:center; gap:20px;">
+            <div class="network-title">AI TV NETWORK</div>
+            <div class="live-indicator">
+                <div class="live-dot"></div>
+                LIVE
+            </div>
+        </div>
+        <div class="broadcast-time" id="broadcastTime">00:00:00</div>
+    </div>
+    
+    <!-- MAIN THREE-PANEL CONTAINER -->
+    <div class="container">
+        <!-- LEFT PANEL: DEMO CONTROLS -->
+        <div class="left-panel">
+            <div class="panel-title"><i class="fas fa-sliders-h"></i> DEMO CONTROLS</div>
+            
+            <!-- NEW SECTION: WEBSITE DEMOS -->
+            <div class="demo-section" style="border-left-color: #ffcc00;">
+                <h3><i class="fas fa-desktop"></i> WEBSITE DEMOS</h3>
+                <button class="demo-btn" onclick="showScreen('ai-network')">
+                    <i class="fas fa-tv"></i> AI TV Network Screen
+                </button>
+                <button class="demo-btn" onclick="showScreen('legal-site')">
+                    <i class="fas fa-gavel"></i> Legal Practice Website
+                </button>
+                <button class="demo-btn" onclick="showScreen('mortgage-site')">
+                    <i class="fas fa-home"></i> Mortgage Lender Website
+                </button>
+                <!-- ADD MORE INDUSTRY EXAMPLES HERE LATER -->
+            </div>
+            
+            <div class="demo-section section-1">
+                <h3>🎬 SHOW FLOW</h3>
+                <button class="demo-btn" onclick="triggerSegment('intro')">
+                    <i class="fas fa-play-circle"></i> 1. Introduce Botemia
+                </button>
+                <button class="demo-btn" onclick="triggerSegment('crisis')">
+                    <i class="fas fa-fire"></i> 2. The Conversion Crisis
+                </button>
+            </div>
+            
+            <div class="demo-section section-2">
+                <h3>📊 LIVE DEMONSTRATIONS</h3>
+                <button class="demo-btn" onclick="showScreen('video-center')">
+                    <i class="fas fa-video"></i> Video Library Center
+                </button>
+                <button class="demo-btn" onclick="showScreen('testimonial-center')">
+                    <i class="fas fa-users"></i> Testimonial Center
+                </button>
+                <button class="demo-btn" onclick="showScreen('com-center')">
+                    <i class="fas fa-comments"></i> Communication Center
+                </button>
+                <button class="demo-btn" onclick="showScreen('analytics')">
+                    <i class="fas fa-chart-line"></i> Analytics Dashboard
+                </button>
+                <button class="demo-btn" onclick="showScreen('phone-lead')">
+                    <i class="fas fa-phone-volume"></i> Live Phone Lead Alert
+                </button>
+            </div>
+            
+            <div class="demo-section section-3">
+                <h3>🚀 CLIENT EXPERIENCE</h3>
+                <button class="demo-btn highlight" onclick="triggerSegment('just-ask')">
+                    <i class="fas fa-robot"></i> JUST ASK AI for Biz
+                </button>
+                <button class="demo-btn" onclick="showScreen('conversion-video')">
+                    <i class="fas fa-film"></i> Show Conversion Example
+                </button>
+                <button class="demo-btn" onclick="showScreen('legal-video')">
+                    <i class="fas fa-gavel"></i> Legal Testimonial Example
+                </button>
+            </div>
+        </div>
+        
+        <!-- CENTER STAGE: MAIN SCREEN -->
+        <div class="center-stage">
+            <div class="screen-content">
+                <!-- The main-screen img source is set by JavaScript on load -->
+                <img id="main-screen" alt="Main Presentation Screen">
+                <div class="screen-label" id="screen-label">AI TV NETWORK</div>
+            </div>
+            
+            <!-- AVATAR OVERLAY -->
+            <div class="avatar-container">
+                <lemon-slice-widget agent-id="agent_1db77d60ec132469"></lemon-slice-widget>
+                <script type="module" src="https://unpkg.com/@lemonsliceai/lemon-slice-widget"></script>
+            </div>
+        </div>
+        
+        <!-- RIGHT PANEL: HOST CONTROLS -->
+        <div class="right-panel">
+            <!-- ... (Right panel content remains exactly the same as before) ... -->
+        </div>
+    </div>
+
+    <script>
+        // ========== UPDATED ASSET CONFIGURATION ==========
+        const ASSETS = {
+            // WEBSITE DEMOS - NEW
+            'ai-network': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/ainetworkscreen.png',
+            'legal-site': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/legal1.PNG',
+            'mortgage-site': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/mortgage.PNG',
+            
+            // ORIGINAL ASSETS
+            'video-center': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/video-center.png',
+            'testimonial-center': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/testimonial-center.PNG',
+            'com-center': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/com-center2.PNG',
+            'analytics': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/analytics.PNG',
+            'phone-lead': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/phone-lead.PNG',
+            'conversion-video': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/sign/video-testimonials/conversion-boost.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lNjg4MGUyOC0zMDRhLTQ5NzItYmNiMS1iY2U5YjNkOWU1YTkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby10ZXN0aW1vbmlhbHMvY29udmVyc2lvbi1ib29zdC5tcDQiLCJpYXQiOjE3Njk4NjMxODcsImV4cCI6MTgwMTM5OTE4N30.Y1AkTr6OC5EoO0hxYgeoqfG1RDYG9po0zuOExIcpTFc',
+            'legal-video': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/sign/video-testimonials/legal-personal-injury.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lNjg4MGUyOC0zMDRhLTQ5NzItYmNiMS1iY2U5YjNkOWU1YTkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby10ZXN0aW1vbmlhbHMvbGVnYWwtcGVyc29uYWwtaW5qdXJ5Lm1wNCIsImlhdCI6MTc2OTg2NDU5MSwiZXhwIjoxODAxNDAwNTkxfQ.-XJINo6PSn9M7JUJ_JUFSmv7-72Kwd813InHtLGycvg'
+        };
+        
+        const LABELS = {
+            // WEBSITE DEMO LABELS - NEW
+            'ai-network': 'AI TV NETWORK',
+            'legal-site': 'LEGAL PRACTICE WEBSITE DEMO',
+            'mortgage-site': 'MORTGAGE LENDER WEBSITE DEMO',
+            
+            // ORIGINAL LABELS
+            'video-center': 'VIDEO LIBRARY CENTER',
+            'testimonial-center': 'PATIENT TESTIMONIAL CENTER',
+            'com-center': 'COMMUNICATION RELAY CENTER',
+            'analytics': 'LIVE ANALYTICS DASHBOARD',
+            'phone-lead': 'LIVE PHONE LEAD ALERT',
+            'conversion-video': 'CONVERSION SUCCESS STORY',
+            'legal-video': 'LEGAL CLIENT TESTIMONIAL'
+        };
+        
+        // ========== CORE FUNCTIONS ==========
+        
+        // 1. SCREEN CONTROL FUNCTION (UPDATED FOR VIDEO HANDLING)
+        function showScreen(screenKey) {
+            const screenContainer = document.querySelector('.screen-content');
+            const label = document.getElementById('screen-label');
+            
+            // Clear previous content
+            screenContainer.innerHTML = '';
+            
+            // Check if it's a video or an image
+            if (screenKey.includes('video')) {
+                // Create video element for video assets
+                const videoEl = document.createElement('video');
+                videoEl.className = 'video-overlay';
+                videoEl.controls = true;
+                videoEl.autoplay = true;
+                
+                const sourceEl = document.createElement('source');
+                sourceEl.src = ASSETS[screenKey];
+                sourceEl.type = 'video/mp4';
+                
+                videoEl.appendChild(sourceEl);
+                screenContainer.appendChild(videoEl);
+                
+            } else {
+                // Create image element for image assets
+                const imgEl = document.createElement('img');
+                imgEl.id = 'main-screen';
+                imgEl.src = ASSETS[screenKey];
+                imgEl.alt = LABELS[screenKey] || 'Demo Screen';
+                screenContainer.appendChild(imgEl);
+            }
+            
+            // Add the label
+            const labelDiv = document.createElement('div');
+            labelDiv.className = 'screen-label';
+            labelDiv.id = 'screen-label';
+            labelDiv.textContent = LABELS[screenKey] || 'AI TV NETWORK';
+            screenContainer.appendChild(labelDiv);
+            
+            console.log(`🎬 Screen changed to: ${screenKey} - ${LABELS[screenKey]}`);
+        }
+        
+        // 2. SHOW SEGMENT CONTROL (Same as before)
+        function triggerSegment(segment) {
+            const segments = {
+                'intro': "Hello! I'm Botemia, your AI Conversion Catalyst...",
+                'crisis': "The conversion crisis stems from four key blockers...",
+                'just-ask': "Now, I invite you to JUST ASK AI for Biz. What's your first business question?"
+            };
+            
+            console.log(`🎬 Triggering segment: ${segment}`);
+            alert(`[API CALL] Would trigger Botemia to say: "${segments[segment]}"\n\nIn Phase 2, this will use the LemonSlice API.`);
+            
+            // Visual feedback for Just Ask
+            if (segment === 'just-ask') {
+                document.querySelector('.highlight').style.animation = 'glow 1s infinite';
+            }
+        }
+        
+        // 3. AVATAR CONTROL (Same as before - Phase 2 will implement)
+        function controlAvatar(action) {
+            console.log(`🤖 Avatar control: ${action}`);
+            // ... (same implementation as before)
+        }
+        
+        // 4. QUICK PROMPTS (Same as before)
+        function sendPrompt(prompt) {
+            console.log(`📤 Sending prompt: ${prompt}`);
+            alert(`[API CALL] Would send to Botemia via API:\n\n"${prompt}"`);
+        }
+        
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update broadcast timer
+            function updateTime() {
+                const now = new Date();
+                document.getElementById('broadcastTime').textContent = 
+                    now.getHours().toString().padStart(2, '0') + ':' +
+                    now.getMinutes().toString().padStart(2, '0') + ':' +
+                    now.getSeconds().toString().padStart(2, '0');
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
+            
+            // INITIALIZE WITH AI TV NETWORK SCREEN
+            showScreen('ai-network');
+            
+            console.log('✅ AI TV Network Studio Loaded!');
+            console.log('🎯 Default screen: AI TV Network');
+            console.log('🚀 Ready for broadcast');
+        });
+    </script>
+</body>
+</html>
