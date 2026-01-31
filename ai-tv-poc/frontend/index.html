@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI TV Network - Botemia Control POC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a2a;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #aaa;
+            font-size: 18px;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            height: 600px;
+        }
+        
+        /* CONTROL PANEL */
+        .control-panel {
+            background: rgba(20, 25, 50, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .control-panel h2 {
+            color: #00d4ff;
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
+        
+        .control-btn {
+            width: 100%;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        #start-btn {
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            color: white;
+        }
+        
+        #speak-btn {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+        }
+        
+        #stop-btn {
+            background: linear-gradient(135deg, #ff6b9d, #ff375f);
+            color: white;
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+        }
+        
+        .control-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* STATUS PANEL */
+        .status-panel {
+            background: rgba(20, 25, 50, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            margin-top: 20px;
+        }
+        
+        .status-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .status-label {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .status-value {
+            color: #00ff88;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .status-value.error {
+            color: #ff6b6b;
+        }
+        
+        /* VIDEO CONTAINER */
+        .video-container {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+        }
+        
+        #daily-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+            font-size: 18px;
+        }
+        
+        .video-placeholder i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+        
+        /* CONSOLE LOG */
+        .console {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            height: 150px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        .log-entry {
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #00ff88;
+        }
+        
+        .log-entry.error {
+            color: #ff6b6b;
+        }
+        
+        .log-entry.info {
+            color: #00d4ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 BOTEMIA CONTROL POC</h1>
+            <div class="subtitle">AI TV Network - Minimal API Proof of Concept</div>
+        </div>
+        
+        <div class="dashboard">
+            <!-- CONTROL PANEL -->
+            <div class="control-panel">
+                <h2>🎮 CONTROL PANEL</h2>
+                
+                <button id="start-btn" class="control-btn" onclick="startBotemia()">
+                    <i class="fas fa-play-circle"></i> 1. START BOTEMIA
+                </button>
+                
+                <button id="speak-btn" class="control-btn" onclick="makeHerSpeak()" disabled>
+                    <i class="fas fa-microphone"></i> 2. MAKE HER SPEAK
+                </button>
+                
+                <button id="stop-btn" class="control-btn" onclick="stopBotemia()" disabled>
+                    <i class="fas fa-stop-circle"></i> 3. STOP BOTEMIA
+                </button>
+                
+                <!-- STATUS PANEL -->
+                <div class="status-panel">
+                    <div class="status-item">
+                        <div class="status-label">STATUS</div>
+                        <div id="status-value" class="status-value">Ready to start</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">ROOM</div>
+                        <div id="room-status" class="status-value">Not created</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">BOTEMIA</div>
+                        <div id="botemia-status" class="status-value">Offline</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- VIDEO CONTAINER -->
+            <div class="video-container">
+                <div id="video-placeholder" class="video-placeholder">
+                    <i class="fas fa-robot"></i>
+                    <div>Botemia will appear here</div>
+                    <div style="font-size: 14px; margin-top: 10px; color: #888;">Click "START BOTEMIA" to begin</div>
+                </div>
+                <iframe id="daily-iframe" style="display: none;"></iframe>
+            </div>
+        </div>
+        
+        <!-- CONSOLE LOG -->
+        <div class="console" id="console">
+            <div class="log-entry info">System initialized</div>
+            <div class="log-entry info">Ready to control Botemia via API</div>
+        </div>
+    </div>
+
+    <!-- DAILY.JS SDK -->
+    <script src="https://unpkg.com/@daily-co/daily-js"></script>
+    <!-- FONT AWESOME -->
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    
+    <script>
+        // ========== CONFIGURATION ==========
+        const BACKEND_URL = 'http://localhost:3001'; // Your backend URL
+        
+        // ========== STATE ==========
+        let callObject = null;
+        let isRoomJoined = false;
+        let botemiaReady = false;
+        let consoleElement;
+        
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            consoleElement = document.getElementById('console');
+            log('System ready', 'info');
+        });
+        
+        // ========== LOGGING ==========
+        function log(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            consoleElement.appendChild(entry);
+            consoleElement.scrollTop = consoleElement.scrollHeight;
+            
+            // Also log to browser console
+            if (type === 'error') {
+                console.error(message);
+            } else {
+                console.log(message);
+            }
+        }
+        
+        // ========== STATUS UPDATES ==========
+        function updateStatus(status) {
+            document.getElementById('status-value').textContent = status;
+        }
+        
+        function updateRoomStatus(status) {
+            document.getElementById('room-status').textContent = status;
+        }
+        
+        function updateBotemiaStatus(status) {
+            document.getElementById('botemia-status').textContent = status;
+        }
+        
+        // ========== API FUNCTIONS ==========
+        
+        // 1. START BOTEMIA - Create room and join
+        async function startBotemia() {
+            try {
+                updateStatus('Creating room...');
+                log('Creating LemonSlice room via backend...');
+                
+                // Call our backend to create a room
+                const response = await fetch(`${BACKEND_URL}/api/create-room`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Backend error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                log(`Room created: ${data.room_url.substring(0, 50)}...`);
+                
+                // Initialize Daily.co call object
+                callObject = window.DailyIframe.createCallObject();
+                
+                // Set up event listeners
+                setupDailyEvents();
+                
+                // Join the room
+                updateStatus('Joining room...');
+                log('Joining Daily.co room...');
+                
+                await callObject.join({
+                    url: data.room_url,
+                    token: data.token
+                });
+                
+                // Show the iframe, hide placeholder
+                document.getElementById('video-placeholder').style.display = 'none';
+                document.getElementById('daily-iframe').style.display = 'block';
+                document.getElementById('daily-iframe').src = data.room_url;
+                
+                updateStatus('Waiting for Botemia...');
+                updateRoomStatus('Joined');
+                log('Room joined successfully. Waiting for Botemia...');
+                
+                // Enable other buttons
+                document.getElementById('speak-btn').disabled = false;
+                document.getElementById('stop-btn').disabled = false;
+                document.getElementById('start-btn').disabled = true;
+                
+            } catch (error) {
+                updateStatus('Error');
+                log(`Failed to start Botemia: ${error.message}`, 'error');
+                console.error('Start error:', error);
+            }
+        }
+        
+        // 2. SETUP DAILY.CO EVENT LISTENERS
+        function setupDailyEvents() {
+            if (!callObject) return;
+            
+            // Listen for app messages from LemonSlice
+            callObject.on('app-message', (event) => {
+                const data = event?.data;
+                if (!data) return;
+                
+                switch(data.type) {
+                    case 'bot_ready':
+                        log('🎉 Botemia is READY and connected!');
+                        updateBotemiaStatus('Online & Ready');
+                        updateStatus('Botemia ready');
+                        botemiaReady = true;
+                        break;
+                        
+                    case 'agent_transcription':
+                        log(`🤖 Botemia said: "${data.transcription}"`);
+                        break;
+                        
+                    case 'user_transcription':
+                        log(`👤 User said: "${data.transcription}"`);
+                        break;
+                        
+                    case 'daily_error':
+                        log(`❌ Daily.co error: ${data.error}`, 'error');
+                        break;
+                        
+                    case 'idle_timeout':
+                        log('⏰ Botemia timed out due to inactivity');
+                        updateBotemiaStatus('Timed out');
+                        break;
+                }
+            });
+            
+            // Listen for participant updates
+            callObject.on('participant-joined', (event) => {
+                if (event.participant.user_name === 'Botemia') {
+                    log('Botemia joined the room');
+                }
+            });
+            
+            callObject.on('participant-left', (event) => {
+                if (event.participant.user_name === 'Botemia') {
+                    log('Botemia left the room');
+                    updateBotemiaStatus('Offline');
+                }
+            });
+        }
+        
+        // 3. MAKE HER SPEAK - Send chat message
+        async function makeHerSpeak() {
+            if (!callObject || !botemiaReady) {
+                log('Cannot send message: Botemia not ready', 'error');
+                return;
+            }
+            
+            const message = "Hello! I'm Botemia, your knowledgeable AI Agent for AI TV Network. Welcome to the show!";
+            
+            try {
+                log(`Sending message to Botemia: "${message.substring(0, 50)}..."`);
+                
+                // Send chat message via Daily.co app message
+                callObject.sendAppMessage({
+                    event: 'chat-msg',
+                    message: message,
+                    name: 'Host'
+                }, '*');
+                
+                log('Message sent successfully');
+                updateStatus('Botemia speaking...');
+                
+            } catch (error) {
+                log(`Failed to send message: ${error.message}`, 'error');
+            }
+        }
+        
+        // 4. STOP BOTEMIA - End session
+        async function stopBotemia() {
+            if (!callObject) {
+                log('No active session to stop', 'error');
+                return;
+            }
+            
+            try {
+                log('Stopping Botemia session...');
+                
+                // Send force-end message
+                callObject.sendAppMessage({
+                    event: 'force-end'
+                }, '*');
+                
+                // Leave the room
+                await callObject.leave();
+                
+                // Reset UI
+                document.getElementById('video-placeholder').style.display = 'flex';
+                document.getElementById('daily-iframe').style.display = 'none';
+                document.getElementById('daily-iframe').src = '';
+                
+                document.getElementById('start-btn').disabled = false;
+                document.getElementById('speak-btn').disabled = true;
+                document.getElementById('stop-btn').disabled = true;
+                
+                updateStatus('Session ended');
+                updateRoomStatus('Not created');
+                updateBotemiaStatus('Offline');
+                botemiaReady = false;
+                
+                log('Session stopped successfully');
+                
+            } catch (error) {
+                log(`Error stopping session: ${error.message}`, 'error');
+            }
+        }
+        
+        // 5. TEST BACKEND CONNECTION
+        async function testBackend() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/health`);
+                if (response.ok) {
+                    log('Backend connection: OK');
+                } else {
+                    log('Backend connection: FAILED', 'error');
+                }
+            } catch (error) {
+                log(`Cannot reach backend: ${error.message}`, 'error');
+            }
+        }
+        
+        // Test backend on load
+        setTimeout(testBackend, 1000);
+    </script>
+</body>
+</html>
