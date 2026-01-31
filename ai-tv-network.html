@@ -6,8 +6,241 @@
     <title>AI TV Network LIVE - The Conversion Catalyst</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ... (ALL PREVIOUS CSS STYLES REMAIN EXACTLY THE SAME) ... */
-        /* The CSS from the previous version is perfect, no changes needed. */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background: #000;
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        /* ===== BROADCAST LAYOUT ===== */
+        .broadcast-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #0a0a2a, #000428);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #00d4ff;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+        }
+        .network-title {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .live-indicator {
+            background: #ff0000;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+        .broadcast-time { font-size: 18px; font-weight: 600; color: #00ff88; }
+        
+        /* ===== THREE-PANEL LAYOUT ===== */
+        .container {
+            display: grid;
+            grid-template-columns: 300px 1fr 350px;
+            height: 100vh;
+            padding-top: 70px;
+        }
+        
+        /* LEFT PANEL - DEMO CONTROLS */
+        .left-panel {
+            background: rgba(10, 15, 35, 0.9);
+            border-right: 2px solid rgba(0, 212, 255, 0.3);
+            padding: 25px 20px;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+        .panel-title {
+            color: #00d4ff;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .demo-section {
+            background: rgba(0, 20, 40, 0.6);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 25px;
+            border-left: 4px solid;
+        }
+        .section-1 { border-left-color: #00d4ff; }
+        .section-2 { border-left-color: #8b5cf6; }
+        .section-3 { border-left-color: #00ff88; }
+        .demo-section h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .demo-btn {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 10px;
+            background: rgba(30, 58, 138, 0.7);
+            border: 1px solid rgba(30, 58, 138, 0.9);
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .demo-btn:hover {
+            background: #1e3a8a;
+            transform: translateX(5px);
+        }
+        .demo-btn.highlight {
+            background: linear-gradient(135deg, #ff6b9d, #ff375f);
+            border-color: #ff375f;
+            font-weight: bold;
+            animation: glow 2s infinite;
+        }
+        @keyframes glow { 50% { box-shadow: 0 0 15px #ff375f; } }
+        
+        /* CENTER STAGE - MAIN CONTENT */
+        .center-stage {
+            position: relative;
+            background: #050510;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .screen-content {
+            width: 90%;
+            height: 90%;
+            background: #000;
+            border-radius: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+        }
+        #main-screen {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+        .screen-label {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #00ff88;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* AVATAR OVERLAY */
+        .avatar-container {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            width: 220px;
+            height: 280px;
+            z-index: 500;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            border: 2px solid #00d4ff;
+            overflow: hidden;
+        }
+        #lemonslice-widget {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* RIGHT PANEL - HOST CONTROLS */
+        .right-panel {
+            background: rgba(15, 10, 35, 0.9);
+            border-left: 2px solid rgba(255, 107, 157, 0.3);
+            padding: 25px 20px;
+            backdrop-filter: blur(10px);
+        }
+        .control-btn {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.5);
+        }
+        .control-btn#stop-btn {
+            background: linear-gradient(135deg, #ff6b9d, #ff375f);
+        }
+        .quick-topics {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .topic-btn {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .topic-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #00d4ff;
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) {
+            .container { grid-template-columns: 250px 1fr 300px; }
+            .avatar-container { width: 180px; height: 240px; }
+        }
     </style>
 </head>
 <body>
@@ -28,21 +261,6 @@
         <!-- LEFT PANEL: DEMO CONTROLS -->
         <div class="left-panel">
             <div class="panel-title"><i class="fas fa-sliders-h"></i> DEMO CONTROLS</div>
-            
-            <!-- NEW SECTION: WEBSITE DEMOS -->
-            <div class="demo-section" style="border-left-color: #ffcc00;">
-                <h3><i class="fas fa-desktop"></i> WEBSITE DEMOS</h3>
-                <button class="demo-btn" onclick="showScreen('ai-network')">
-                    <i class="fas fa-tv"></i> AI TV Network Screen
-                </button>
-                <button class="demo-btn" onclick="showScreen('legal-site')">
-                    <i class="fas fa-gavel"></i> Legal Practice Website
-                </button>
-                <button class="demo-btn" onclick="showScreen('mortgage-site')">
-                    <i class="fas fa-home"></i> Mortgage Lender Website
-                </button>
-                <!-- ADD MORE INDUSTRY EXAMPLES HERE LATER -->
-            </div>
             
             <div class="demo-section section-1">
                 <h3>🎬 SHOW FLOW</h3>
@@ -90,9 +308,8 @@
         <!-- CENTER STAGE: MAIN SCREEN -->
         <div class="center-stage">
             <div class="screen-content">
-                <!-- The main-screen img source is set by JavaScript on load -->
-                <img id="main-screen" alt="Main Presentation Screen">
-                <div class="screen-label" id="screen-label">AI TV NETWORK</div>
+                <img id="main-screen" src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/video-center.png" alt="Main Screen">
+                <div class="screen-label" id="screen-label">VIDEO LIBRARY CENTER</div>
             </div>
             
             <!-- AVATAR OVERLAY -->
@@ -104,19 +321,39 @@
         
         <!-- RIGHT PANEL: HOST CONTROLS -->
         <div class="right-panel">
-            <!-- ... (Right panel content remains exactly the same as before) ... -->
+            <div class="panel-title"><i class="fas fa-cogs"></i> HOST CONTROLS</div>
+            
+            <button class="control-btn" id="start-btn" onclick="controlAvatar('start')">
+                <i class="fas fa-microphone"></i> Start Listening
+            </button>
+            <button class="control-btn" id="stop-btn" onclick="controlAvatar('stop')">
+                <i class="fas fa-microphone-slash"></i> Stop Listening
+            </button>
+            <button class="control-btn" onclick="triggerSegment('intro')">
+                <i class="fas fa-star"></i> Play Botemia Intro
+            </button>
+            
+            <div class="quick-topics">
+                <div class="panel-title"><i class="fas fa-bolt"></i> QUICK TOPICS</div>
+                <button class="topic-btn" onclick="sendPrompt('Explain the ROI of AI conversion tools')">
+                    📈 ROI Analysis
+                </button>
+                <button class="topic-btn" onclick="sendPrompt('How do you overcome implementation fear?')">
+                    🛠️ Implementation
+                </button>
+                <button class="topic-btn" onclick="sendPrompt('What makes you different from chatbots?')">
+                    🤖 AI vs Chatbots
+                </button>
+                <button class="topic-btn" onclick="sendPrompt('Give me a success case study')">
+                    📚 Case Study
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
-        // ========== UPDATED ASSET CONFIGURATION ==========
+        // ========== CONFIGURATION ==========
         const ASSETS = {
-            // WEBSITE DEMOS - NEW
-            'ai-network': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/ainetworkscreen.png',
-            'legal-site': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/legal1.PNG',
-            'mortgage-site': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/mortgage.PNG',
-            
-            // ORIGINAL ASSETS
             'video-center': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/video-center.png',
             'testimonial-center': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/testimonial-center.PNG',
             'com-center': 'https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/com-center2.PNG',
@@ -127,12 +364,6 @@
         };
         
         const LABELS = {
-            // WEBSITE DEMO LABELS - NEW
-            'ai-network': 'AI TV NETWORK',
-            'legal-site': 'LEGAL PRACTICE WEBSITE DEMO',
-            'mortgage-site': 'MORTGAGE LENDER WEBSITE DEMO',
-            
-            // ORIGINAL LABELS
             'video-center': 'VIDEO LIBRARY CENTER',
             'testimonial-center': 'PATIENT TESTIMONIAL CENTER',
             'com-center': 'COMMUNICATION RELAY CENTER',
@@ -144,49 +375,26 @@
         
         // ========== CORE FUNCTIONS ==========
         
-        // 1. SCREEN CONTROL FUNCTION (UPDATED FOR VIDEO HANDLING)
+        // 1. SCREEN CONTROL
         function showScreen(screenKey) {
-            const screenContainer = document.querySelector('.screen-content');
+            const screen = document.getElementById('main-screen');
             const label = document.getElementById('screen-label');
             
-            // Clear previous content
-            screenContainer.innerHTML = '';
+            screen.src = ASSETS[screenKey];
+            label.textContent = LABELS[screenKey] || 'AI TV NETWORK';
             
-            // Check if it's a video or an image
+            // If it's a video, change to video element
             if (screenKey.includes('video')) {
-                // Create video element for video assets
-                const videoEl = document.createElement('video');
-                videoEl.className = 'video-overlay';
-                videoEl.controls = true;
-                videoEl.autoplay = true;
-                
-                const sourceEl = document.createElement('source');
-                sourceEl.src = ASSETS[screenKey];
-                sourceEl.type = 'video/mp4';
-                
-                videoEl.appendChild(sourceEl);
-                screenContainer.appendChild(videoEl);
-                
-            } else {
-                // Create image element for image assets
-                const imgEl = document.createElement('img');
-                imgEl.id = 'main-screen';
-                imgEl.src = ASSETS[screenKey];
-                imgEl.alt = LABELS[screenKey] || 'Demo Screen';
-                screenContainer.appendChild(imgEl);
+                const videoHTML = `<video class="video-overlay" controls autoplay>
+                    <source src="${ASSETS[screenKey]}" type="video/mp4">
+                </video>`;
+                document.querySelector('.screen-content').innerHTML = videoHTML + `<div class="screen-label">${LABELS[screenKey]}</div>`;
             }
             
-            // Add the label
-            const labelDiv = document.createElement('div');
-            labelDiv.className = 'screen-label';
-            labelDiv.id = 'screen-label';
-            labelDiv.textContent = LABELS[screenKey] || 'AI TV NETWORK';
-            screenContainer.appendChild(labelDiv);
-            
-            console.log(`🎬 Screen changed to: ${screenKey} - ${LABELS[screenKey]}`);
+            console.log(`🎬 Screen changed to: ${screenKey}`);
         }
         
-        // 2. SHOW SEGMENT CONTROL (Same as before)
+        // 2. SHOW SEGMENT CONTROL
         function triggerSegment(segment) {
             const segments = {
                 'intro': "Hello! I'm Botemia, your AI Conversion Catalyst...",
@@ -197,19 +405,27 @@
             console.log(`🎬 Triggering segment: ${segment}`);
             alert(`[API CALL] Would trigger Botemia to say: "${segments[segment]}"\n\nIn Phase 2, this will use the LemonSlice API.`);
             
-            // Visual feedback for Just Ask
+            // Visual feedback
             if (segment === 'just-ask') {
                 document.querySelector('.highlight').style.animation = 'glow 1s infinite';
             }
         }
         
-        // 3. AVATAR CONTROL (Same as before - Phase 2 will implement)
+        // 3. AVATAR CONTROL (PHASE 2 IMPLEMENTATION)
         function controlAvatar(action) {
             console.log(`🤖 Avatar control: ${action}`);
-            // ... (same implementation as before)
+            if (action === 'start') {
+                alert('[API CALL] Would start avatar listening via LemonSlice API');
+                document.getElementById('start-btn').innerHTML = '<i class="fas fa-microphone"></i> Listening...';
+                document.getElementById('start-btn').style.background = 'linear-gradient(135deg, #00ff88, #00cc66)';
+            } else {
+                alert('[API CALL] Would stop avatar listening via LemonSlice API');
+                document.getElementById('start-btn').innerHTML = '<i class="fas fa-microphone"></i> Start Listening';
+                document.getElementById('start-btn').style.background = '';
+            }
         }
         
-        // 4. QUICK PROMPTS (Same as before)
+        // 4. QUICK PROMPTS
         function sendPrompt(prompt) {
             console.log(`📤 Sending prompt: ${prompt}`);
             alert(`[API CALL] Would send to Botemia via API:\n\n"${prompt}"`);
@@ -228,12 +444,12 @@
             setInterval(updateTime, 1000);
             updateTime();
             
-            // INITIALIZE WITH AI TV NETWORK SCREEN
-            showScreen('ai-network');
+            // Initialize first screen
+            showScreen('video-center');
             
             console.log('✅ AI TV Network Studio Loaded!');
-            console.log('🎯 Default screen: AI TV Network');
-            console.log('🚀 Ready for broadcast');
+            console.log('🎯 Phase 1: Interface Complete');
+            console.log('🚀 Phase 2: Add LemonSlice API Integration');
         });
     </script>
 </body>
