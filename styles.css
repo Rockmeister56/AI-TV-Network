@@ -147,7 +147,6 @@ body {
     gap: 20px;
 }
 
-/* PRIMARY VIEWING SCREEN */
 .viewing-screen {
     flex: 3;
     background: black;
@@ -155,8 +154,11 @@ body {
     border: 2px solid #333;
     position: relative;
     overflow: hidden;
-    width: 700px;
-    height: 400px;
+    width: calc(100% - 20px);
+    height: calc(100vh - 250px);
+    margin-top: 250px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #slide-content {
@@ -176,15 +178,15 @@ body {
 /* Botemia Widget Container */
 .botemia-widget-container {
     position: absolute;
-    bottom: 15px;
-    right: 15px;
-    z-index: 50;
-    width: 320px;
-    height: 220px;
-    border-radius: 10px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    width: 280px;
+    height: 180px;
+    border-radius: 8px;
     overflow: hidden;
-    border: 2px solid rgba(0, 200, 255, 0.5);
-    box-shadow: 0 0 20px rgba(0, 150, 255, 0.4);
+    border: 2px solid rgba(0, 200, 255, 0.6);
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
 }
 
 .botemia-widget-container lemon-slice-widget {
@@ -265,8 +267,8 @@ body {
     border: 1px solid rgba(0, 100, 255, 0.3);
     display: flex;
     flex-direction: column;
-    min-width: 250px;
-    max-width: 300px;
+    min-width: 220px;
+    max-width: 270px;
 }
 
 .panel-header {
