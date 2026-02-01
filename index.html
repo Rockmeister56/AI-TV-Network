@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI TV Network - Director's Control Panel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Lemon Slice Widget Script -->
+    <script type="module" src="https://unpkg.com/@lemonsliceai/lemon-slice-widget"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- LEFT CONTROL DOCK -->
+        <nav class="control-dock">
+            <div class="dock-section">
+                <div class="button-glow-group">
+                    <button class="ctrl-btn nav-btn" id="prev-slide" title="Previous Slide"><i class="fas fa-backward"></i></button>
+                    <button class="ctrl-btn nav-btn" id="next-slide" title="Next Slide"><i class="fas fa-forward"></i></button>
+                </div>
+                <div class="section-label">Slide Nav</div>
+            </div>
+
+            <div class="dock-section">
+                <div class="button-glow-group">
+                    <button class="ctrl-btn cue-btn" id="cue-1" data-cue-id="segment_1">1</button>
+                    <button class="ctrl-btn cue-btn" id="cue-2" data-cue-id="segment_2">2</button>
+                    <button class="ctrl-btn cue-btn" id="cue-3" data-cue-id="segment_3">3</button>
+                    <button class="ctrl-btn cue-btn" id="cue-4" data-cue-id="segment_4">4</button>
+                </div>
+                <div class="section-label">Cue Botemia</div>
+            </div>
+
+            <div class="dock-section">
+                <div class="button-glow-group">
+                    <button class="ctrl-btn action-btn" id="show-testimonial" title="Show Testimonial Center"><i class="fas fa-play-circle"></i></button>
+                    <button class="ctrl-btn action-btn" id="show-commcenter" title="Show Communication Center"><i class="fas fa-comments"></i></button>
+                    <button class="ctrl-btn action-btn" id="show-videocenter" title="Show Video Center"><i class="fas fa-video"></i></button>
+                </div>
+                <div class="section-label">Overlays</div>
+            </div>
+
+            <div class="dock-section">
+                <div class="button-glow-group">
+                    <button class="ctrl-btn state-btn" id="botemia-pause" title="Pause Avatar"><i class="fas fa-pause"></i></button>
+                    <button class="ctrl-btn state-btn" id="botemia-stop" title="Stop Avatar"><i class="fas fa-stop"></i></button>
+                    <button class="ctrl-btn state-btn" id="toggle-mic" title="Toggle Mic"><i class="fas fa-microphone"></i></button>
+                </div>
+                <div class="section-label">Avatar Control</div>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            <!-- PRIMARY VIEWING SCREEN -->
+            <div class="viewing-screen" id="viewing-screen">
+                <!-- Slide content is injected here by script.js -->
+                <div id="slide-content"></div>
+
+                <!-- BOTEMIA WIDGET (Positioned as Overlay) -->
+                <div class="botemia-widget-container">
+                    <lemon-slice-widget agent-id="agent_1db77d60ec132469"></lemon-slice-widget>
+                </div>
+
+                <!-- OVERLAYS (Centered, Hidden by Default) -->
+                <div class="overlay" id="testimonial-overlay">
+                    <div class="overlay-content">
+                        <img src="assets/testimonial-center.PNG" alt="Testimonial Center" class="overlay-image">
+                        <div class="video-click-area" id="testimonial-video-trigger" title="Play Testimonial Video"></div>
+                        <button class="overlay-close" id="close-testimonial">&times;</button>
+                    </div>
+                </div>
+
+                <div class="overlay" id="commcenter-overlay">
+                    <div class="overlay-content">
+                        <img src="assets/com-center2.PNG" alt="Communication Center" class="overlay-image">
+                        <button class="overlay-close" id="close-commcenter">&times;</button>
+                    </div>
+                </div>
+
+                <div class="overlay" id="videocenter-overlay">
+                    <div class="overlay-content">
+                        <img src="assets/video-center.png" alt="Video Center" class="overlay-image">
+                        <button class="overlay-close" id="close-videocenter">&times;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL (Placeholder for Zoom/Attendees) -->
+            <aside class="right-panel">
+                <div class="panel-header">
+                    <i class="fas fa-user-friends"></i> Live Attendees
+                </div>
+                <div class="zoom-placeholder">
+                    <p><i class="fas fa-video"></i> Zoom/Video Feed Area</p>
+                    <p class="placeholder-note">Your video conferencing software will be positioned here during the live show.</p>
+                </div>
+                <div class="panel-footer">
+                    Status: <span class="status-indicator" id="connection-status">Ready</span>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- VIDEO MODAL (Hidden) -->
+    <div class="video-modal" id="video-modal">
+        <div class="video-modal-content">
+            <button class="video-close" id="close-video">&times;</button>
+            <video id="demo-video" controls>
+                <source src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/sign/video-testimonials/Mortgage%20Broker.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lNjg4MGUyOC0zMDRhLTQ5NzItYmNiMS1iY2U5YjNkOWU1YTkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby10ZXN0aW1vbmlhbHMvTW9ydGdhZ2UgQnJva2VyLm1wNCIsImlhdCI6MTc2OTkzMTU3MiwiZXhwIjoxODAxNDY3NTcyfQ._nFoTVutqa-VbeUlzj1OqEtIv2i_bTFI8LdajftMdYI" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="slides.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
