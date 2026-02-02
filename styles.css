@@ -6,7 +6,7 @@
     --panel-bg: #151522;
     --dock-bg: rgba(10, 20, 30, 0.9);
     --text-light: #e0f7ff;
-    --border-glow: rgba(0, 255, 255, 0.4);
+    --border-glow: rgb(0, 38, 255);
 }
 
 * {
