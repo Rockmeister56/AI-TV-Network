@@ -1,34 +1,30 @@
 // slides.js - AI TV NETWORK SLIDE DECK
 // =============================================
-// YOU EDIT THIS FILE TO ADD YOUR SLIDES.
-// 1. Replace placeholder content with your image URLs.
-// 2. Add more slide objects to the array as needed.
+// NOW USING LOCAL FILES FROM assets/slides/ FOLDER
 
 const slides = [
     {
         id: 1,
         title: "AI TV Network",
-        // REPLACE THIS URL WITH YOUR AI TV NETWORK SCREEN IMAGE FROM SUPABASE
+        // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
-                <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/AI%20tvnetwork/ainetworkscreen.png" 
+                <img src="assets/slides/slide1-ainetworkscreen.png" 
                      alt="AI TV Network" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
-        botemiaCueId: "segment_1" // For future automation
+        botemiaCueId: "segment_1"
     },
     {
         id: 2,
         title: "The Conversion Crisis",
-        // REPLACE WITH YOUR CONVERSION CRISIS SLIDE IMAGE
+        // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <div style="text-align:center; color: #fff; padding: 20px;">
-                    <h2 style="color: #0ff0fc;">SLIDE 2 PLACEHOLDER</h2>
-                    <p>Conversion Crisis Stats & Visual</p>
-                    <p><em>Replace with your image from Supabase</em></p>
-                </div>
+                <img src="assets/slides/slide2-conversion-crisis.png" 
+                     alt="Conversion Crisis" 
+                     style="max-width:100%; max-height:100%;">
             </div>
         `,
         botemiaCueId: "segment_2"
@@ -36,14 +32,12 @@ const slides = [
     {
         id: 3,
         title: "AI Bots Comparison",
-        // REPLACE WITH YOUR AI BOTS COMPARISON SLIDE IMAGE
+        // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <div style="text-align:center; color: #fff; padding: 20px;">
-                    <h2 style="color: #0ff0fc;">SLIDE 3 PLACEHOLDER</h2>
-                    <p>Not All AI Bots Are Created Equal</p>
-                    <p><em>Replace with your image from Supabase</em></p>
-                </div>
+                <img src="assets/slides/slide3-ai-bots-comparison.png" 
+                     alt="AI Bots Comparison" 
+                     style="max-width:100%; max-height:100%;">
             </div>
         `,
         botemiaCueId: "segment_3"
@@ -51,23 +45,21 @@ const slides = [
     {
         id: 4,
         title: "Live Demo - Legal Website",
-        // REPLACE WITH YOUR EXAMPLE WEBSITE IMAGE (e.g., a legal site)
+        // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <div style="text-align:center; color: #fff; padding: 20px;">
-                    <h2 style="color: #0ff0fc;">SLIDE 4 PLACEHOLDER</h2>
-                    <p>Example Website for Live Demo</p>
-                    <p><em>Replace with your website screenshot from Supabase</em></p>
-                </div>
+                <img src="assets/slides/slide4-legal-website.png" 
+                     alt="Legal Website Demo" 
+                     style="max-width:100%; max-height:100%;">
             </div>
         `,
         botemiaCueId: "segment_4"
     }
-    // TO ADD MORE SLIDES, COPY A BLOCK ABOVE AND PASTE IT HERE.
+    // TO ADD MORE SLIDES: Copy the block above, increment id, and add new image to assets/slides/
     // {
     //     id: 5,
     //     title: "Your Slide Title",
-    //     content: `<img src="YOUR_SUPABASE_IMAGE_URL" style="width:100%; height:auto;">`,
+    //     content: `<img src="assets/slides/slide5-your-image.png" style="width:100%; height:auto;">`,
     //     botemiaCueId: "segment_5"
     // }
 ];

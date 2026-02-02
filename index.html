@@ -10,6 +10,16 @@
     <script type="module" src="https://unpkg.com/@lemonsliceai/lemon-slice-widget"></script>
 </head>
 <body>
+    <!-- CTA HEADER (Hidden by Default) -->
+    <div class="cta-header" id="cta-header">
+        <div class="cta-content">
+            <img src="" alt="CTA Image" class="cta-image" id="cta-image">
+            <div class="cta-text" id="cta-text">Your call to action text here</div>
+            <button class="cta-button" id="cta-action-btn">Get Your Free Copy</button>
+        </div>
+        <button class="cta-close" id="cta-close">&times;</button>
+    </div>
+    
     <div class="container">
         <!-- LEFT CONTROL DOCK -->
         <nav class="control-dock">
@@ -44,46 +54,46 @@
         <!-- MAIN CONTENT AREA -->
         <main class="main-content">
             <!-- PRIMARY VIEWING SCREEN -->
-<div class="viewing-screen" id="viewing-screen">
-    <!-- SLIDE CONTENT (always visible unless covered) -->
-    <div id="slide-content"></div>
+            <div class="viewing-screen" id="viewing-screen">
+                <!-- SLIDE CONTENT (always visible unless covered) -->
+                <div id="slide-content"></div>
 
-    <div class="botemia-widget-container">
-    <lemon-slice-widget agent-id="agent_1db77d60ec132469"></lemon-slice-widget>
-</div>
+                <div class="botemia-widget-container">
+                    <lemon-slice-widget agent-id="agent_1db77d60ec132469"></lemon-slice-widget>
+                </div>
 
-    <!-- WEBSITE OVERLAYS (hidden by default, appear ON TOP of slides) -->
-    <div class="website-overlay" id="website-1-overlay">
-        <div class="website-content">
-            <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/legal1.PNG" 
-                 alt="Legal Website Example">
-            <button class="website-close">&times;</button>
-        </div>
-    </div>
+                <!-- WEBSITE OVERLAYS (hidden by default, appear ON TOP of slides) -->
+                <div class="website-overlay" id="website-1-overlay">
+                    <div class="website-content">
+                        <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/legal1.PNG" 
+                             alt="Legal Website Example">
+                        <button class="website-close">&times;</button>
+                    </div>
+                </div>
 
-    <div class="website-overlay" id="website-2-overlay">
-        <div class="website-content">
-            <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/dental-web2.PNG" 
-                 alt="Dental Website Example">
-            <button class="website-close">&times;</button>
-        </div>
-    </div>
+                <div class="website-overlay" id="website-2-overlay">
+                    <div class="website-content">
+                        <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/dental-web2.PNG" 
+                             alt="Dental Website Example">
+                        <button class="website-close">&times;</button>
+                    </div>
+                </div>
 
-    <div class="website-overlay" id="website-3-overlay">
-        <div class="website-content">
-            <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/mortgage-web.PNG" 
-                 alt="Mortgage Website Example">
-            <button class="website-close">&times;</button>
-        </div>
-    </div>
+                <div class="website-overlay" id="website-3-overlay">
+                    <div class="website-content">
+                        <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/mortgage-web.PNG" 
+                             alt="Mortgage Website Example">
+                        <button class="website-close">&times;</button>
+                    </div>
+                </div>
 
-    <div class="website-overlay" id="website-4-overlay">
-        <div class="website-content">
-            <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/manufacturing.PNG" 
-                 alt="Manufacturing Website Example">
-            <button class="website-close">&times;</button>
-        </div>
-    </div>
+                <div class="website-overlay" id="website-4-overlay">
+                    <div class="website-content">
+                        <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/manufacturing.PNG" 
+                             alt="Manufacturing Website Example">
+                        <button class="website-close">&times;</button>
+                    </div>
+                </div>
 
                 <!-- OVERLAYS (Centered, Hidden by Default) -->
                 <div class="overlay" id="testimonial-overlay">
@@ -110,17 +120,16 @@
             </div>
 
             <!-- RIGHT PANEL (Two-Row Zoom Attendee Layout) -->
-<aside class="right-panel">
-    <div class="panel-header special-guests-header">
-        <i class="fas fa-star"></i> Special Guests
-    </div>
-    
-    <!-- Zoom's video feed will appear here naturally -->
-    <div class="zoom-native-area">
-        <!-- Zoom software controls its own layout here -->
-    </div>
-
-</aside>
+            <aside class="right-panel">
+                <div class="panel-header special-guests-header">
+                    <i class="fas fa-star"></i> Special Guests
+                </div>
+                
+                <!-- Zoom's video feed will appear here naturally -->
+                <div class="zoom-native-area">
+                    <!-- Zoom software controls its own layout here -->
+                </div>
+            </aside>
         </main>
     </div>
 
@@ -135,27 +144,41 @@
         </div>
     </div>
 
-    <!-- BOTEMIA FOOTER CONTROL BAR -->
-<footer class="botemia-footer">
-    <div class="footer-label">Avatar Controls</div>
-    <div class="footer-controls">
-        <button class="footer-btn" id="footer-pause" title="Pause">
-            <i class="fas fa-pause"></i> Pause
-        </button>
-        <button class="footer-btn" id="footer-stop" title="Stop">
-            <i class="fas fa-stop"></i> Stop
-        </button>
-        <button class="footer-btn" id="footer-mic" title="Toggle Mic">
-            <i class="fas fa-microphone"></i> Mic
-        </button>
-        <button class="footer-btn" id="footer-chat" title="Open Chat">
-            <i class="fas fa-comment"></i> Chat
-        </button>
-        <button class="footer-btn" id="footer-restart" title="Restart Session">
-    <i class="fas fa-redo"></i> Restart
-</button>
-    </div>
-</footer>
+    <!-- COMBINED FOOTER WITH LEAD MAGNETS AND AVATAR CONTROLS -->
+    <footer class="botemia-footer">
+        <div class="footer-left">
+            <div class="footer-label">Lead Magnets</div>
+            <div class="lead-magnet-controls">
+                <button class="footer-btn lead-btn" id="free-book-btn" title="Free AI Business Book">
+                    <i class="fas fa-book"></i> Free Book
+                </button>
+                <button class="footer-btn lead-btn" id="mobile-report-btn" title="Free Mobile Report">
+                    <i class="fas fa-mobile-alt"></i> Mobile Report
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer-center">
+            <div class="footer-label">Avatar Controls</div>
+            <div class="footer-controls">
+                <button class="footer-btn" id="footer-pause" title="Pause">
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+                <button class="footer-btn" id="footer-stop" title="Stop">
+                    <i class="fas fa-stop"></i> Stop
+                </button>
+                <button class="footer-btn" id="footer-mic" title="Toggle Mic">
+                    <i class="fas fa-microphone"></i> Mic
+                </button>
+                <button class="footer-btn" id="footer-chat" title="Open Chat">
+                    <i class="fas fa-comment"></i> Chat
+                </button>
+                <button class="footer-btn" id="footer-restart" title="Restart Session">
+                    <i class="fas fa-redo"></i> Restart
+                </button>
+            </div>
+        </div>
+    </footer>
 
     <!-- JavaScript -->
     <script src="slides.js"></script>
