@@ -165,16 +165,17 @@ function setupEventListeners() {
     document.getElementById('next-slide').addEventListener('click', nextSlide);
     document.getElementById('prev-slide').addEventListener('click', prevSlide);
     
-    // Cue Buttons (1-4)
-    for (let i = 1; i <= 4; i++) {
-        const btn = document.getElementById(`cue-${i}`);
-        if (btn) {
-            btn.addEventListener('click', () => {
-                loadSlide(i - 1); // Load corresponding slide
-                cueBotemiaSegment(btn.dataset.cueId); // Log the cue for manual action
-            });
-        }
-    }
+   // Website Example Buttons (1-4)
+document.getElementById('cue-1').addEventListener('click', () => showOverlay('website1'));
+document.getElementById('cue-2').addEventListener('click', () => showOverlay('website2'));
+document.getElementById('cue-3').addEventListener('click', () => showOverlay('website3'));
+document.getElementById('cue-4').addEventListener('click', () => showOverlay('website4'));
+
+// Website overlay close buttons
+document.querySelector('[data-close="website-1"]').addEventListener('click', hideAllOverlays);
+document.querySelector('[data-close="website-2"]').addEventListener('click', hideAllOverlays);
+document.querySelector('[data-close="website-3"]').addEventListener('click', hideAllOverlays);
+document.querySelector('[data-close="website-4"]').addEventListener('click', hideAllOverlays);
     
     // Overlay Controls
     document.getElementById('show-testimonial').addEventListener('click', () => showOverlay('testimonial'));
@@ -185,6 +186,16 @@ function setupEventListeners() {
     document.getElementById('close-testimonial').addEventListener('click', hideAllOverlays);
     document.getElementById('close-commcenter').addEventListener('click', hideAllOverlays);
     document.getElementById('close-videocenter').addEventListener('click', hideAllOverlays);
+
+    const overlays = {
+    testimonial: document.getElementById('testimonial-overlay'),
+    commcenter: document.getElementById('commcenter-overlay'),
+    videocenter: document.getElementById('videocenter-overlay'),
+    website1: document.getElementById('website-1-overlay'),
+    website2: document.getElementById('website-2-overlay'),
+    website3: document.getElementById('website-3-overlay'),
+    website4: document.getElementById('website-4-overlay')
+};
     
     // Video Controls
     document.getElementById('testimonial-video-trigger').addEventListener('click', playDemoVideo);
