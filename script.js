@@ -24,6 +24,94 @@ document.addEventListener('DOMContentLoaded', function() {
     updateStatus('Ready');
 });
 
+// LEAD MAGNET & CTA FUNCTIONALITY
+
+// CTA Data Objects - USING LOCAL FILES
+const ctaData = {
+    book: {
+        image: 'assets/lead-magnets/book-cover.png',  // ← LOCAL PATH
+        text: 'Get Your FREE Copy of "AI Powered Business" - Limited Time Offer!',
+        buttonText: 'Download Free Book',
+        buttonLink: 'https://yourlink.com/free-book'  // ← UPDATE THIS LINK
+    },
+    report: {
+        image: 'assets/lead-magnets/mobile-report.png',  // ← LOCAL PATH
+        text: 'FREE Mobile Marketing Report: Boost Your Conversions by 300%',
+        buttonText: 'Get Free Report',
+        buttonLink: 'https://yourlink.com/free-report'  // ← UPDATE THIS LINK
+    }
+};
+
+// Lead Magnet Button Event Listeners
+document.addEventListener('DOMContentLoaded', function() {
+    const freeBookBtn = document.getElementById('free-book-btn');
+    const mobileReportBtn = document.getElementById('mobile-report-btn');
+    const ctaHeader = document.getElementById('cta-header');
+    const ctaImage = document.getElementById('cta-image');
+    const ctaText = document.getElementById('cta-text');
+    const ctaActionBtn = document.getElementById('cta-action-btn');
+    const ctaClose = document.getElementById('cta-close');
+    
+    // Free Book Button
+    if (freeBookBtn) {
+        freeBookBtn.addEventListener('click', function() {
+            showCTA('book');
+        });
+    }
+    
+    // Mobile Report Button
+    if (mobileReportBtn) {
+        mobileReportBtn.addEventListener('click', function() {
+            showCTA('report');
+        });
+    }
+    
+    // CTA Close Button
+    if (ctaClose) {
+        ctaClose.addEventListener('click', hideCTA);
+    }
+    
+    // CTA Action Button
+    if (ctaActionBtn) {
+        ctaActionBtn.addEventListener('click', function() {
+            const currentType = ctaActionBtn.dataset.type;
+            if (currentType && ctaData[currentType]) {
+                window.open(ctaData[currentType].buttonLink, '_blank');
+            }
+        });
+    }
+});
+
+// Function to show CTA
+function showCTA(type) {
+    const ctaHeader = document.getElementById('cta-header');
+    const ctaImage = document.getElementById('cta-image');
+    const ctaText = document.getElementById('cta-text');
+    const ctaActionBtn = document.getElementById('cta-action-btn');
+    
+    if (ctaData[type]) {
+        ctaImage.src = ctaData[type].image;
+        ctaText.textContent = ctaData[type].text;
+        ctaActionBtn.textContent = ctaData[type].buttonText;
+        ctaActionBtn.dataset.type = type;
+        ctaHeader.style.display = 'flex';
+        
+        // Auto-hide after 30 seconds
+        setTimeout(hideCTA, 30000);
+    }
+}
+
+// Function to hide CTA
+function hideCTA() {
+    const ctaHeader = document.getElementById('cta-header');
+    ctaHeader.style.display = 'none';
+}
+
+// Optional: Auto-show CTA on page load after 60 seconds
+setTimeout(() => {
+    showCTA('book');
+}, 60000);
+
 function showWebsiteOverlay(num) {
     // Hide any other website overlay first
     hideAllWebsiteOverlays();
