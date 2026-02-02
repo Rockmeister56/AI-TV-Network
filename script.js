@@ -171,11 +171,22 @@ document.getElementById('cue-2').addEventListener('click', () => showOverlay('we
 document.getElementById('cue-3').addEventListener('click', () => showOverlay('website3'));
 document.getElementById('cue-4').addEventListener('click', () => showOverlay('website4'));
 
-// Website overlay close buttons
-document.querySelector('[data-close="website-1"]').addEventListener('click', hideAllOverlays);
-document.querySelector('[data-close="website-2"]').addEventListener('click', hideAllOverlays);
-document.querySelector('[data-close="website-3"]').addEventListener('click', hideAllOverlays);
-document.querySelector('[data-close="website-4"]').addEventListener('click', hideAllOverlays);
+// Website overlay close buttons (if they exist)
+const closeButtons = [
+    '[data-close="website-1"]',
+    '[data-close="website-2"]',
+    '[data-close="website-3"]',
+    '[data-close="website-4"]'
+];
+
+closeButtons.forEach(selector => {
+    const btn = document.querySelector(selector);
+    if (btn) {
+        btn.addEventListener('click', hideAllOverlays);
+    } else {
+        console.warn(`Close button not found: ${selector}`);
+    }
+});
     
     // Overlay Controls
     document.getElementById('show-testimonial').addEventListener('click', () => showOverlay('testimonial'));
