@@ -293,100 +293,40 @@ body {
 /* === RIGHT PANEL (Zoom - Two-Row Layout) === */
 .right-panel {
     flex: 1;
-    background: var(--panel-bg);
+    background: rgba(10, 20, 40, 0.4); /* Lighter, more transparent */
     border-radius: 8px;
-    border: 1px solid rgba(0, 100, 255, 0.3);
+    border: 1px solid rgba(0, 150, 255, 0.3);
     display: flex;
     flex-direction: column;
-    min-width: 220px;
-    max-width: 250px;
-    height: calc(100vh - 280px);
-    margin-top: 2px; /* Raised up 10px from top */
+    min-width: 200px;
+    max-width: 225px;
+    height: calc(100vh - 200px); /* Adjust height as needed */
+    margin-top: 10px;
     margin-bottom: 10px;
-    position: relative;
+    backdrop-filter: blur(5px);
 }
 
-.panel-header {
-    background: rgba(0, 30, 60, 0.7);
+.special-guests-header {
+    background: linear-gradient(90deg, rgba(0, 100, 255, 0.6), rgba(0, 200, 255, 0.4));
     padding: 15px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    border-bottom: 1px solid var(--border-glow);
+    border-bottom: 1px solid var(--primary-glow);
     text-align: center;
+    color: #e0f7ff;
 }
 
-/* TWO-ROW ZOOM LAYOUT */
-/* PROPORTIONAL VIDEO GRID - SMALLER BUT KEEP RECTANGLE */
-.zoom-rows-container {
+.zoom-native-area {
     flex: 1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: minmax(50px, 1fr); /* Keep some height flexibility */
-    gap: 6px;
-    padding: 8px;
-    overflow-y: auto;
-    align-content: start;
+    /* Let Zoom fill this naturally */
+    min-height: 300px;
 }
 
+/* Remove all old zoom grid styles */
+.zoom-rows-container,
+.zoom-row,
 .zoom-placeholder.attendee {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 30, 60, 0.4);
-    border-radius: 6px;
-    border: 1px solid rgba(0, 150, 255, 0.4);
-    padding: 6px;
-    aspect-ratio: 4 / 3;
-    min-height: 35px; /* ← CHANGE THIS NUMBER FOR SIZE */
-    color: #88aadd;
-    text-align: center;
-    position: relative;
-    font-size: 0.75rem;
-    /* REMOVE: min-height: 0; ← DELETE THIS LINE */
-}
-
-.zoom-placeholder.attendee i {
-    font-size: 1rem;
-    color: #66aaff;
-    margin-bottom: 3px;
-}
-
-.zoom-placeholder.attendee p {
-    font-size: 0.7rem;
-    color: #aaddff;
-    margin: 0;
-    font-weight: 500;
-}
-
-.zoom-placeholder.attendee::before {
-    content: attr(data-number);
-    position: absolute;
-    top: 2px;
-    left: 4px;
-    font-size: 0.6rem;
-    color: #88ccff;
-    background: rgba(0, 20, 40, 0.8);
-    padding: 1px 4px;
-    border-radius: 4px;
-}
-
-.panel-footer {
-    padding: 12px;
-    background: rgba(0, 20, 40, 0.8);
-    border-top: 1px solid var(--border-glow);
-    text-align: center;
-    font-size: 0.9rem;
-}
-
-.status-indicator {
-    color: var(--secondary-glow);
-    font-weight: bold;
-}
-
-/* Remove old single zoom-placeholder styles if they conflict */
-.zoom-placeholder:not(.attendee) {
-    display: none; /* Hide the old single placeholder */
+    display: none; /* Hide the old grid */
 }
 
 /* === VIDEO MODAL === */
