@@ -291,21 +291,20 @@ body {
 }
 
 .right-panel {
-    flex: 1;
     background: rgba(10, 20, 40, 0.4);
     border-radius: 8px;
     border: 1px solid rgba(0, 150, 255, 0.3);
-    display: flex;
-    flex-direction: column;
-    min-width: 200px;
-    max-width: 225px;
-    height: auto !important; /* Let content control height */
-    max-height: calc(100vh - 250px) !important; /* ← FORCE SHORTER */
-    margin-top: 5px;
-    margin-bottom: 10px;
+    display: block; /* NOT flex */
+    width: 225px; /* Fixed width */
+    height: 500px !important; /* ← SET THIS TO YOUR DESIRED HEIGHT */
+    position: absolute;
+    top: 20px;
+    right: 20px;
     backdrop-filter: blur(5px);
-    overflow: hidden; /* Prevent spill */
+    overflow: hidden;
+    z-index: 10;
 }
+
 
 .zoom-native-area {
     flex: 1;
