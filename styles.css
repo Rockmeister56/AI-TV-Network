@@ -290,45 +290,6 @@ body {
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* === RIGHT PANEL (Zoom - Two-Row Layout) === */
-.right-panel {
-    flex: 1;
-    background: rgba(10, 20, 40, 0.4); /* Lighter, more transparent */
-    border-radius: 8px;
-    border: 1px solid rgba(0, 150, 255, 0.3);
-    display: flex;
-    flex-direction: column;
-    min-width: 200px;
-    max-width: 225px;
-    height: calc(100vh - 200px); /* Adjust height as needed */
-    margin-top: 10px;
-    margin-bottom: 10px;
-    backdrop-filter: blur(5px);
-}
-
-.special-guests-header {
-    background: linear-gradient(90deg, rgba(0, 100, 255, 0.6), rgba(0, 200, 255, 0.4));
-    padding: 15px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-bottom: 1px solid var(--primary-glow);
-    text-align: center;
-    color: #e0f7ff;
-}
-
-.zoom-native-area {
-    flex: 1;
-    /* Let Zoom fill this naturally */
-    min-height: 300px;
-}
-
-/* Remove all old zoom grid styles */
-.zoom-rows-container,
-.zoom-row,
-.zoom-placeholder.attendee {
-    display: none; /* Hide the old grid */
-}
-
 /* === VIDEO MODAL === */
 .video-modal {
     display: none;
