@@ -17,7 +17,33 @@ document.addEventListener('DOMContentLoaded', function() {
     loadSlide(currentSlideIndex);
     setupEventListeners();
     updateStatus('Ready');
+    initBotemiaWidget();
 });
+
+// ================= BOTEMIA WIDGET INIT =================
+function initBotemiaWidget() {
+    const widget = document.querySelector('lemon-slice-widget');
+    if (widget) {
+        // Force widget to be active (full view) instead of minimized
+        widget.setAttribute('controlled-widget-state', 'active');
+        
+        // Optional: Start with mic off
+        widget.setAttribute('start-mic-off', 'true');
+        
+        console.log('Botemia widget set to active state.');
+        
+        // Test: Send a message after a delay (optional)
+        setTimeout(() => {
+            if (widget.sendMessage) {
+                widget.sendMessage('Hello!').then(() => {
+                    console.log('Initial greeting sent to Botemia.');
+                });
+            }
+        }, 2000);
+    } else {
+        console.warn('Lemon Slice widget not found.');
+    }
+}
 
 // ================= SLIDE MANAGEMENT =================
 function loadSlide(index) {

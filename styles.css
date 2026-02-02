@@ -129,7 +129,7 @@ body {
 .cue-btn {
     font-size: 1.8rem;
     color: #ffffaa;
-    background: linear-gradient(145deg, #2a1f30, #1f1522);
+    background: linear-gradient(145deg, #353535, #2f2f2f);
 }
 .cue-btn:hover { color: #ffff00; }
 
@@ -175,36 +175,36 @@ body {
     object-fit: cover;
 }
 
-/* Botemia Widget Container - Make it taller */
 .botemia-widget-container {
     position: absolute;
     bottom: 20px;
     right: 20px;
     z-index: 1000;
-    width: 220px;   /* Narrower */
-    height: 300px;  /* Taller (more vertical) */
+    width: 220px;
+    height: 300px;
     border-radius: 8px;
     overflow: hidden;
-    border: 3px solid rgba(17, 0, 255, 0.8) !important;
-    background: rgba(0, 50, 100, 0.3) !important; /* So we can see container */
-    box-shadow: 0 0 25px rgba(0, 85, 255, 0.7);
+    border: 3px solid rgba(0, 255, 255, 0.8);
+    background: rgba(0, 30, 60, 0.7);
+    box-shadow: 0 0 25px rgba(0, 200, 255, 0.7);
 }
 
-/* Force the Lemon Slice widget to fill container */
+/* Force widget to fill container */
 .botemia-widget-container lemon-slice-widget {
     width: 100% !important;
     height: 100% !important;
     display: block !important;
     min-height: 100% !important;
     min-width: 100% !important;
-    object-fit: cover !important;
 }
 
-/* If there's an iframe inside */
+/* Target widget's internal iframe */
+.botemia-widget-container lemon-slice-widget iframe,
 .botemia-widget-container iframe {
     width: 100% !important;
     height: 100% !important;
     border: none !important;
+    position: relative !important;
 }
 
 /* === OVERLAY STYLES === */

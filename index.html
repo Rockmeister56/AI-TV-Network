@@ -57,10 +57,16 @@
                 <!-- Slide content is injected here by script.js -->
                 <div id="slide-content"></div>
 
-                <!-- BOTEMIA WIDGET (Positioned as Overlay) -->
-                <div class="botemia-widget-container">
-                    <lemon-slice-widget agent-id="agent_1db77d60ec132469"></lemon-slice-widget>
-                </div>
+               <div class="botemia-widget-container">
+    <lemon-slice-widget 
+        agent-id="agent_1db77d60ec132469"
+        controlled-widget-state="active"
+        start-mic-off="true"
+        width="100%"
+        height="100%"
+        style="display: block;"
+    ></lemon-slice-widget>
+</div>
 
                 <!-- OVERLAYS (Centered, Hidden by Default) -->
                 <div class="overlay" id="testimonial-overlay">
