@@ -316,14 +316,14 @@ body {
 }
 
 /* TWO-ROW ZOOM LAYOUT */
-/* COMPACT 10-SLOT VIDEO GRID */
+/* COMPACT 10-SLOT VIDEO GRID - SMALLER */
 .zoom-rows-container {
     flex: 1;
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 columns */
     grid-auto-rows: 1fr; /* Equal height rows */
-    gap: 8px;
-    padding: 10px;
+    gap: 6px; /* Reduced gap */
+    padding: 8px; /* Reduced padding */
     overflow-y: auto;
 }
 
@@ -333,40 +333,41 @@ body {
     align-items: center;
     justify-content: center;
     background: rgba(0, 30, 60, 0.4);
-    border-radius: 6px;
+    border-radius: 5px; /* Slightly smaller */
     border: 1px solid rgba(0, 150, 255, 0.4);
-    padding: 8px;
-    aspect-ratio: 1 / 1; /* Square slots */
+    padding: 5px; /* Reduced padding */
+    aspect-ratio: 1 / 1; /* Keep square */
     min-height: 0;
     color: #88aadd;
     text-align: center;
     position: relative;
+    font-size: 0.8rem; /* Base font smaller */
 }
 
 .zoom-placeholder.attendee i {
-    font-size: 1.2rem;
+    font-size: 1rem; /* Smaller icon */
     color: #66aaff;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 
 .zoom-placeholder.attendee p {
-    font-size: 0.7rem;
+    font-size: 0.65rem; /* Smaller text */
     color: #aaddff;
     margin: 0;
     font-weight: 500;
 }
 
-/* Number labels (optional) */
+/* Smaller number labels */
 .zoom-placeholder.attendee::before {
     content: attr(data-number);
     position: absolute;
-    top: 3px;
-    left: 5px;
-    font-size: 0.6rem;
+    top: 2px;
+    left: 4px;
+    font-size: 0.55rem;
     color: #88ccff;
     background: rgba(0, 20, 40, 0.8);
-    padding: 1px 5px;
-    border-radius: 8px;
+    padding: 1px 4px;
+    border-radius: 6px;
 }
 
 .panel-footer {
