@@ -338,7 +338,7 @@ body {
     border: 1px solid rgba(0, 150, 255, 0.4);
     padding: 6px;
     aspect-ratio: 4 / 3; /* Standard video aspect ratio */
-    min-height: 50px;
+    min-height: 35px;
     color: #88aadd;
     text-align: center;
     position: relative;
