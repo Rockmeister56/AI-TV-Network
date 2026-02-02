@@ -337,13 +337,13 @@ body {
     border-radius: 6px;
     border: 1px solid rgba(0, 150, 255, 0.4);
     padding: 6px;
-    aspect-ratio: 4 / 3; /* Standard video aspect ratio */
-    min-height: 35px;
+    aspect-ratio: 4 / 3;
+    min-height: 35px; /* ← CHANGE THIS NUMBER FOR SIZE */
     color: #88aadd;
     text-align: center;
     position: relative;
     font-size: 0.75rem;
-    min-height: 0;
+    /* REMOVE: min-height: 0; ← DELETE THIS LINE */
 }
 
 .zoom-placeholder.attendee i {
