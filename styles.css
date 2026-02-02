@@ -300,8 +300,8 @@ body {
     flex-direction: column;
     min-width: 200px;
     max-width: 225px;
-    height: calc(100vh - 280px);
-    margin-top: 2px; /* Raised up 10px from top */
+    height: calc(100vh - 300px); /* ← Shorter by 20px */
+    margin-top: 2px;
     margin-bottom: 10px;
     position: relative;
 }
@@ -322,8 +322,8 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: minmax(50px, 1fr); /* Keep some height flexibility */
-    gap: 6px;
-    padding: 8px;
+    gap: 2px;
+    padding: 4px;
     overflow-y: auto;
     align-content: start;
 }
@@ -336,7 +336,7 @@ body {
     background: rgba(0, 30, 60, 0.4);
     border-radius: 6px;
     border: 1px solid rgba(0, 150, 255, 0.4);
-    padding: 6px;
+    padding: 2px;
     aspect-ratio: 4 / 3;
     min-height: 35px; /* ← CHANGE THIS NUMBER FOR SIZE */
     color: #88aadd;
