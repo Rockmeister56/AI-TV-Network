@@ -24,6 +24,37 @@ document.addEventListener('DOMContentLoaded', function() {
     updateStatus('Ready');
 });
 
+function showWebsiteOverlay(num) {
+    // Hide any other website overlay first
+    hideAllWebsiteOverlays();
+    
+    // Show requested website overlay
+    const overlay = document.getElementById(`website-${num}-overlay`);
+    if (overlay) {
+        overlay.classList.add('active');
+        console.log(`Showing website overlay ${num}`);
+        updateStatus(`Website Example ${num}`);
+    }
+}
+
+function hideAllWebsiteOverlays() {
+    // Hide all website overlays
+    for (let i = 1; i <= 4; i++) {
+        const overlay = document.getElementById(`website-${i}-overlay`);
+        if (overlay) overlay.classList.remove('active');
+    }
+    updateStatus('Ready');
+}
+
+// Update button listeners
+document.getElementById('cue-1').addEventListener('click', () => showWebsiteOverlay(1));
+// ... same for 2, 3, 4
+
+// Close button
+document.querySelectorAll('.website-close').forEach(btn => {
+    btn.addEventListener('click', hideAllWebsiteOverlays);
+});
+
 // ================= SLIDE MANAGEMENT =================
 function loadSlide(index) {
     if (!slides || index < 0 || index >= slides.length) {

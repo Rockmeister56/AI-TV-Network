@@ -45,13 +45,35 @@
         <main class="main-content">
             <!-- PRIMARY VIEWING SCREEN -->
             <div class="viewing-screen" id="viewing-screen">
-                <!-- Slide content is injected here by script.js -->
+               <!-- Website Examples (OVERLAY on top of slides) -->
+            <div class="website-overlay" id="website-1-overlay">
                 <div id="slide-content"></div>
+                 </div>
 
-                <!-- BOTEMIA WIDGET (Positioned as Overlay) -->
-                <div class="botemia-widget-container">
-                    <lemon-slice-widget agent-id="agent_1db77d60ec132469"></lemon-slice-widget>
-                </div>
+     <!-- Website Examples (hidden by default, appear INSIDE slide area) -->
+<div class="website-example" id="website-1-example">
+    <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/legal1.PNG" 
+         alt="Legal Website Example">
+    <button class="website-close">&times;</button>
+</div>
+
+<div class="website-example" id="website-2-example">
+    <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/dental-web2.PNG" 
+         alt="Dental Website Example">
+    <button class="website-close">&times;</button>
+</div>
+
+<div class="website-example" id="website-3-example">
+    <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/mortgage-web.PNG" 
+         alt="Mortgage Website Example">
+    <button class="website-close">&times;</button>
+</div>
+
+<div class="website-example" id="website-4-example">
+    <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/manufacturing.PNG" 
+         alt="Manufacturing Website Example">
+    <button class="website-close">&times;</button>
+</div>
 
                 <!-- OVERLAYS (Centered, Hidden by Default) -->
                 <div class="overlay" id="testimonial-overlay">
@@ -76,36 +98,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- WEBSITE EXAMPLE OVERLAYS -->
-<div class="overlay" id="website-1-overlay">
-    <div class="section-label">Website Examples</div>
-    <div class="overlay-content">
-        <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/legal1.PNG" alt="Legal Website Example" class="overlay-image">
-        <button class="overlay-close" data-close="website-1">&times;</button>
-    </div>
-</div>
-
-<div class="overlay" id="website-2-overlay">
-    <div class="overlay-content">
-        <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/dental-web2.PNG" alt="Dental Website Example" class="overlay-image">
-        <button class="overlay-close" data-close="website-2">&times;</button>
-    </div>
-</div>
-
-<div class="overlay" id="website-3-overlay">
-    <div class="overlay-content">
-        <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/mortgage-web.PNG" alt="Mortgage Website Example" class="overlay-image">
-        <button class="overlay-close" data-close="website-3">&times;</button>
-    </div>
-</div>
-
-<div class="overlay" id="website-4-overlay">
-    <div class="overlay-content">
-        <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/manufacturing.PNG" alt="Manufacturing Website Example" class="overlay-image">
-        <button class="overlay-close" data-close="website-4">&times;</button>
-    </div>
-</div>
 
             <!-- RIGHT PANEL (Two-Row Zoom Attendee Layout) -->
 <aside class="right-panel">
