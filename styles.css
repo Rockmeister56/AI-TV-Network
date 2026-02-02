@@ -316,14 +316,14 @@ body {
 }
 
 /* TWO-ROW ZOOM LAYOUT */
-/* COMPACT 10-SLOT VIDEO GRID - SMALLER */
+/* COMPACT 10-SLOT VIDEO GRID - EXTRA SMALL */
 .zoom-rows-container {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    grid-auto-rows: 1fr; /* Equal height rows */
-    gap: 6px; /* Reduced gap */
-    padding: 8px; /* Reduced padding */
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(30px, 1fr); /* Force smaller min height */
+    gap: 4px; /* Minimal gap */
+    padding: 6px;
     overflow-y: auto;
 }
 
@@ -333,41 +333,41 @@ body {
     align-items: center;
     justify-content: center;
     background: rgba(0, 30, 60, 0.4);
-    border-radius: 5px; /* Slightly smaller */
+    border-radius: 4px;
     border: 1px solid rgba(0, 150, 255, 0.4);
-    padding: 5px; /* Reduced padding */
-    aspect-ratio: 1 / 1; /* Keep square */
-    min-height: 0;
+    padding: 3px; /* Tiny padding */
+    aspect-ratio: 1 / 1;
+    min-height: 30px; /* Force small height */
     color: #88aadd;
     text-align: center;
     position: relative;
-    font-size: 0.8rem; /* Base font smaller */
+    font-size: 0.7rem;
 }
 
 .zoom-placeholder.attendee i {
-    font-size: 1rem; /* Smaller icon */
+    font-size: 0.8rem; /* Tiny icon */
     color: #66aaff;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
 }
 
 .zoom-placeholder.attendee p {
-    font-size: 0.65rem; /* Smaller text */
+    font-size: 0.6rem; /* Tiny text */
     color: #aaddff;
     margin: 0;
     font-weight: 500;
 }
 
-/* Smaller number labels */
+/* Tiny number labels */
 .zoom-placeholder.attendee::before {
     content: attr(data-number);
     position: absolute;
-    top: 2px;
-    left: 4px;
-    font-size: 0.55rem;
+    top: 1px;
+    left: 3px;
+    font-size: 0.5rem;
     color: #88ccff;
     background: rgba(0, 20, 40, 0.8);
-    padding: 1px 4px;
-    border-radius: 6px;
+    padding: 0 3px;
+    border-radius: 4px;
 }
 
 .panel-footer {
