@@ -197,17 +197,21 @@ document.addEventListener('click', function(e) {
     document.getElementById('testimonial-video-trigger').addEventListener('click', playDemoVideo);
     document.getElementById('close-video').addEventListener('click', hideAllOverlays);
     
-    // Botemia Control Buttons (Placeholder - manual for now)
+    // Botemia Control Buttons (if they exist)
+if (document.getElementById('botemia-pause')) {
     document.getElementById('botemia-pause').addEventListener('click', pauseBotemia);
     document.getElementById('botemia-stop').addEventListener('click', stopBotemia);
     document.getElementById('toggle-mic').addEventListener('click', toggleMic);
+}
 
-    // In setupEventListeners(), add:
-document.getElementById('footer-pause').addEventListener('click', pauseAvatar);
-document.getElementById('footer-stop').addEventListener('click', stopAvatar);
-document.getElementById('footer-mic').addEventListener('click', toggleAvatarMic);
-document.getElementById('footer-chat').addEventListener('click', openAvatarChat);
-document.getElementById('footer-restart').addEventListener('click', restartAvatarSession);
+    // Footer Botemia Controls (if they exist)
+if (document.getElementById('footer-pause')) {
+    document.getElementById('footer-pause').addEventListener('click', pauseAvatar);
+    document.getElementById('footer-stop').addEventListener('click', stopAvatar);
+    document.getElementById('footer-mic').addEventListener('click', toggleAvatarMic);
+    document.getElementById('footer-chat').addEventListener('click', openAvatarChat);
+    document.getElementById('footer-restart').addEventListener('click', restartAvatarSession);
+}
     
     // Keyboard Shortcuts (Optional)
     document.addEventListener('keydown', (e) => {
