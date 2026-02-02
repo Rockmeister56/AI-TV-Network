@@ -113,6 +113,44 @@ function toggleMic() {
     updateStatus('Mic Toggled (Manual)');
 }
 
+// ================= FOOTER BOTEMIA CONTROLS =================
+function updateAvatarStatus(message) {
+    const statusEl = document.getElementById('avatar-status');
+    if (statusEl) {
+        statusEl.textContent = message;
+    }
+}
+
+function pauseAvatar() {
+    console.log('[FOOTER] Pause Avatar requested');
+    updateAvatarStatus('Paused');
+    // Future: widget.pause() if API supports it
+}
+
+function stopAvatar() {
+    console.log('[FOOTER] Stop Avatar requested');
+    updateAvatarStatus('Stopped');
+    // Future: widget.stop() if API supports it
+}
+
+function toggleAvatarMic() {
+    console.log('[FOOTER] Toggle Mic requested');
+    updateAvatarStatus('Mic Toggled');
+    // Future: widget.micOn() / widget.micOff()
+}
+
+function openAvatarChat() {
+    console.log('[FOOTER] Open Chat requested');
+    updateAvatarStatus('Chat Active');
+    // Future: widget.setAttribute('controlled-widget-state', 'active')
+}
+
+function restartAvatarSession() {
+    console.log('[FOOTER] Restart Session requested');
+    updateAvatarStatus('Restarting...');
+    // Future: widget.reload() or reinitialize
+}
+
 // ================= UI STATUS UPDATE =================
 function updateStatus(message) {
     const statusEl = document.getElementById('connection-status');
@@ -156,6 +194,13 @@ function setupEventListeners() {
     document.getElementById('botemia-pause').addEventListener('click', pauseBotemia);
     document.getElementById('botemia-stop').addEventListener('click', stopBotemia);
     document.getElementById('toggle-mic').addEventListener('click', toggleMic);
+
+    // In setupEventListeners(), add:
+document.getElementById('footer-pause').addEventListener('click', pauseAvatar);
+document.getElementById('footer-stop').addEventListener('click', stopAvatar);
+document.getElementById('footer-mic').addEventListener('click', toggleAvatarMic);
+document.getElementById('footer-chat').addEventListener('click', openAvatarChat);
+document.getElementById('footer-restart').addEventListener('click', restartAvatarSession);
     
     // Keyboard Shortcuts (Optional)
     document.addEventListener('keydown', (e) => {
