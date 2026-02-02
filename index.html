@@ -77,19 +77,43 @@
                 </div>
             </div>
 
-            <!-- RIGHT PANEL (Placeholder for Zoom/Attendees) -->
-            <aside class="right-panel">
-                <div class="panel-header">
-                    <i class="fas fa-user-friends"></i> Live Attendees
-                </div>
-                <div class="zoom-placeholder">
-                    <p><i class="fas fa-video"></i> Zoom/Video Feed Area</p>
-                    <p class="placeholder-note">Your video conferencing software will be positioned here during the live show.</p>
-                </div>
-                <div class="panel-footer">
-                    Status: <span class="status-indicator" id="connection-status">Ready</span>
-                </div>
-            </aside>
+            <!-- RIGHT PANEL (Two-Row Zoom Attendee Layout) -->
+<aside class="right-panel">
+    <div class="panel-header">
+        <i class="fas fa-user-friends"></i> Live Attendees
+    </div>
+    
+    <!-- TWO ROW CONTAINER -->
+    <div class="zoom-rows-container">
+        <!-- Row 1 -->
+        <div class="zoom-row">
+            <div class="zoom-placeholder attendee">
+                <i class="fas fa-user"></i>
+                <p>Guest 1</p>
+            </div>
+            <div class="zoom-placeholder attendee">
+                <i class="fas fa-user"></i>
+                <p>Guest 2</p>
+            </div>
+        </div>
+        
+        <!-- Row 2 -->
+        <div class="zoom-row">
+            <div class="zoom-placeholder attendee">
+                <i class="fas fa-user"></i>
+                <p>Guest 3</p>
+            </div>
+            <div class="zoom-placeholder attendee">
+                <i class="fas fa-user"></i>
+                <p>Guest 4</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel-footer">
+        Status: <span class="status-indicator" id="connection-status">Ready</span>
+    </div>
+</aside>
         </main>
     </div>
 

@@ -290,7 +290,7 @@ body {
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* === RIGHT PANEL (Zoom) === */
+/* === RIGHT PANEL (Zoom - Two-Row Layout) === */
 .right-panel {
     flex: 1;
     background: var(--panel-bg);
@@ -300,6 +300,10 @@ body {
     flex-direction: column;
     min-width: 180px;
     max-width: 200px;
+    height: calc(100vh - 280px); /* Tall, raised up */
+    margin-top: 60px; /* Pushed down from top */
+    margin-bottom: 10px;
+    position: relative;
 }
 
 .panel-header {
@@ -311,28 +315,56 @@ body {
     text-align: center;
 }
 
-.zoom-placeholder {
+/* TWO-ROW ZOOM LAYOUT */
+.zoom-rows-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.zoom-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex: 1;
+    min-height: 100px;
+}
+
+.zoom-placeholder.attendee {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: rgba(0, 30, 60, 0.5);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 150, 255, 0.5);
+    padding: 15px;
+    min-height: 100px;
     color: #88aadd;
     text-align: center;
-    padding: 30px;
-    gap: 15px;
 }
 
-.zoom-placeholder i {
-    font-size: 3rem;
-    color: var(--border-glow);
+/* Visual separator between rows */
+.zoom-row:first-child {
+    border-bottom: 1px dashed rgba(0, 150, 255, 0.3);
+    padding-bottom: 15px;
 }
 
-.placeholder-note {
+.zoom-placeholder.attendee i {
+    font-size: 1.8rem;
+    color: #66aaff;
+    margin-bottom: 8px;
+}
+
+.zoom-placeholder.attendee p {
     font-size: 0.85rem;
-    color: #6688aa;
-    font-style: italic;
-    margin-top: 10px;
+    color: #aaddff;
+    margin: 0;
+    font-weight: 500;
 }
 
 .panel-footer {
@@ -346,6 +378,11 @@ body {
 .status-indicator {
     color: var(--secondary-glow);
     font-weight: bold;
+}
+
+/* Remove old single zoom-placeholder styles if they conflict */
+.zoom-placeholder:not(.attendee) {
+    display: none; /* Hide the old single placeholder */
 }
 
 /* === VIDEO MODAL === */
