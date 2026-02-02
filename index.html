@@ -41,78 +41,55 @@
             </div>
         </nav>
 
-        <!-- MAIN CONTENT AREA -->
-        <main class="main-content">
-            <!-- PRIMARY VIEWING SCREEN -->
-            <div class="viewing-screen" id="viewing-screen">
-               <!-- Website Examples (OVERLAY on top of slides) -->
-            <div class="website-overlay" id="website-1-overlay">
-                <div id="slide-content"></div>
-                 </div>
+      <!-- PRIMARY VIEWING SCREEN -->
+<div class="viewing-screen" id="viewing-screen">
+    <!-- SLIDE CONTENT (always visible unless covered) -->
+    <div id="slide-content"></div>
 
-     <!-- Website Examples (hidden by default, appear INSIDE slide area) -->
-<div class="website-example" id="website-1-example">
-    <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/legal1.PNG" 
-         alt="Legal Website Example">
-    <button class="website-close">&times;</button>
-</div>
-
-<div class="website-example" id="website-2-example">
-    <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/dental-web2.PNG" 
-         alt="Dental Website Example">
-    <button class="website-close">&times;</button>
-</div>
-
-<div class="website-example" id="website-3-example">
-    <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/mortgage-web.PNG" 
-         alt="Mortgage Website Example">
-    <button class="website-close">&times;</button>
-</div>
-
-<div class="website-example" id="website-4-example">
-    <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/manufacturing.PNG" 
-         alt="Manufacturing Website Example">
-    <button class="website-close">&times;</button>
-</div>
-
-                <!-- OVERLAYS (Centered, Hidden by Default) -->
-                <div class="overlay" id="testimonial-overlay">
-                    <div class="overlay-content">
-                        <img src="assets/testimonial-center.PNG" alt="Testimonial Center" class="overlay-image">
-                        <div class="video-click-area" id="testimonial-video-trigger" title="Play Testimonial Video"></div>
-                        <button class="overlay-close" id="close-testimonial">&times;</button>
-                    </div>
-                </div>
-
-                <div class="overlay" id="commcenter-overlay">
-                    <div class="overlay-content">
-                        <img src="assets/com-center2.PNG" alt="Communication Center" class="overlay-image">
-                        <button class="overlay-close" id="close-commcenter">&times;</button>
-                    </div>
-                </div>
-
-                <div class="overlay" id="videocenter-overlay">
-                    <div class="overlay-content">
-                        <img src="assets/video-center.png" alt="Video Center" class="overlay-image">
-                        <button class="overlay-close" id="close-videocenter">&times;</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RIGHT PANEL (Two-Row Zoom Attendee Layout) -->
-<aside class="right-panel">
-    <div class="panel-header special-guests-header">
-        <i class="fas fa-star"></i> Special Guests
-    </div>
-    
-    <!-- Zoom's video feed will appear here naturally -->
-    <div class="zoom-native-area">
-        <!-- Zoom software controls its own layout here -->
+    <!-- WEBSITE OVERLAYS (hidden by default, appear ON TOP of slides) -->
+    <div class="website-overlay" id="website-1-overlay">
+        <div class="website-content">
+            <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/legal1.PNG" 
+                 alt="Legal Website Example">
+            <button class="website-close">&times;</button>
+        </div>
     </div>
 
-</aside>
-        </main>
+    <div class="website-overlay" id="website-2-overlay">
+        <div class="website-content">
+            <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/dental-web2.PNG" 
+                 alt="Dental Website Example">
+            <button class="website-close">&times;</button>
+        </div>
     </div>
+
+    <div class="website-overlay" id="website-3-overlay">
+        <div class="website-content">
+            <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/mortgage-web.PNG" 
+                 alt="Mortgage Website Example">
+            <button class="website-close">&times;</button>
+        </div>
+    </div>
+
+    <div class="website-overlay" id="website-4-overlay">
+        <div class="website-content">
+            <img src="https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/public/form-assets/web-markets/manufacturing.PNG" 
+                 alt="Manufacturing Website Example">
+            <button class="website-close">&times;</button>
+        </div>
+    </div>
+
+    <!-- OTHER OVERLAYS (Testimonial, Comm Center, Video Center) -->
+    <div class="overlay" id="testimonial-overlay">
+        <!-- ... keep existing ... -->
+    </div>
+    <div class="overlay" id="commcenter-overlay">
+        <!-- ... keep existing ... -->
+    </div>
+    <div class="overlay" id="videocenter-overlay">
+        <!-- ... keep existing ... -->
+    </div>
+</div>
 
     <!-- VIDEO MODAL (Hidden) -->
     <div class="video-modal" id="video-modal">
