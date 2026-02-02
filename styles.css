@@ -292,17 +292,25 @@ body {
 
 .right-panel {
     flex: 1;
-    background: rgba(10, 20, 40, 0.4); /* Lighter, more transparent */
+    background: rgba(10, 20, 40, 0.4);
     border-radius: 8px;
     border: 1px solid rgba(0, 150, 255, 0.3);
     display: flex;
     flex-direction: column;
     min-width: 200px;
     max-width: 225px;
-    height: calc(100vh - 170px); /* Adjust height as needed */
+    height: auto !important; /* Let content control height */
+    max-height: calc(100vh - 250px) !important; /* ← FORCE SHORTER */
     margin-top: 5px;
     margin-bottom: 10px;
     backdrop-filter: blur(5px);
+    overflow: hidden; /* Prevent spill */
+}
+
+.zoom-native-area {
+    flex: 1;
+    min-height: 0; /* Critical: allows shrinking */
+    overflow: auto; /* Scroll if content overflows */
 }
 
 .special-guests-header {
@@ -313,12 +321,6 @@ body {
     border-bottom: 1px solid var(--primary-glow);
     text-align: center;
     color: #e0f7ff;
-}
-
-.zoom-native-area {
-    flex: 1;
-    /* Let Zoom fill this naturally */
-    min-height: 300px;
 }
 
 /* Remove all old zoom grid styles */
