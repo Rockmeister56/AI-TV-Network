@@ -175,18 +175,17 @@ body {
     object-fit: cover;
 }
 
-/* DEBUG: See Botemia container */
+/* Botemia Widget Container */
 .botemia-widget-container {
     position: absolute;
     bottom: 20px;
     right: 20px;
-    z-index: 1000; /* Very high to ensure it's on top */
+    z-index: 100;
     width: 280px;
     height: 180px;
     border-radius: 8px;
     overflow: hidden;
-    border: 3px solid red !important; /* TEMP: So you can SEE it */
-    background: rgba(255, 0, 0, 0.2) !important; /* TEMP: So you can SEE it */
+    border: 2px solid rgba(0, 200, 255, 0.6);
     box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
 }
 
