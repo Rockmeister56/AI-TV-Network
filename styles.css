@@ -32,7 +32,7 @@ body {
     display: flex;
     width: 95vw;
     height: 95vh;
-    background: rgba(5, 10, 20, 0.7);
+    background: transparent; /* WAS: rgba(5, 10, 20, 0.7) */
     border-radius: 12px;
     border: 1px solid var(--border-glow);
     box-shadow: 0 0 40px rgba(0, 150, 255, 0.2);
@@ -175,17 +175,18 @@ body {
     object-fit: cover;
 }
 
-/* Botemia Widget Container */
+/* DEBUG: See Botemia container */
 .botemia-widget-container {
     position: absolute;
     bottom: 20px;
     right: 20px;
-    z-index: 100;
+    z-index: 1000; /* Very high to ensure it's on top */
     width: 280px;
     height: 180px;
     border-radius: 8px;
     overflow: hidden;
-    border: 2px solid rgba(0, 200, 255, 0.6);
+    border: 3px solid red !important; /* TEMP: So you can SEE it */
+    background: rgba(255, 0, 0, 0.2) !important; /* TEMP: So you can SEE it */
     box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
 }
 
