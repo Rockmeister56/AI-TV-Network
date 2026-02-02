@@ -298,10 +298,10 @@ body {
     border: 1px solid rgba(0, 100, 255, 0.3);
     display: flex;
     flex-direction: column;
-    min-width: 180px;
-    max-width: 200px;
+    min-width: 200px;
+    max-width: 225px;
     height: calc(100vh - 280px);
-    margin-top: 10px; /* Raised up 10px from top */
+    margin-top: 2px; /* Raised up 10px from top */
     margin-bottom: 10px;
     position: relative;
 }
