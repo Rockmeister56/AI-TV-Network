@@ -171,7 +171,7 @@ document.getElementById('cue-2').addEventListener('click', () => showOverlay('we
 document.getElementById('cue-3').addEventListener('click', () => showOverlay('website3'));
 document.getElementById('cue-4').addEventListener('click', () => showOverlay('website4'));
 
-// Close ANY overlay when clicking any .overlay-close button
+// Close any overlay when clicking any close button
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('overlay-close')) {
         hideAllOverlays();
