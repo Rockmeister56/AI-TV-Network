@@ -41,7 +41,9 @@
             </div>
         </nav>
 
-      <!-- PRIMARY VIEWING SCREEN -->
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            <!-- PRIMARY VIEWING SCREEN -->
 <div class="viewing-screen" id="viewing-screen">
     <!-- SLIDE CONTENT (always visible unless covered) -->
     <div id="slide-content"></div>
@@ -79,17 +81,44 @@
         </div>
     </div>
 
-    <!-- OTHER OVERLAYS (Testimonial, Comm Center, Video Center) -->
-    <div class="overlay" id="testimonial-overlay">
-        <!-- ... keep existing ... -->
+                <!-- OVERLAYS (Centered, Hidden by Default) -->
+                <div class="overlay" id="testimonial-overlay">
+                    <div class="overlay-content">
+                        <img src="assets/testimonial-center.PNG" alt="Testimonial Center" class="overlay-image">
+                        <div class="video-click-area" id="testimonial-video-trigger" title="Play Testimonial Video"></div>
+                        <button class="overlay-close" id="close-testimonial">&times;</button>
+                    </div>
+                </div>
+
+                <div class="overlay" id="commcenter-overlay">
+                    <div class="overlay-content">
+                        <img src="assets/com-center2.PNG" alt="Communication Center" class="overlay-image">
+                        <button class="overlay-close" id="close-commcenter">&times;</button>
+                    </div>
+                </div>
+
+                <div class="overlay" id="videocenter-overlay">
+                    <div class="overlay-content">
+                        <img src="assets/video-center.png" alt="Video Center" class="overlay-image">
+                        <button class="overlay-close" id="close-videocenter">&times;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL (Two-Row Zoom Attendee Layout) -->
+<aside class="right-panel">
+    <div class="panel-header special-guests-header">
+        <i class="fas fa-star"></i> Special Guests
     </div>
-    <div class="overlay" id="commcenter-overlay">
-        <!-- ... keep existing ... -->
+    
+    <!-- Zoom's video feed will appear here naturally -->
+    <div class="zoom-native-area">
+        <!-- Zoom software controls its own layout here -->
     </div>
-    <div class="overlay" id="videocenter-overlay">
-        <!-- ... keep existing ... -->
+
+</aside>
+        </main>
     </div>
-</div>
 
     <!-- VIDEO MODAL (Hidden) -->
     <div class="video-modal" id="video-modal">
