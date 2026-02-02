@@ -6,8 +6,13 @@ let currentSlideIndex = 0;
 const overlays = {
     testimonial: document.getElementById('testimonial-overlay'),
     commcenter: document.getElementById('commcenter-overlay'),
-    videocenter: document.getElementById('videocenter-overlay')
+    videocenter: document.getElementById('videocenter-overlay'),
+    website1: document.getElementById('website-1-overlay'),
+    website2: document.getElementById('website-2-overlay'),
+    website3: document.getElementById('website-3-overlay'),
+    website4: document.getElementById('website-4-overlay')
 };
+
 const videoModal = document.getElementById('video-modal');
 const demoVideo = document.getElementById('demo-video');
 
@@ -187,16 +192,6 @@ document.addEventListener('click', function(e) {
     document.getElementById('close-testimonial').addEventListener('click', hideAllOverlays);
     document.getElementById('close-commcenter').addEventListener('click', hideAllOverlays);
     document.getElementById('close-videocenter').addEventListener('click', hideAllOverlays);
-
-    const overlays = {
-    testimonial: document.getElementById('testimonial-overlay'),
-    commcenter: document.getElementById('commcenter-overlay'),
-    videocenter: document.getElementById('videocenter-overlay'),
-    website1: document.getElementById('website-1-overlay'),
-    website2: document.getElementById('website-2-overlay'),
-    website3: document.getElementById('website-3-overlay'),
-    website4: document.getElementById('website-4-overlay')
-};
     
     // Video Controls
     document.getElementById('testimonial-video-trigger').addEventListener('click', playDemoVideo);
