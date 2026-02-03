@@ -31,11 +31,11 @@ const slides = [
     },
     {
         id: 3,
-        title: "AI Bots Comparison",
+        title: "The AI Boost Factor",
         // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide3-ai-bots-comparison.png" 
+                <img src="assets/slides/slide3-ai-boost-factor.png" 
                      alt="AI Bots Comparison" 
                      style="max-width:100%; max-height:100%;">
             </div>
