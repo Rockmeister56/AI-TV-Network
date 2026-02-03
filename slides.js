@@ -96,7 +96,7 @@ const slides = [
         title: "Kiss of Death",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide9-kiss-of-death.png"  // CHANGED FROM slide10 to slide9
+                <img src="assets/slides/slide9-kiss-of-death2.png"  // CHANGED FROM slide10 to slide9
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
