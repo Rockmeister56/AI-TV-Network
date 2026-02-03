@@ -74,7 +74,7 @@ const slides = [
         // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide6-main-problem" 
+                <img src="assets/slides/slide6-main-problem.png" 
                      alt="Conversion Crisis" 
                      style="max-width:100%; max-height:100%;">
             </div>
