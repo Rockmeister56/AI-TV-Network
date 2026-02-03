@@ -96,11 +96,11 @@ const slides = [
     },
     {
         id: 8,
-        title: "Show on the Road",
+        title: "Only 3 out of every 100",
         // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide4-show-on-the-road.png" 
+                <img src="assets/slides/slide8-3-percent.png" 
                      alt="Legal Website Demo" 
                      style="max-width:100%; max-height:100%;">
             </div>
