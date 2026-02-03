@@ -32,13 +32,13 @@ const ctaData = {
         image: 'assets/lead-magnets/book-cover.png',  // ← LOCAL PATH
         text: 'Get Your FREE Copy of "AI Powered Business" - Limited Time Offer!',
         buttonText: 'Download Free Book',
-        buttonLink: 'https://yourlink.com/free-book'  // ← UPDATE THIS LINK
+        buttonLink: 'https://freeaibook.info'  // ← UPDATE THIS LINK
     },
     report: {
         image: 'assets/lead-magnets/mobile-report.png',  // ← LOCAL PATH
         text: 'FREE Mobile Marketing Report: Boost Your Conversions by 300%',
         buttonText: 'Get Free Report',
-        buttonLink: 'https://yourlink.com/free-report'  // ← UPDATE THIS LINK
+        buttonLink: 'https://freemobilereport.com'  // ← UPDATE THIS LINK
     }
 };
 
