@@ -109,11 +109,11 @@ const slides = [
     },
     {
         id: 9,
-        title: "AI TV Network",
+        title: "You Lose 97 Percent",
         // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
-                <img src="assets/slides/slide1-ainetworkscreen.png" 
+                <img src="assets/slides/slide9-97-percent-lost.png" 
                      alt="AI TV Network" 
                      style="max-width:100%; max-height:100%;">
             </div>
