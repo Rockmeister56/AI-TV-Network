@@ -10,7 +10,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
                 <img src="assets/slides/slide1-ainetworkscreen.png" 
-                     alt="AI TV Network" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -23,7 +22,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides/slide2-just-ask-ai.png" 
-                     alt="Conversion Crisis" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -36,7 +34,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides/slide3-ai-boost-factor.png" 
-                     alt="AI Bots Comparison" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -48,8 +45,7 @@ const slides = [
         // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide4-show-on-the-road.png" 
-                     alt="Legal Website Demo" 
+                <img src="assets/slides/slide4-show-on-the-road.png"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -62,7 +58,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
                 <img src="assets/slides/slide5-number-one-problem-AI-solves.png" 
-                     alt="AI TV Network" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -75,7 +70,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides/slide6-conversion-crises2.png" 
-                     alt="Conversion Crisis" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -88,7 +82,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides/slide7-bleeding-money.png" 
-                     alt="AI Bots Comparison" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -101,7 +94,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides/slide8-97-percent-bail.png" 
-                     alt="Legal Website Demo" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -114,7 +106,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides/slide10-kiss-of-death.png" 
-                     alt="Conversion Crisis" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -127,7 +118,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides/slide3-ai-boost-factor.png" 
-                     alt="AI Bots Comparison" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -140,7 +130,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides/slide4-show-on-the-road.png" 
-                     alt="Legal Website Demo" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -153,7 +142,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
                 <img src="assets/slides/slide5-number-one-problem-AI-solves.png" 
-                     alt="AI TV Network" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -166,7 +154,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides/slide6-conversion-crises2.png" 
-                     alt="Conversion Crisis" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -179,7 +166,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides/slide7-bleeding-money.png" 
-                     alt="AI Bots Comparison" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -192,7 +178,6 @@ const slides = [
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides/slide8-3-percent.png" 
-                     alt="Legal Website Demo" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
