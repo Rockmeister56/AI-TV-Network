@@ -112,7 +112,63 @@ const slides = [
             </div>
         `,
         botemiaCueId: "segment_10"
+         },
+    {
+        id: 11,
+        title: "Just Text",
+        content: `
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+                <img src="assets/slides/slide11-just-text.png" 
+                     style="max-width:100%; max-height:100%;">
+            </div>
+        `,
+        botemiaCueId: "segment_11"
+    },
+    {
+        id: 12,
+        title: "Boteemia",
+        content: `
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+                <img src="assets/slides/slide12-boteemia.png" 
+                     style="max-width:100%; max-height:100%;">
+            </div>
+        `,
+        botemiaCueId: "segment_12"
+    },
+    {
+        id: 13,
+        title: "Builds Trust",
+        content: `
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+                <img src="assets/slides/slide13-builds-trust.png" 
+                     style="max-width:100%; max-height:100%;">
+            </div>
+        `,
+        botemiaCueId: "segment_13"
+    },
+    {
+        id: 14,
+        title: "VidGuide in Action",
+        content: `
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+                <img src="assets/slides/slide14-vidguide-ai-in-action.png"  // CHANGED FROM slide10 to slide9
+                     style="max-width:100%; max-height:100%;">
+            </div>
+        `,
+        botemiaCueId: "segment_14"
+    },
+    {
+        id: 15,
+        title: "Mortgage VidGuide AI Example",
+        content: `
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+                <img src="assets/slides/slide15-mortgage-web.png" 
+                     style="max-width:100%; max-height:100%;">
+            </div>
+        `,
+        botemiaCueId: "segment_15"
     }
+
     // TO ADD MORE SLIDES: Copy the block above, increment id, and add new image to assets/slides/
     // {
     //     id: 11,
