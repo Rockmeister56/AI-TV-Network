@@ -100,7 +100,7 @@ const slides = [
         // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide8-3-percent.png" 
+                <img src="assets/slides/slide8-3-percent2.png" 
                      alt="Legal Website Demo" 
                      style="max-width:100%; max-height:100%;">
             </div>
