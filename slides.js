@@ -70,11 +70,11 @@ const slides = [
     },
     {
         id: 6,
-        title: "The Conversion Gap",
+        title: "The Conversion Crises",
         // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide6-conversion-gap.png" 
+                <img src="assets/slides/slide6-conversion-crises.png" 
                      alt="Conversion Crisis" 
                      style="max-width:100%; max-height:100%;">
             </div>
@@ -83,11 +83,11 @@ const slides = [
     },
     {
         id: 7,
-        title: "The Crisis",
+        title: "Bleeding Money",
         // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide7-the-crises.png" 
+                <img src="assets/slides/slide7-bleeding-money.png" 
                      alt="AI Bots Comparison" 
                      style="max-width:100%; max-height:100%;">
             </div>
