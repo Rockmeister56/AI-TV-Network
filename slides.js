@@ -167,6 +167,63 @@ const slides = [
             </div>
         `,
         botemiaCueId: "segment_15"
+
+     },
+    {
+        id: 16,
+        title: "Pre Sold Lead",
+        content: `
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+                <img src="assets/slides/slide16-hot-lead.png"  // CHANGED FROM slide10 to slide9
+                     style="max-width:100%; max-height:100%;">
+            </div>
+        `,
+        botemiaCueId: "segment_16"
+    },
+    {
+        id: 17,
+        title: "Proof is in the Analystics",
+        content: `
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+                <img src="assets/slides/slide17-analystics.png" 
+                     style="max-width:100%; max-height:100%;">
+            </div>
+        `,
+        botemiaCueId: "segment_17"
+    },
+    {
+        id: 18,
+        title: "Just Ask AI with Boteemia",
+        content: `
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+                <img src="assets/slides/slide18-just-ask-ai-with-boteemia.png" 
+                     style="max-width:100%; max-height:100%;">
+            </div>
+        `,
+        botemiaCueId: "segment_18"
+
+         },
+         {
+        id: 19,
+        title: "Free Gifts",
+        content: `
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+                <img src="assets/slides/slide19-free-gifts.png" 
+                     style="max-width:100%; max-height:100%;">
+            </div>
+        `,
+        botemiaCueId: "segment_19"
+    },
+    {
+        id: 20,
+        title: "Thank You for Joining Us",
+        content: `
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+                <img src="assets/slides/slide20-thank-you.png" 
+                     style="max-width:100%; max-height:100%;">
+            </div>
+        `,
+        botemiaCueId: "segment_20"
     }
 
     // TO ADD MORE SLIDES: Copy the block above, increment id, and add new image to assets/slides/
