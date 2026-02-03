@@ -104,10 +104,10 @@ const slides = [
     },
     {
         id: 10,
-        title: "Realization at the Desk",
+        title: "The AI Comparison Factor",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide10-executive-realization.png" 
+                <img src="assets/slides/slide10-bot-comparison.png" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
