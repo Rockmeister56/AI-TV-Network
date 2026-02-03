@@ -70,11 +70,11 @@ const slides = [
     },
     {
         id: 6,
-        title: "The Conversion Crises",
+        title: "The Conversion Gap",
         // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide6-conversion-crisis.png" 
+                <img src="assets/slides/slide6-conversion-gap.png" 
                      alt="Conversion Crisis" 
                      style="max-width:100%; max-height:100%;">
             </div>
@@ -83,11 +83,11 @@ const slides = [
     },
     {
         id: 7,
-        title: "The AI Boost Factor",
+        title: "The Crisis",
         // Using local file from assets/slides/ folder
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide3-ai-boost-factor.png" 
+                <img src="assets/slides/slide7-the-crises.png" 
                      alt="AI Bots Comparison" 
                      style="max-width:100%; max-height:100%;">
             </div>
