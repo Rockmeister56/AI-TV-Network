@@ -1,4 +1,4 @@
-// bridge.js - Complete Botemia Control Bridge (CLEAN VERSION)
+// bridge.js - Complete Botemia Control Bridge
 class BotemiaBridge {
     constructor() {
         this.widget = document.querySelector('lemon-slice-widget');
@@ -17,11 +17,8 @@ class BotemiaBridge {
         this.setupLeadMagnetButtons();
         this.setupCueButtons();
         this.setupKeyboardShortcuts();
-        
-        document.getElementById('footer-pause')?.style.display = 'none';
     }
 
-    // FOOTER CONTROLS
     fixFooterControls() {
         document.getElementById('footer-stop')?.addEventListener('click', () => {
             console.log('[Bridge] Minimizing avatar');
@@ -46,7 +43,6 @@ class BotemiaBridge {
         });
     }
 
-    // MUTE BUTTON SETUP
     setupMuteButton() {
         const muteBtn = document.getElementById('footer-mute');
         if (!muteBtn) {
@@ -61,7 +57,6 @@ class BotemiaBridge {
         console.log('[Bridge] Mute button ready');
     }
 
-    // MICROPHONE CONTROL
     async toggleMicrophone() {
         try {
             if (this.isMicOn) {
@@ -87,7 +82,6 @@ class BotemiaBridge {
         }
     }
 
-    // MUTE/AUDIO CONTROL
     async toggleMute() {
         try {
             await new Promise(resolve => setTimeout(resolve, 100));
@@ -129,12 +123,9 @@ class BotemiaBridge {
         }
     }
 
-    // KEYBOARD SHORTCUTS
     setupKeyboardShortcuts() {
         document.addEventListener('keydown', (event) => {
-            if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
-                return;
-            }
+            if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
 
             if (event.ctrlKey || event.metaKey) {
                 switch(event.key.toLowerCase()) {
@@ -200,15 +191,12 @@ class BotemiaBridge {
         notification.textContent = `🚀 ${message}`;
         document.body.appendChild(notification);
         
-        setTimeout(() => {
-            notification.remove();
-        }, 2000);
-        
+        setTimeout(() => notification.remove(), 2000);
         console.log(`[Bridge Shortcut] ${message}`);
     }
 
     showShortcutHelp() {
-        const helpText = `🎮 BOTEMIA KEYBOARD SHORTCUTS:
+        alert(`🎮 BOTEMIA KEYBOARD SHORTCUTS:
 
 📢 Audio Controls:
 Ctrl+M = Toggle Microphone
@@ -222,12 +210,9 @@ Ctrl+R = Restart Session
 F2 = Testimonial Center
 F3 = Communication Center
 F4 = Video Center
-F1 = Show This Help`;
-        
-        alert(helpText);
+F1 = Show This Help`);
     }
 
-    // RESTART SESSION
     async restartSession() {
         this.widget.setAttribute('controlled-widget-state', 'hidden');
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -249,7 +234,6 @@ F1 = Show This Help`;
         console.log('[Bridge] Session restarted');
     }
 
-    // OVERLAY CONTROLS
     fixOverlayButtons() {
         document.getElementById('show-testimonial')?.addEventListener('click', () => {
             this.showTestimonialCenter();
@@ -264,7 +248,6 @@ F1 = Show This Help`;
         });
     }
 
-    // LEAD MAGNET BUTTONS
     setupLeadMagnetButtons() {
         document.getElementById('free-book-btn')?.addEventListener('click', () => {
             console.log('[Bridge] Free Book requested');
@@ -277,7 +260,6 @@ F1 = Show This Help`;
         });
     }
 
-    // CUE BUTTONS
     setupCueButtons() {
         for (let i = 1; i <= 4; i++) {
             document.getElementById(`cue-${i}`)?.addEventListener('click', () => {
@@ -286,7 +268,6 @@ F1 = Show This Help`;
         }
     }
 
-    // CORE FUNCTIONS
     async showTestimonialCenter() {
         await this.widget.sendMessage('Let me show you our Testimonial Center with real client results.');
         document.getElementById('testimonial-overlay').style.display = 'flex';
@@ -316,16 +297,13 @@ F1 = Show This Help`;
             "Let me show you some key features...",
             "Here are the results you can expect..."
         ];
-        
         await this.widget.sendMessage(messages[cueNumber - 1]);
     }
 }
 
-// INITIALIZE
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         window.botemiaBridge = new BotemiaBridge();
         console.log('[Bridge] Botemia Bridge READY!');
-        console.log('🎮 Keyboard Shortcuts: Ctrl+M/U/S/R, F1-F4');
     }, 2000);
 });
