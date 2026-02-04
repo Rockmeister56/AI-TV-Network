@@ -163,6 +163,16 @@
         <button class="footer-btn" id="footer-restart" title="Restart Session">
             <i class="fas fa-redo"></i> Restart
         </button>
+        <!-- TEMPORARY EMERGENCY FIX BUTTON -->
+<div style="position:fixed; top:10px; left:10px; z-index:99999; background:red; color:white; padding:10px; border-radius:5px;">
+    <button onclick="window.botemiaBridge?.emergencyMicFix()" 
+            style="background:white; color:red; border:none; padding:5px 10px; margin:2px;">
+        🔧 EMERGENCY MIC FIX
+    </button>
+    <button onclick="window.botemiaBridge?.checkAudioStatus()" 
+            style="background:white; color:red; border:none; padding:5px 10px; margin:2px;">
+        🔊 CHECK AUDIO
+    </button>
     </div>
 </div>
 
