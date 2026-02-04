@@ -19,13 +19,13 @@ class BotemiaBridge {
 
     // ==================== FOOTER CONTROLS ====================
     fixFooterControls() {
-        // Pause Button - Hide widget
-        document.getElementById('footer-pause')?.addEventListener('click', () => {
-            console.log('[Bridge] Pausing avatar');
-            this.widget.setAttribute('controlled-widget-state', 'hidden');
-            this.isWidgetActive = false;
-        });
-
+          // REMOVE THIS ENTIRE SECTION:
+    // Pause Button - Hide widget
+    // document.getElementById('footer-pause')?.addEventListener('click', () => {
+    //     console.log('[Bridge] Pausing avatar');
+    //     this.widget.setAttribute('controlled-widget-state', 'hidden');
+    //     this.isWidgetActive = false;
+    // });
         // Stop Button - Minimize widget
         document.getElementById('footer-stop')?.addEventListener('click', () => {
             console.log('[Bridge] Stopping/minimizing avatar');
