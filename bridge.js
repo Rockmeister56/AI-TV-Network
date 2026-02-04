@@ -1,4 +1,4 @@
-// bridge.js - Complete Botemia Control Bridge (FIXED VERSION)
+// bridge.js - Complete Botemia Control Bridge (CLEAN VERSION)
 class BotemiaBridge {
     constructor() {
         this.widget = document.querySelector('lemon-slice-widget');
@@ -11,7 +11,6 @@ class BotemiaBridge {
     init() {
         console.log('[Botemia Bridge] Initialized');
         
-        // Fix all controls
         this.fixFooterControls();
         this.setupMuteButton();
         this.fixOverlayButtons();
@@ -19,44 +18,39 @@ class BotemiaBridge {
         this.setupCueButtons();
         this.setupKeyboardShortcuts();
         
-        // Hide any old pause button
         document.getElementById('footer-pause')?.style.display = 'none';
     }
 
-    // ==================== FOOTER CONTROLS ====================
+    // FOOTER CONTROLS
     fixFooterControls() {
-        // Stop Button - Minimize widget
         document.getElementById('footer-stop')?.addEventListener('click', () => {
             console.log('[Bridge] Minimizing avatar');
             this.widget.setAttribute('controlled-widget-state', 'minimized');
             this.isWidgetActive = false;
         });
 
-        // Mic Toggle Button
         document.getElementById('footer-mic')?.addEventListener('click', async () => {
             console.log('[Bridge] Toggling microphone');
             await this.toggleMicrophone();
         });
 
-        // Chat Button - Open/Activate widget
         document.getElementById('footer-chat')?.addEventListener('click', () => {
             console.log('[Bridge] Opening chat');
             this.widget.setAttribute('controlled-widget-state', 'active');
             this.isWidgetActive = true;
         });
 
-        // Restart Button - Reset conversation
         document.getElementById('footer-restart')?.addEventListener('click', () => {
             console.log('[Bridge] Restarting session');
             this.restartSession();
         });
     }
 
-    // ==================== MUTE BUTTON SETUP ====================
+    // MUTE BUTTON SETUP
     setupMuteButton() {
         const muteBtn = document.getElementById('footer-mute');
         if (!muteBtn) {
-            console.warn('[Bridge] Mute button not found in HTML');
+            console.warn('[Bridge] Mute button not found');
             return;
         }
         
@@ -67,7 +61,7 @@ class BotemiaBridge {
         console.log('[Bridge] Mute button ready');
     }
 
-    // ==================== MICROPHONE CONTROL ====================
+    // MICROPHONE CONTROL
     async toggleMicrophone() {
         try {
             if (this.isMicOn) {
@@ -93,16 +87,14 @@ class BotemiaBridge {
         }
     }
 
-    // ==================== MUTE/AUDIO CONTROL ====================
+    // MUTE/AUDIO CONTROL
     async toggleMute() {
         try {
-            // Small delay to ensure widget is ready
             await new Promise(resolve => setTimeout(resolve, 100));
             
             const muteBtn = document.getElementById('footer-mute');
             
             if (this.isMuted) {
-                // Unmute
                 await this.widget.unmute?.();
                 this.isMuted = false;
                 if (muteBtn) {
@@ -112,7 +104,6 @@ class BotemiaBridge {
                 }
                 console.log('[Bridge] Audio UNMUTED');
             } else {
-                // Mute
                 await this.widget.mute?.();
                 this.isMuted = true;
                 if (muteBtn) {
@@ -124,7 +115,6 @@ class BotemiaBridge {
             }
         } catch (error) {
             console.error('[Bridge] Mute toggle failed:', error);
-            // Fallback visual toggle
             this.isMuted = !this.isMuted;
             const muteBtn = document.getElementById('footer-mute');
             if (muteBtn) {
@@ -139,35 +129,31 @@ class BotemiaBridge {
         }
     }
 
-    // ==================== KEYBOARD SHORTCUTS ====================
+    // KEYBOARD SHORTCUTS
     setupKeyboardShortcuts() {
         document.addEventListener('keydown', (event) => {
             if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
                 return;
             }
 
-            // Ctrl/Cmd + letter shortcuts
             if (event.ctrlKey || event.metaKey) {
                 switch(event.key.toLowerCase()) {
-                    case 'm': // Ctrl+M = Toggle Microphone
+                    case 'm':
                         event.preventDefault();
                         this.toggleMicrophone();
                         this.showShortcutNotification('Microphone Toggled');
                         break;
-                        
-                    case 'u': // Ctrl+U = Toggle Mute
+                    case 'u':
                         event.preventDefault();
                         this.toggleMute();
                         this.showShortcutNotification('Audio Mute Toggled');
                         break;
-                        
-                    case 's': // Ctrl+S = Show Widget
+                    case 's':
                         event.preventDefault();
                         this.widget.setAttribute('controlled-widget-state', 'active');
                         this.showShortcutNotification('Widget Shown');
                         break;
-                        
-                    case 'r': // Ctrl+R = Restart
+                    case 'r':
                         event.preventDefault();
                         this.restartSession();
                         this.showShortcutNotification('Session Restarted');
@@ -175,24 +161,20 @@ class BotemiaBridge {
                 }
             }
             
-            // Function keys
             switch(event.key) {
-                case 'F1': // F1 = Show Help
+                case 'F1':
                     event.preventDefault();
                     this.showShortcutHelp();
                     break;
-                    
-                case 'F2': // F2 = Testimonial Center
+                case 'F2':
                     event.preventDefault();
                     this.showTestimonialCenter();
                     break;
-                    
-                case 'F3': // F3 = Communication Center
+                case 'F3':
                     event.preventDefault();
                     this.showCommunicationCenter();
                     break;
-                    
-                case 'F4': // F4 = Video Center
+                case 'F4':
                     event.preventDefault();
                     this.showVideoCenter();
                     break;
@@ -206,7 +188,7 @@ class BotemiaBridge {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0,0,0,0.8);
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
@@ -226,8 +208,7 @@ class BotemiaBridge {
     }
 
     showShortcutHelp() {
-        const helpText = `
-🎮 BOTEMIA KEYBOARD SHORTCUTS:
+        const helpText = `🎮 BOTEMIA KEYBOARD SHORTCUTS:
 
 📢 Audio Controls:
 Ctrl+M = Toggle Microphone
@@ -241,25 +222,21 @@ Ctrl+R = Restart Session
 F2 = Testimonial Center
 F3 = Communication Center
 F4 = Video Center
-F1 = Show This Help
-
-Tip: Use during presentations!`;
+F1 = Show This Help`;
         
         alert(helpText);
     }
 
-    // ==================== RESTART SESSION ====================
+    // RESTART SESSION
     async restartSession() {
         this.widget.setAttribute('controlled-widget-state', 'hidden');
         await new Promise(resolve => setTimeout(resolve, 500));
         this.widget.setAttribute('controlled-widget-state', 'active');
         this.isWidgetActive = true;
         
-        // Reset states
         this.isMicOn = false;
         this.isMuted = false;
         
-        // Reset button appearances
         const micBtn = document.getElementById('footer-mic');
         if (micBtn) micBtn.innerHTML = '<i class="fas fa-microphone-slash"></i> Mic';
         
@@ -272,7 +249,7 @@ Tip: Use during presentations!`;
         console.log('[Bridge] Session restarted');
     }
 
-    // ==================== OVERLAY CONTROLS ====================
+    // OVERLAY CONTROLS
     fixOverlayButtons() {
         document.getElementById('show-testimonial')?.addEventListener('click', () => {
             this.showTestimonialCenter();
@@ -287,7 +264,7 @@ Tip: Use during presentations!`;
         });
     }
 
-    // ==================== LEAD MAGNET BUTTONS ====================
+    // LEAD MAGNET BUTTONS
     setupLeadMagnetButtons() {
         document.getElementById('free-book-btn')?.addEventListener('click', () => {
             console.log('[Bridge] Free Book requested');
@@ -300,7 +277,7 @@ Tip: Use during presentations!`;
         });
     }
 
-    // ==================== CUE BUTTONS ====================
+    // CUE BUTTONS
     setupCueButtons() {
         for (let i = 1; i <= 4; i++) {
             document.getElementById(`cue-${i}`)?.addEventListener('click', () => {
@@ -309,7 +286,7 @@ Tip: Use during presentations!`;
         }
     }
 
-    // ==================== CORE FUNCTIONS ====================
+    // CORE FUNCTIONS
     async showTestimonialCenter() {
         await this.widget.sendMessage('Let me show you our Testimonial Center with real client results.');
         document.getElementById('testimonial-overlay').style.display = 'flex';
@@ -319,11 +296,10 @@ Tip: Use during presentations!`;
     async showCommunicationCenter() {
         await this.widget.sendMessage('Perfect! Let me open our Communication Center to connect you with our team.');
         document.getElementById('commcenter-overlay').style.display = 'flex';
-        // Baton pass will be added here
     }
 
     async showVideoCenter() {
-        await this.widget.sendMessage('I\'ll show you exactly how it works in our Video Center.');
+        await this.widget.sendMessage("I'll show you exactly how it works in our Video Center.");
         document.getElementById('videocenter-overlay').style.display = 'flex';
         this.widget.setAttribute('controlled-widget-state', 'minimized');
     }
@@ -343,29 +319,13 @@ Tip: Use during presentations!`;
         
         await this.widget.sendMessage(messages[cueNumber - 1]);
     }
-
-    // ==================== UTILITY ====================
-    async forceMessage(message) {
-        if (!this.isWidgetActive) {
-            this.widget.setAttribute('controlled-widget-state', 'active');
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        }
-        await this.widget.sendMessage(message);
-    }
 }
 
-// ==================== INITIALIZE ====================
+// INITIALIZE
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         window.botemiaBridge = new BotemiaBridge();
         console.log('[Bridge] Botemia Bridge READY!');
-        console.log(`
-🎮 Keyboard Shortcuts Enabled:
-Ctrl+M = Toggle Microphone
-Ctrl+U = Toggle Mute
-Ctrl+S = Show Widget
-Ctrl+R = Restart
-F1 = Help, F2 = Testimonial, F3 = Comm Center, F4 = Video Center
-        `);
+        console.log('🎮 Keyboard Shortcuts: Ctrl+M/U/S/R, F1-F4');
     }, 2000);
 });
