@@ -8,14 +8,16 @@ class BotemiaBridge {
         this.init();
     }
 
-    init() {
-        console.log('[Botemia Bridge] Initialized');
-        this.fixFooterControls();
-        this.fixOverlayButtons();
-        this.setupLeadMagnetButtons();
-        this.setupCueButtons();
-        this.setupKeyboardShortcuts(); // NEW: Keyboard shortcuts
-    }
+   // ==================== UPDATE THE init() METHOD ====================
+init() {
+    console.log('[Botemia Bridge] Initialized');
+    this.fixFooterControls();
+    this.setupMuteButton(); // Change from addMuteButton() to setupMuteButton()
+    this.fixOverlayButtons();
+    this.setupLeadMagnetButtons();
+    this.setupCueButtons();
+    this.setupKeyboardShortcuts();
+}
 
     // ==================== FOOTER CONTROLS ====================
     fixFooterControls() {
@@ -57,39 +59,21 @@ class BotemiaBridge {
         });
     }
 
-    // ==================== NEW MUTE BUTTON ====================
-    addMuteButton() {
-        // Check if mute button already exists in HTML
-        if (!document.getElementById('footer-mute')) {
-            // Create and insert mute button into footer controls
-            const footerControls = document.querySelector('.footer-controls');
-            if (footerControls) {
-                const muteButton = document.createElement('button');
-                muteButton.id = 'footer-mute';
-                muteButton.className = 'footer-btn';
-                muteButton.title = 'Mute/Unmute Audio';
-                muteButton.innerHTML = '<i class="fas fa-volume-mute"></i> Mute';
-                
-                // Insert before the restart button
-                const restartBtn = document.getElementById('footer-restart');
-                if (restartBtn) {
-                    footerControls.insertBefore(muteButton, restartBtn);
-                } else {
-                    footerControls.appendChild(muteButton);
-                }
-
-                // Add click handler
-                muteButton.addEventListener('click', async () => {
-                    await this.toggleMute();
-                });
-            }
-        } else {
-            // If button already exists in HTML, just add the handler
-            document.getElementById('footer-mute')?.addEventListener('click', async () => {
-                await this.toggleMute();
-            });
-        }
+    // ==================== MUTE BUTTON SETUP ====================
+setupMuteButton() {
+    const muteBtn = document.getElementById('footer-mute');
+    if (!muteBtn) {
+        console.warn('[Bridge] Mute button not found in HTML');
+        return;
     }
+    
+    // Add click handler
+    muteBtn.addEventListener('click', async () => {
+        await this.toggleMute();
+    });
+    
+    console.log('[Bridge] Mute button setup complete');
+}
 
     // ==================== MICROPHONE CONTROL ====================
     async toggleMicrophone() {
@@ -115,31 +99,50 @@ class BotemiaBridge {
         console.log(`[Bridge] Microphone: ${this.isMicOn ? 'ON' : 'OFF'}`);
     }
 
-    // ==================== MUTE/AUDIO CONTROL ====================
-    async toggleMute() {
+    // ==================== UPDATE THE toggleMute() METHOD ====================
+async toggleMute() {
+    // Add a small delay to ensure widget is ready
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    const muteBtn = document.getElementById('footer-mute');
+    
+    try {
         if (this.isMuted) {
+            // Try to unmute
             await this.widget.unmute?.();
             this.isMuted = false;
-            // Update button appearance
-            const muteBtn = document.getElementById('footer-mute');
             if (muteBtn) {
                 muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Mute';
                 muteBtn.title = 'Mute Audio';
-                muteBtn.style.backgroundColor = ''; // Reset color
+                muteBtn.style.backgroundColor = '';
             }
+            console.log('[Bridge] Audio UNMUTED');
         } else {
+            // Try to mute
             await this.widget.mute?.();
             this.isMuted = true;
-            // Update button appearance
-            const muteBtn = document.getElementById('footer-mute');
             if (muteBtn) {
                 muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Unmute';
                 muteBtn.title = 'Unmute Audio';
-                muteBtn.style.backgroundColor = '#ff4444'; // Red when muted
+                muteBtn.style.backgroundColor = '#ff4444';
+            }
+            console.log('[Bridge] Audio MUTED');
+        }
+    } catch (error) {
+        console.error('[Bridge] Mute toggle failed:', error);
+        // Fallback: just toggle the visual state
+        this.isMuted = !this.isMuted;
+        if (muteBtn) {
+            if (this.isMuted) {
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Unmute';
+                muteBtn.style.backgroundColor = '#ff4444';
+            } else {
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Mute';
+                muteBtn.style.backgroundColor = '';
             }
         }
-        console.log(`[Bridge] Audio Mute: ${this.isMuted ? 'ON' : 'OFF'}`);
     }
+}
 
     // ==================== KEYBOARD SHORTCUTS ====================
     setupKeyboardShortcuts() {
