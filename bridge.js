@@ -1,4 +1,4 @@
-// bridge.js - Complete Botemia Control Bridge (WITH MUTE & KEYBOARD SHORTCUTS)
+// bridge.js - Complete Botemia Control Bridge (FIXED VERSION)
 class BotemiaBridge {
     constructor() {
         this.widget = document.querySelector('lemon-slice-widget');
@@ -8,42 +8,35 @@ class BotemiaBridge {
         this.init();
     }
 
-   // ==================== UPDATE THE init() METHOD ====================
-init() {
-    console.log('[Botemia Bridge] Initialized');
-    this.fixFooterControls();
-    this.setupMuteButton(); // Change from addMuteButton() to setupMuteButton()
-    this.fixOverlayButtons();
-    this.setupLeadMagnetButtons();
-    this.setupCueButtons();
-    this.setupKeyboardShortcuts();
-}
+    init() {
+        console.log('[Botemia Bridge] Initialized');
+        
+        // Fix all controls
+        this.fixFooterControls();
+        this.setupMuteButton();
+        this.fixOverlayButtons();
+        this.setupLeadMagnetButtons();
+        this.setupCueButtons();
+        this.setupKeyboardShortcuts();
+        
+        // Hide any old pause button
+        document.getElementById('footer-pause')?.style.display = 'none';
+    }
 
     // ==================== FOOTER CONTROLS ====================
     fixFooterControls() {
-          // REMOVE THIS ENTIRE SECTION:
-    // Pause Button - Hide widget
-    // document.getElementById('footer-pause')?.addEventListener('click', () => {
-    //     console.log('[Bridge] Pausing avatar');
-    //     this.widget.setAttribute('controlled-widget-state', 'hidden');
-    //     this.isWidgetActive = false;
-    // });
         // Stop Button - Minimize widget
         document.getElementById('footer-stop')?.addEventListener('click', () => {
-            console.log('[Bridge] Stopping/minimizing avatar');
+            console.log('[Bridge] Minimizing avatar');
             this.widget.setAttribute('controlled-widget-state', 'minimized');
             this.isWidgetActive = false;
         });
 
-        // Mic Toggle Button (turns microphone on/off)
+        // Mic Toggle Button
         document.getElementById('footer-mic')?.addEventListener('click', async () => {
             console.log('[Bridge] Toggling microphone');
             await this.toggleMicrophone();
         });
-
-        // NEW: Mute Button (mutes/unmutes audio output)
-        // We need to add this button to HTML first, but let's create the function
-        this.addMuteButton();
 
         // Chat Button - Open/Activate widget
         document.getElementById('footer-chat')?.addEventListener('click', () => {
@@ -60,99 +53,100 @@ init() {
     }
 
     // ==================== MUTE BUTTON SETUP ====================
-setupMuteButton() {
-    const muteBtn = document.getElementById('footer-mute');
-    if (!muteBtn) {
-        console.warn('[Bridge] Mute button not found in HTML');
-        return;
+    setupMuteButton() {
+        const muteBtn = document.getElementById('footer-mute');
+        if (!muteBtn) {
+            console.warn('[Bridge] Mute button not found in HTML');
+            return;
+        }
+        
+        muteBtn.addEventListener('click', async () => {
+            await this.toggleMute();
+        });
+        
+        console.log('[Bridge] Mute button ready');
     }
-    
-    // Add click handler
-    muteBtn.addEventListener('click', async () => {
-        await this.toggleMute();
-    });
-    
-    console.log('[Bridge] Mute button setup complete');
-}
 
     // ==================== MICROPHONE CONTROL ====================
     async toggleMicrophone() {
-        if (this.isMicOn) {
-            await this.widget.micOff?.();
-            this.isMicOn = false;
-            // Update button appearance
-            const micBtn = document.getElementById('footer-mic');
-            if (micBtn) {
-                micBtn.innerHTML = '<i class="fas fa-microphone-slash"></i> Mic';
-                micBtn.title = 'Turn Microphone On';
+        try {
+            if (this.isMicOn) {
+                await this.widget.micOff?.();
+                this.isMicOn = false;
+                const micBtn = document.getElementById('footer-mic');
+                if (micBtn) {
+                    micBtn.innerHTML = '<i class="fas fa-microphone-slash"></i> Mic';
+                    micBtn.title = 'Turn Microphone On';
+                }
+            } else {
+                await this.widget.micOn?.();
+                this.isMicOn = true;
+                const micBtn = document.getElementById('footer-mic');
+                if (micBtn) {
+                    micBtn.innerHTML = '<i class="fas fa-microphone"></i> Mic';
+                    micBtn.title = 'Turn Microphone Off';
+                }
             }
-        } else {
-            await this.widget.micOn?.();
-            this.isMicOn = true;
-            // Update button appearance
-            const micBtn = document.getElementById('footer-mic');
-            if (micBtn) {
-                micBtn.innerHTML = '<i class="fas fa-microphone"></i> Mic';
-                micBtn.title = 'Turn Microphone Off';
-            }
+            console.log(`[Bridge] Microphone: ${this.isMicOn ? 'ON' : 'OFF'}`);
+        } catch (error) {
+            console.error('[Bridge] Mic toggle failed:', error);
         }
-        console.log(`[Bridge] Microphone: ${this.isMicOn ? 'ON' : 'OFF'}`);
     }
 
-    // ==================== UPDATE THE toggleMute() METHOD ====================
-async toggleMute() {
-    // Add a small delay to ensure widget is ready
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
-    const muteBtn = document.getElementById('footer-mute');
-    
-    try {
-        if (this.isMuted) {
-            // Try to unmute
-            await this.widget.unmute?.();
-            this.isMuted = false;
-            if (muteBtn) {
-                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Mute';
-                muteBtn.title = 'Mute Audio';
-                muteBtn.style.backgroundColor = '';
-            }
-            console.log('[Bridge] Audio UNMUTED');
-        } else {
-            // Try to mute
-            await this.widget.mute?.();
-            this.isMuted = true;
-            if (muteBtn) {
-                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Unmute';
-                muteBtn.title = 'Unmute Audio';
-                muteBtn.style.backgroundColor = '#ff4444';
-            }
-            console.log('[Bridge] Audio MUTED');
-        }
-    } catch (error) {
-        console.error('[Bridge] Mute toggle failed:', error);
-        // Fallback: just toggle the visual state
-        this.isMuted = !this.isMuted;
-        if (muteBtn) {
+    // ==================== MUTE/AUDIO CONTROL ====================
+    async toggleMute() {
+        try {
+            // Small delay to ensure widget is ready
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
+            const muteBtn = document.getElementById('footer-mute');
+            
             if (this.isMuted) {
-                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Unmute';
-                muteBtn.style.backgroundColor = '#ff4444';
+                // Unmute
+                await this.widget.unmute?.();
+                this.isMuted = false;
+                if (muteBtn) {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Mute';
+                    muteBtn.title = 'Mute Audio';
+                    muteBtn.style.backgroundColor = '';
+                }
+                console.log('[Bridge] Audio UNMUTED');
             } else {
-                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Mute';
-                muteBtn.style.backgroundColor = '';
+                // Mute
+                await this.widget.mute?.();
+                this.isMuted = true;
+                if (muteBtn) {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Unmute';
+                    muteBtn.title = 'Unmute Audio';
+                    muteBtn.style.backgroundColor = '#ff4444';
+                }
+                console.log('[Bridge] Audio MUTED');
+            }
+        } catch (error) {
+            console.error('[Bridge] Mute toggle failed:', error);
+            // Fallback visual toggle
+            this.isMuted = !this.isMuted;
+            const muteBtn = document.getElementById('footer-mute');
+            if (muteBtn) {
+                if (this.isMuted) {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Unmute';
+                    muteBtn.style.backgroundColor = '#ff4444';
+                } else {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Mute';
+                    muteBtn.style.backgroundColor = '';
+                }
             }
         }
     }
-}
 
     // ==================== KEYBOARD SHORTCUTS ====================
     setupKeyboardShortcuts() {
         document.addEventListener('keydown', (event) => {
-            // Only trigger if not typing in an input field
             if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
                 return;
             }
 
-            // Use Ctrl/Cmd + letter for shortcuts
+            // Ctrl/Cmd + letter shortcuts
             if (event.ctrlKey || event.metaKey) {
                 switch(event.key.toLowerCase()) {
                     case 'm': // Ctrl+M = Toggle Microphone
@@ -165,12 +159,6 @@ async toggleMute() {
                         event.preventDefault();
                         this.toggleMute();
                         this.showShortcutNotification('Audio Mute Toggled');
-                        break;
-                        
-                    case 'h': // Ctrl+H = Hide Widget
-                        event.preventDefault();
-                        this.widget.setAttribute('controlled-widget-state', 'hidden');
-                        this.showShortcutNotification('Widget Hidden');
                         break;
                         
                     case 's': // Ctrl+S = Show Widget
@@ -213,7 +201,6 @@ async toggleMute() {
     }
 
     showShortcutNotification(message) {
-        // Create a temporary notification
         const notification = document.createElement('div');
         notification.style.cssText = `
             position: fixed;
@@ -231,7 +218,6 @@ async toggleMute() {
         notification.textContent = `🚀 ${message}`;
         document.body.appendChild(notification);
         
-        // Remove after 2 seconds
         setTimeout(() => {
             notification.remove();
         }, 2000);
@@ -248,7 +234,6 @@ Ctrl+M = Toggle Microphone
 Ctrl+U = Toggle Audio Mute
 
 👁️ Visibility:
-Ctrl+H = Hide Widget
 Ctrl+S = Show Widget
 Ctrl+R = Restart Session
 
@@ -258,7 +243,7 @@ F3 = Communication Center
 F4 = Video Center
 F1 = Show This Help
 
-Tip: Use these during presentations!`;
+Tip: Use during presentations!`;
         
         alert(helpText);
     }
@@ -283,25 +268,101 @@ Tip: Use these during presentations!`;
             muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Mute';
             muteBtn.style.backgroundColor = '';
         }
+        
+        console.log('[Bridge] Session restarted');
     }
 
-    // ==================== (KEEP ALL YOUR EXISTING FUNCTIONS BELOW) ====================
-    // ... keep all your existing showTestimonialCenter(), showCommunicationCenter(), etc.
-    // ... ALL THE REST OF YOUR EXISTING CODE STAYS THE SAME
+    // ==================== OVERLAY CONTROLS ====================
+    fixOverlayButtons() {
+        document.getElementById('show-testimonial')?.addEventListener('click', () => {
+            this.showTestimonialCenter();
+        });
+
+        document.getElementById('show-commcenter')?.addEventListener('click', () => {
+            this.showCommunicationCenter();
+        });
+
+        document.getElementById('show-videocenter')?.addEventListener('click', () => {
+            this.showVideoCenter();
+        });
+    }
+
+    // ==================== LEAD MAGNET BUTTONS ====================
+    setupLeadMagnetButtons() {
+        document.getElementById('free-book-btn')?.addEventListener('click', () => {
+            console.log('[Bridge] Free Book requested');
+            this.offerLeadMagnet('Free AI Business Book', '#');
+        });
+
+        document.getElementById('mobile-report-btn')?.addEventListener('click', () => {
+            console.log('[Bridge] Mobile Report requested');
+            this.offerLeadMagnet('Free Mobile Report', '#');
+        });
+    }
+
+    // ==================== CUE BUTTONS ====================
+    setupCueButtons() {
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById(`cue-${i}`)?.addEventListener('click', () => {
+                this.triggerCueSegment(i);
+            });
+        }
+    }
+
+    // ==================== CORE FUNCTIONS ====================
+    async showTestimonialCenter() {
+        await this.widget.sendMessage('Let me show you our Testimonial Center with real client results.');
+        document.getElementById('testimonial-overlay').style.display = 'flex';
+        this.widget.setAttribute('controlled-widget-state', 'minimized');
+    }
+
+    async showCommunicationCenter() {
+        await this.widget.sendMessage('Perfect! Let me open our Communication Center to connect you with our team.');
+        document.getElementById('commcenter-overlay').style.display = 'flex';
+        // Baton pass will be added here
+    }
+
+    async showVideoCenter() {
+        await this.widget.sendMessage('I\'ll show you exactly how it works in our Video Center.');
+        document.getElementById('videocenter-overlay').style.display = 'flex';
+        this.widget.setAttribute('controlled-widget-state', 'minimized');
+    }
+
+    async offerLeadMagnet(offerName, downloadUrl) {
+        await this.widget.sendMessage(`I'd be happy to send you our ${offerName}. Let me get that for you.`);
+        document.getElementById('cta-header').style.display = 'block';
+    }
+
+    async triggerCueSegment(cueNumber) {
+        const messages = [
+            "Let me explain how our AI system works...",
+            "Here's what makes our technology unique...",
+            "Let me show you some key features...",
+            "Here are the results you can expect..."
+        ];
+        
+        await this.widget.sendMessage(messages[cueNumber - 1]);
+    }
+
+    // ==================== UTILITY ====================
+    async forceMessage(message) {
+        if (!this.isWidgetActive) {
+            this.widget.setAttribute('controlled-widget-state', 'active');
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+        await this.widget.sendMessage(message);
+    }
 }
 
-// Initialize
+// ==================== INITIALIZE ====================
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         window.botemiaBridge = new BotemiaBridge();
-        console.log('[Bridge] Botemia Bridge ready with Mute & Keyboard Shortcuts!');
-        
-        // Show available shortcuts on load
+        console.log('[Bridge] Botemia Bridge READY!');
         console.log(`
-🎮 Botemia Keyboard Shortcuts Enabled:
+🎮 Keyboard Shortcuts Enabled:
 Ctrl+M = Toggle Microphone
 Ctrl+U = Toggle Mute
-Ctrl+H = Hide Widget  
 Ctrl+S = Show Widget
 Ctrl+R = Restart
 F1 = Help, F2 = Testimonial, F3 = Comm Center, F4 = Video Center
