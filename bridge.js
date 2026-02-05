@@ -5,7 +5,6 @@ class BotemiaBridge {
         this.isMicOn = false;
         this.isMuted = false;
         this.isWidgetActive = true;
-        this.audioCheckInterval = null;
         this.init();
     }
 
@@ -18,102 +17,8 @@ class BotemiaBridge {
         this.setupLeadMagnetButtons();
         this.setupCueButtons();
         this.setupKeyboardShortcuts();
-        
-        // Start audio monitoring
-        this.startAudioMonitoring();
     }
 
-    // ==================== AUDIO MONITORING ====================
-    startAudioMonitoring() {
-        console.log('[Audio Monitor] Starting audio status monitoring...');
-        
-        if (this.audioCheckInterval) {
-            clearInterval(this.audioCheckInterval);
-        }
-        
-        this.audioCheckInterval = setInterval(() => {
-            this.checkAudioStatus();
-        }, 3000);
-        
-        setTimeout(() => this.checkAudioStatus(), 1000);
-    }
-    
-    checkAudioStatus() {
-        if (!this.widget) {
-            console.warn('[Audio Monitor] Widget not found');
-            return;
-        }
-        
-        try {
-            const status = {
-                widgetState: this.widget.getAttribute('controlled-widget-state'),
-                canUnmute: this.widget.canUnmute?.(),
-                isMicOn: this.widget.isMicOn?.(),
-                isMuted: this.widget.isMuted?.(),
-                timestamp: new Date().toLocaleTimeString()
-            };
-            
-            console.log('🔊 AUDIO STATUS:', status);
-            this.autoFixAudioIssues(status);
-            
-        } catch (error) {
-            console.error('[Audio Monitor] Error:', error);
-        }
-    }
-    
-    autoFixAudioIssues(status) {
-        if (status.widgetState === 'active' && !status.isMicOn) {
-            console.log('[Audio Monitor] Fixing: widget active but mic off');
-            setTimeout(async () => {
-                try {
-                    await this.widget.micOn?.();
-                    console.log('[Audio Monitor] ✅ Mic auto-fixed');
-                } catch (e) {
-                    console.log('[Audio Monitor] Auto-fix failed:', e);
-                }
-            }, 1000);
-        }
-        
-        if (status.isMuted && status.widgetState === 'active') {
-            console.log('[Audio Monitor] Fixing: widget muted but active');
-            setTimeout(async () => {
-                try {
-                    await this.widget.unmute?.();
-                    console.log('[Audio Monitor] ✅ Unmuted auto-fixed');
-                } catch (e) {
-                    console.log('[Audio Monitor] Auto-unmute failed:', e);
-                }
-            }, 1000);
-        }
-    }
-    
-    emergencyMicFix() {
-        console.log('[Emergency Fix] Fixing all audio...');
-        
-        this.widget.setAttribute('controlled-widget-state', 'active');
-        
-        setTimeout(async () => {
-            try {
-                await this.widget.micOn?.();
-                console.log('[Emergency Fix] Step 1: Mic on');
-            } catch (e) {
-                console.warn('[Emergency Fix] micOn failed:', e);
-            }
-        }, 500);
-        
-        setTimeout(async () => {
-            try {
-                await this.widget.unmute?.();
-                console.log('[Emergency Fix] Step 2: Unmuted');
-            } catch (e) {
-                console.warn('[Emergency Fix] unmute failed:', e);
-            }
-        }, 1000);
-        
-        console.log('[Emergency Fix] All fixes initiated');
-    }
-
-    // ==================== FOOTER CONTROLS ====================
     fixFooterControls() {
         document.getElementById('footer-stop')?.addEventListener('click', () => {
             console.log('[Bridge] Minimizing avatar');
@@ -138,7 +43,6 @@ class BotemiaBridge {
         });
     }
 
-    // ==================== MUTE BUTTON SETUP ====================
     setupMuteButton() {
         const muteBtn = document.getElementById('footer-mute');
         if (!muteBtn) {
@@ -153,13 +57,9 @@ class BotemiaBridge {
         console.log('[Bridge] Mute button ready');
     }
 
-    // ==================== MICROPHONE CONTROL ====================
     async toggleMicrophone() {
         try {
-            const currentMicOn = this.widget.isMicOn?.();
-            console.log('[Mic Toggle] Current:', currentMicOn, 'Our state:', this.isMicOn);
-            
-            if (this.isMicOn || currentMicOn) {
+            if (this.isMicOn) {
                 await this.widget.micOff?.();
                 this.isMicOn = false;
                 const micBtn = document.getElementById('footer-mic');
@@ -167,7 +67,6 @@ class BotemiaBridge {
                     micBtn.innerHTML = '<i class="fas fa-microphone-slash"></i> Mic';
                     micBtn.title = 'Turn Microphone On';
                 }
-                console.log('[Mic Toggle] ✅ Mic OFF');
             } else {
                 await this.widget.micOn?.();
                 this.isMicOn = true;
@@ -176,31 +75,13 @@ class BotemiaBridge {
                     micBtn.innerHTML = '<i class="fas fa-microphone"></i> Mic';
                     micBtn.title = 'Turn Microphone Off';
                 }
-                console.log('[Mic Toggle] ✅ Mic ON');
             }
-            
-            setTimeout(() => {
-                this.isMicOn = this.widget.isMicOn?.() || false;
-                console.log('[Mic Toggle] Updated state:', this.isMicOn);
-            }, 500);
-            
+            console.log(`[Bridge] Microphone: ${this.isMicOn ? 'ON' : 'OFF'}`);
         } catch (error) {
-            console.error('[Mic Toggle] Failed:', error);
-            this.isMicOn = !this.isMicOn;
-            const micBtn = document.getElementById('footer-mic');
-            if (micBtn) {
-                if (this.isMicOn) {
-                    micBtn.innerHTML = '<i class="fas fa-microphone"></i> Mic';
-                    micBtn.style.backgroundColor = '#00ff00';
-                } else {
-                    micBtn.innerHTML = '<i class="fas fa-microphone-slash"></i> Mic';
-                    micBtn.style.backgroundColor = '';
-                }
-            }
+            console.error('[Bridge] Mic toggle failed:', error);
         }
     }
 
-    // ==================== MUTE/AUDIO CONTROL ====================
     async toggleMute() {
         try {
             await new Promise(resolve => setTimeout(resolve, 100));
@@ -242,7 +123,6 @@ class BotemiaBridge {
         }
     }
 
-    // ==================== KEYBOARD SHORTCUTS ====================
     setupKeyboardShortcuts() {
         document.addEventListener('keydown', (event) => {
             if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
@@ -333,16 +213,7 @@ F4 = Video Center
 F1 = Show This Help`);
     }
 
-    // ==================== RESTART SESSION ====================
     async restartSession() {
-        console.log('[Restart] Full audio restart...');
-        
-        try {
-            await this.widget.micOn?.();
-        } catch (e) {
-            console.log('[Restart] Could not ensure mic on:', e);
-        }
-        
         this.widget.setAttribute('controlled-widget-state', 'hidden');
         await new Promise(resolve => setTimeout(resolve, 500));
         this.widget.setAttribute('controlled-widget-state', 'active');
@@ -350,16 +221,6 @@ F1 = Show This Help`);
         
         this.isMicOn = false;
         this.isMuted = false;
-        
-        setTimeout(async () => {
-            try {
-                await this.widget.micOn?.();
-                this.isMicOn = true;
-                console.log('[Restart] ✅ Mic turned on after restart');
-            } catch (e) {
-                console.warn('[Restart] Could not turn mic on:', e);
-            }
-        }, 1000);
         
         const micBtn = document.getElementById('footer-mic');
         if (micBtn) micBtn.innerHTML = '<i class="fas fa-microphone-slash"></i> Mic';
@@ -370,10 +231,9 @@ F1 = Show This Help`);
             muteBtn.style.backgroundColor = '';
         }
         
-        console.log('[Restart] Session restarted with audio check');
+        console.log('[Bridge] Session restarted');
     }
 
-    // ==================== OVERLAY CONTROLS ====================
     fixOverlayButtons() {
         document.getElementById('show-testimonial')?.addEventListener('click', () => {
             this.showTestimonialCenter();
@@ -388,7 +248,6 @@ F1 = Show This Help`);
         });
     }
 
-    // ==================== LEAD MAGNET BUTTONS ====================
     setupLeadMagnetButtons() {
         document.getElementById('free-book-btn')?.addEventListener('click', () => {
             console.log('[Bridge] Free Book requested');
@@ -401,7 +260,6 @@ F1 = Show This Help`);
         });
     }
 
-    // ==================== CUE BUTTONS ====================
     setupCueButtons() {
         for (let i = 1; i <= 4; i++) {
             document.getElementById(`cue-${i}`)?.addEventListener('click', () => {
@@ -410,7 +268,6 @@ F1 = Show This Help`);
         }
     }
 
-    // ==================== CORE FUNCTIONS ====================
     async showTestimonialCenter() {
         await this.widget.sendMessage('Let me show you our Testimonial Center with real client results.');
         document.getElementById('testimonial-overlay').style.display = 'flex';
@@ -442,22 +299,11 @@ F1 = Show This Help`);
         ];
         await this.widget.sendMessage(messages[cueNumber - 1]);
     }
-
-    // ==================== UTILITY ====================
-    async forceMessage(message) {
-        if (!this.isWidgetActive) {
-            this.widget.setAttribute('controlled-widget-state', 'active');
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        }
-        await this.widget.sendMessage(message);
-    }
 }
 
-// ==================== INITIALIZE ====================
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         window.botemiaBridge = new BotemiaBridge();
-        console.log('[Bridge] Botemia Bridge READY with Audio Monitoring!');
-        console.log('🎮 Commands: botemiaBridge.emergencyMicFix()');
+        console.log('[Bridge] Botemia Bridge READY!');
     }, 2000);
 });
