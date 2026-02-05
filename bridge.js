@@ -1,24 +1,233 @@
-// bridge.js - Complete Botemia Control Bridge
+// bridge.js - SMART AUTO-FIX VERSION
 class BotemiaBridge {
     constructor() {
         this.widget = document.querySelector('lemon-slice-widget');
         this.isMicOn = false;
         this.isMuted = false;
         this.isWidgetActive = true;
+        this.zoomReady = false;
         this.init();
     }
 
     init() {
         console.log('[Botemia Bridge] Initialized');
         
+        // SMART: Auto-fix on load
+        this.autoFixForZoom();
+        
+        // SMART: Also listen for Zoom meeting patterns
+        this.setupZoomDetection();
+        
+        // Your existing controls
         this.fixFooterControls();
         this.setupMuteButton();
         this.fixOverlayButtons();
         this.setupLeadMagnetButtons();
         this.setupCueButtons();
         this.setupKeyboardShortcuts();
+        
+        // SMART: Add visual status indicator
+        this.addZoomReadyIndicator();
     }
-
+    
+    // 🔥 SMART AUTO-FIX #1: Fix on page load
+    autoFixForZoom() {
+        console.log('[Auto-Fix] Preparing Botemia for Zoom...');
+        
+        setTimeout(() => {
+            if (!this.widget) {
+                console.warn('[Auto-Fix] Widget not ready yet');
+                setTimeout(() => this.autoFixForZoom(), 2000); // Retry
+                return;
+            }
+            
+            // Force proper state
+            this.widget.setAttribute('controlled-widget-state', 'active');
+            
+            // Ensure mic is on
+            setTimeout(async () => {
+                try {
+                    await this.widget.micOn?.();
+                    await this.widget.unmute?.();
+                    
+                    this.zoomReady = true;
+                    console.log('[Auto-Fix] ✅ Botemia auto-fixed for Zoom!');
+                    
+                    // Update visual indicator
+                    this.updateZoomIndicator();
+                    
+                } catch (error) {
+                    console.warn('[Auto-Fix] Partial success:', error);
+                }
+            }, 1500);
+            
+        }, 1000);
+    }
+    
+    // 🔥 SMART AUTO-FIX #2: Detect Zoom meetings
+    setupZoomDetection() {
+        // Listen for common Zoom patterns
+        const zoomKeywords = ['zoom', 'meeting', 'call', 'demo', 'presentation'];
+        const zoomUrls = ['zoom.us', 'meet', 'teams'];
+        
+        // Check URL for Zoom indicators
+        const checkForZoom = () => {
+            const url = window.location.href.toLowerCase();
+            const hasZoomUrl = zoomUrls.some(zoomUrl => url.includes(zoomUrl));
+            
+            if (hasZoomUrl && !this.zoomReady) {
+                console.log('[Zoom Detect] Zoom URL detected - ensuring Botemia ready');
+                this.ensureZoomReady();
+            }
+        };
+        
+        // Check now and on URL changes
+        checkForZoom();
+        window.addEventListener('hashchange', checkForZoom);
+        
+        // Also listen for Zoom in page content
+        const observer = new MutationObserver(() => {
+            const pageText = document.body.textContent.toLowerCase();
+            if (zoomKeywords.some(keyword => pageText.includes(keyword)) && !this.zoomReady) {
+                console.log('[Zoom Detect] Zoom keywords found in page');
+                this.ensureZoomReady();
+            }
+        });
+        
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+    
+    // 🔥 SMART AUTO-FIX #3: One-click fix button
+    ensureZoomReady() {
+        if (this.zoomReady) {
+            console.log('[Zoom Ready] Already prepared');
+            return;
+        }
+        
+        console.log('[Zoom Ready] Ensuring Botemia ready...');
+        
+        if (this.widget) {
+            this.widget.setAttribute('controlled-widget-state', 'active');
+            
+            setTimeout(async () => {
+                try {
+                    await this.widget.micOn?.();
+                    await this.widget.unmute?.();
+                    
+                    this.zoomReady = true;
+                    this.updateZoomIndicator();
+                    
+                    // Show confirmation
+                    this.showNotification('🎤 Botemia ready for Zoom!', 'success');
+                    
+                } catch (error) {
+                    this.showNotification('⚠️ Botemia partially ready', 'warning');
+                }
+            }, 1000);
+        }
+    }
+    
+    // 🔥 VISUAL INDICATOR: Shows when Botemia is Zoom-ready
+    addZoomReadyIndicator() {
+        const indicator = document.createElement('div');
+        indicator.id = 'botemia-zoom-indicator';
+        indicator.style.cssText = `
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: #ff4444;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            cursor: pointer;
+        `;
+        
+        indicator.innerHTML = `
+            <span>🔴</span>
+            <span>Zoom: Not Ready</span>
+        `;
+        
+        indicator.onclick = () => {
+            this.ensureZoomReady();
+            this.showNotification('🔧 Fixing Botemia for Zoom...', 'info');
+        };
+        
+        document.body.appendChild(indicator);
+        this.zoomIndicator = indicator;
+    }
+    
+    updateZoomIndicator() {
+        if (!this.zoomIndicator) return;
+        
+        if (this.zoomReady) {
+            this.zoomIndicator.style.background = '#00cc00';
+            this.zoomIndicator.innerHTML = `
+                <span>✅</span>
+                <span>Zoom: Ready</span>
+            `;
+            this.zoomIndicator.title = 'Botemia is ready for Zoom calls';
+        } else {
+            this.zoomIndicator.style.background = '#ff4444';
+            this.zoomIndicator.innerHTML = `
+                <span>🔴</span>
+                <span>Zoom: Click to Fix</span>
+            `;
+            this.zoomIndicator.title = 'Click to prepare Botemia for Zoom';
+        }
+    }
+    
+    showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? '#00cc00' : type === 'warning' ? '#ff9900' : '#0088ff'};
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            z-index: 9999;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease;
+        `;
+        
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+        
+        // Add animation styles if not present
+        if (!document.querySelector('#notification-styles')) {
+            const style = document.createElement('style');
+            style.id = 'notification-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+    
+    // 🔥 REST OF YOUR EXISTING METHODS (keep exactly as they are)...
     fixFooterControls() {
         document.getElementById('footer-stop')?.addEventListener('click', () => {
             console.log('[Bridge] Minimizing avatar');
@@ -42,7 +251,7 @@ class BotemiaBridge {
             this.restartSession();
         });
     }
-
+    
     setupMuteButton() {
         const muteBtn = document.getElementById('footer-mute');
         if (!muteBtn) {
@@ -56,7 +265,7 @@ class BotemiaBridge {
         
         console.log('[Bridge] Mute button ready');
     }
-
+    
     async toggleMicrophone() {
         try {
             if (this.isMicOn) {
@@ -81,7 +290,7 @@ class BotemiaBridge {
             console.error('[Bridge] Mic toggle failed:', error);
         }
     }
-
+    
     async toggleMute() {
         try {
             await new Promise(resolve => setTimeout(resolve, 100));
@@ -122,7 +331,7 @@ class BotemiaBridge {
             }
         }
     }
-
+    
     setupKeyboardShortcuts() {
         document.addEventListener('keydown', (event) => {
             if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
@@ -132,22 +341,22 @@ class BotemiaBridge {
                     case 'm':
                         event.preventDefault();
                         this.toggleMicrophone();
-                        this.showShortcutNotification('Microphone Toggled');
+                        this.showNotification('Microphone Toggled');
                         break;
                     case 'u':
                         event.preventDefault();
                         this.toggleMute();
-                        this.showShortcutNotification('Audio Mute Toggled');
+                        this.showNotification('Audio Mute Toggled');
                         break;
                     case 's':
                         event.preventDefault();
                         this.widget.setAttribute('controlled-widget-state', 'active');
-                        this.showShortcutNotification('Widget Shown');
+                        this.showNotification('Widget Shown');
                         break;
                     case 'r':
                         event.preventDefault();
                         this.restartSession();
-                        this.showShortcutNotification('Session Restarted');
+                        this.showNotification('Session Restarted');
                         break;
                 }
             }
@@ -155,7 +364,7 @@ class BotemiaBridge {
             switch(event.key) {
                 case 'F1':
                     event.preventDefault();
-                    this.showShortcutHelp();
+                    alert(`🎮 BOTEMIA KEYBOARD SHORTCUTS:\n\n📢 Audio:\nCtrl+M = Toggle Microphone\nCtrl+U = Toggle Mute\n\n👁️ Visibility:\nCtrl+S = Show Widget\nCtrl+R = Restart\n\n🚀 Quick Actions:\nF2 = Testimonial\nF3 = Communication\nF4 = Video\nF1 = This Help`);
                     break;
                 case 'F2':
                     event.preventDefault();
@@ -172,47 +381,7 @@ class BotemiaBridge {
             }
         });
     }
-
-    showShortcutNotification(message) {
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            z-index: 10000;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            border-left: 4px solid #00ff00;
-        `;
-        notification.textContent = `🚀 ${message}`;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => notification.remove(), 2000);
-        console.log(`[Bridge Shortcut] ${message}`);
-    }
-
-    showShortcutHelp() {
-        alert(`🎮 BOTEMIA KEYBOARD SHORTCUTS:
-
-📢 Audio Controls:
-Ctrl+M = Toggle Microphone
-Ctrl+U = Toggle Audio Mute
-
-👁️ Visibility:
-Ctrl+S = Show Widget
-Ctrl+R = Restart Session
-
-🚀 Quick Actions:
-F2 = Testimonial Center
-F3 = Communication Center
-F4 = Video Center
-F1 = Show This Help`);
-    }
-
+    
     async restartSession() {
         this.widget.setAttribute('controlled-widget-state', 'hidden');
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -231,9 +400,13 @@ F1 = Show This Help`);
             muteBtn.style.backgroundColor = '';
         }
         
+        // Reset Zoom ready status
+        this.zoomReady = false;
+        this.updateZoomIndicator();
+        
         console.log('[Bridge] Session restarted');
     }
-
+    
     fixOverlayButtons() {
         document.getElementById('show-testimonial')?.addEventListener('click', () => {
             this.showTestimonialCenter();
@@ -247,7 +420,7 @@ F1 = Show This Help`);
             this.showVideoCenter();
         });
     }
-
+    
     setupLeadMagnetButtons() {
         document.getElementById('free-book-btn')?.addEventListener('click', () => {
             console.log('[Bridge] Free Book requested');
@@ -259,7 +432,7 @@ F1 = Show This Help`);
             this.offerLeadMagnet('Free Mobile Report', '#');
         });
     }
-
+    
     setupCueButtons() {
         for (let i = 1; i <= 4; i++) {
             document.getElementById(`cue-${i}`)?.addEventListener('click', () => {
@@ -267,29 +440,29 @@ F1 = Show This Help`);
             });
         }
     }
-
+    
     async showTestimonialCenter() {
         await this.widget.sendMessage('Let me show you our Testimonial Center with real client results.');
         document.getElementById('testimonial-overlay').style.display = 'flex';
         this.widget.setAttribute('controlled-widget-state', 'minimized');
     }
-
+    
     async showCommunicationCenter() {
         await this.widget.sendMessage('Perfect! Let me open our Communication Center to connect you with our team.');
         document.getElementById('commcenter-overlay').style.display = 'flex';
     }
-
+    
     async showVideoCenter() {
         await this.widget.sendMessage("I'll show you exactly how it works in our Video Center.");
         document.getElementById('videocenter-overlay').style.display = 'flex';
         this.widget.setAttribute('controlled-widget-state', 'minimized');
     }
-
+    
     async offerLeadMagnet(offerName, downloadUrl) {
         await this.widget.sendMessage(`I'd be happy to send you our ${offerName}. Let me get that for you.`);
         document.getElementById('cta-header').style.display = 'block';
     }
-
+    
     async triggerCueSegment(cueNumber) {
         const messages = [
             "Let me explain how our AI system works...",
@@ -301,9 +474,13 @@ F1 = Show This Help`);
     }
 }
 
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         window.botemiaBridge = new BotemiaBridge();
-        console.log('[Bridge] Botemia Bridge READY!');
+        console.log('[Bridge] Botemia Bridge READY with Smart Zoom Fix!');
+        console.log('✅ Auto-fix enabled');
+        console.log('✅ Zoom detection active');
+        console.log('✅ Visual indicator added');
     }, 2000);
 });
