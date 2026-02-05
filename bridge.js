@@ -129,60 +129,66 @@ class BotemiaBridge {
     
     // 🔥 VISUAL INDICATOR: Shows when Botemia is Zoom-ready
     addZoomReadyIndicator() {
-        const indicator = document.createElement('div');
-        indicator.id = 'botemia-zoom-indicator';
-        indicator.style.cssText = `
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: #ff4444;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            z-index: 9998;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: all 0.3s;
-            cursor: pointer;
-        `;
-        
-        indicator.innerHTML = `
-            <span>🔴</span>
-            <span>Zoom: Not Ready</span>
-        `;
-        
-        indicator.onclick = () => {
-            this.ensureZoomReady();
-            this.showNotification('🔧 Fixing Botemia for Zoom...', 'info');
-        };
-        
-        document.body.appendChild(indicator);
-        this.zoomIndicator = indicator;
+    // Find footer controls container
+    const footerControls = document.querySelector('.footer-controls');
+    if (!footerControls) return;
+    
+    const indicator = document.createElement('div');
+    indicator.id = 'botemia-zoom-indicator';
+    indicator.style.cssText = `
+        display: inline-flex;
+        align-items: center;
+        margin-left: 10px;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+        background: rgba(255,68,68,0.9);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.3);
+    `;
+    
+    indicator.innerHTML = `
+        <span style="margin-right:4px;">🔴</span>
+        <span>Zoom</span>
+    `;
+    
+    indicator.onclick = () => {
+        this.ensureZoomReady();
+    };
+    
+    // Insert after the restart button
+    const restartBtn = document.getElementById('footer-restart');
+    if (restartBtn) {
+        restartBtn.parentNode.insertBefore(indicator, restartBtn.nextSibling);
+    } else {
+        footerControls.appendChild(indicator);
     }
     
-    updateZoomIndicator() {
-        if (!this.zoomIndicator) return;
-        
-        if (this.zoomReady) {
-            this.zoomIndicator.style.background = '#00cc00';
-            this.zoomIndicator.innerHTML = `
-                <span>✅</span>
-                <span>Zoom: Ready</span>
-            `;
-            this.zoomIndicator.title = 'Botemia is ready for Zoom calls';
-        } else {
-            this.zoomIndicator.style.background = '#ff4444';
-            this.zoomIndicator.innerHTML = `
-                <span>🔴</span>
-                <span>Zoom: Click to Fix</span>
-            `;
-            this.zoomIndicator.title = 'Click to prepare Botemia for Zoom';
-        }
+    this.zoomIndicator = indicator;
+}
+
+updateZoomIndicator() {
+    if (!this.zoomIndicator) return;
+    
+    if (this.zoomReady) {
+        this.zoomIndicator.style.background = 'rgba(0,204,0,0.9)';
+        this.zoomIndicator.innerHTML = `
+            <span style="margin-right:4px;">✅</span>
+            <span>Zoom</span>
+        `;
+        this.zoomIndicator.title = 'Botemia ready for Zoom';
+    } else {
+        this.zoomIndicator.style.background = 'rgba(255,68,68,0.9)';
+        this.zoomIndicator.innerHTML = `
+            <span style="margin-right:4px;">🔴</span>
+            <span>Zoom</span>
+        `;
+        this.zoomIndicator.title = 'Click to prepare Botemia for Zoom';
     }
+}
     
     showNotification(message, type = 'info') {
         const notification = document.createElement('div');
