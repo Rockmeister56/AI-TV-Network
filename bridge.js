@@ -1,4 +1,4 @@
-// bridge.js - AVATAR CONTROLS ONLY (No Overlay Conflicts)
+// bridge.js - SMART AUTO-FIX VERSION
 class BotemiaBridge {
     constructor() {
         this.widget = document.querySelector('lemon-slice-widget');
@@ -10,7 +10,7 @@ class BotemiaBridge {
     }
 
     init() {
-        console.log('[Botemia Bridge] Initialized - Avatar Controls Only');
+        console.log('[Botemia Bridge] Initialized');
         
         // SMART: Auto-fix on load
         this.autoFixForZoom();
@@ -18,42 +18,16 @@ class BotemiaBridge {
         // SMART: Also listen for Zoom meeting patterns
         this.setupZoomDetection();
         
-        // Avatar controls only
+        // Your existing controls
         this.fixFooterControls();
         this.setupMuteButton();
+        this.fixOverlayButtons();
         this.setupLeadMagnetButtons();
         this.setupCueButtons();
         this.setupKeyboardShortcuts();
         
-        // CRITICAL: Add escape key protection
-        this.setupEscapeProtection();
-        
         // SMART: Add visual status indicator
         this.addZoomReadyIndicator();
-    }
-    
-    // 🔥 CRITICAL: Prevent widget from intercepting Escape when overlays are open
-    setupEscapeProtection() {
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' || e.keyCode === 27) {
-                // Check if any overlay is visible
-                const anyOverlayVisible = document.querySelector('.overlay.active, .website-overlay.active, .video-modal.active');
-                
-                if (anyOverlayVisible) {
-                    console.log('[Bridge] Blocking Escape from widget - overlay is open');
-                    e.preventDefault();
-                    e.stopPropagation();
-                    e.stopImmediatePropagation();
-                    
-                    // Trigger script.js hideAllOverlays
-                    if (window.hideAllOverlays && typeof window.hideAllOverlays === 'function') {
-                        window.hideAllOverlays();
-                    }
-                    
-                    return false;
-                }
-            }
-        }, true); // Use capture phase to run BEFORE widget handlers
     }
     
     // 🔥 SMART AUTO-FIX #1: Fix on page load
@@ -155,66 +129,66 @@ class BotemiaBridge {
     
     // 🔥 VISUAL INDICATOR: Shows when Botemia is Zoom-ready
     addZoomReadyIndicator() {
-        // Find footer controls container
-        const footerControls = document.querySelector('.footer-controls');
-        if (!footerControls) return;
-        
-        const indicator = document.createElement('div');
-        indicator.id = 'botemia-zoom-indicator';
-        indicator.style.cssText = `
-            display: inline-flex;
-            align-items: center;
-            margin-left: 10px;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: rgba(255,68,68,0.9);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.3);
+    // Find footer controls container
+    const footerControls = document.querySelector('.footer-controls');
+    if (!footerControls) return;
+    
+    const indicator = document.createElement('div');
+    indicator.id = 'botemia-zoom-indicator';
+    indicator.style.cssText = `
+        display: inline-flex;
+        align-items: center;
+        margin-left: 10px;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+        background: rgba(255,68,68,0.9);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.3);
+    `;
+    
+    indicator.innerHTML = `
+        <span style="margin-right:4px;">🔴</span>
+        <span>Zoom</span>
+    `;
+    
+    indicator.onclick = () => {
+        this.ensureZoomReady();
+    };
+    
+    // Insert after the restart button
+    const restartBtn = document.getElementById('footer-restart');
+    if (restartBtn) {
+        restartBtn.parentNode.insertBefore(indicator, restartBtn.nextSibling);
+    } else {
+        footerControls.appendChild(indicator);
+    }
+    
+    this.zoomIndicator = indicator;
+}
+
+updateZoomIndicator() {
+    if (!this.zoomIndicator) return;
+    
+    if (this.zoomReady) {
+        this.zoomIndicator.style.background = 'rgba(0,204,0,0.9)';
+        this.zoomIndicator.innerHTML = `
+            <span style="margin-right:4px;">✅</span>
+            <span>Zoom</span>
         `;
-        
-        indicator.innerHTML = `
+        this.zoomIndicator.title = 'Botemia ready for Zoom';
+    } else {
+        this.zoomIndicator.style.background = 'rgba(255,68,68,0.9)';
+        this.zoomIndicator.innerHTML = `
             <span style="margin-right:4px;">🔴</span>
             <span>Zoom</span>
         `;
-        
-        indicator.onclick = () => {
-            this.ensureZoomReady();
-        };
-        
-        // Insert after the restart button
-        const restartBtn = document.getElementById('footer-restart');
-        if (restartBtn) {
-            restartBtn.parentNode.insertBefore(indicator, restartBtn.nextSibling);
-        } else {
-            footerControls.appendChild(indicator);
-        }
-        
-        this.zoomIndicator = indicator;
+        this.zoomIndicator.title = 'Click to prepare Botemia for Zoom';
     }
-    
-    updateZoomIndicator() {
-        if (!this.zoomIndicator) return;
-        
-        if (this.zoomReady) {
-            this.zoomIndicator.style.background = 'rgba(0,204,0,0.9)';
-            this.zoomIndicator.innerHTML = `
-                <span style="margin-right:4px;">✅</span>
-                <span>Zoom</span>
-            `;
-            this.zoomIndicator.title = 'Botemia ready for Zoom';
-        } else {
-            this.zoomIndicator.style.background = 'rgba(255,68,68,0.9)';
-            this.zoomIndicator.innerHTML = `
-                <span style="margin-right:4px;">🔴</span>
-                <span>Zoom</span>
-            `;
-            this.zoomIndicator.title = 'Click to prepare Botemia for Zoom';
-        }
-    }
+}
     
     showNotification(message, type = 'info') {
         const notification = document.createElement('div');
@@ -259,7 +233,7 @@ class BotemiaBridge {
         }
     }
     
-    // 🔥 AVATAR CONTROLS ONLY (No overlay interference)
+    // 🔥 REST OF YOUR EXISTING METHODS (keep exactly as they are)...
     fixFooterControls() {
         document.getElementById('footer-stop')?.addEventListener('click', () => {
             console.log('[Bridge] Minimizing avatar');
@@ -368,7 +342,6 @@ class BotemiaBridge {
         document.addEventListener('keydown', (event) => {
             if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
 
-            // Only avatar control shortcuts
             if (event.ctrlKey || event.metaKey) {
                 switch(event.key.toLowerCase()) {
                     case 'm':
@@ -394,10 +367,23 @@ class BotemiaBridge {
                 }
             }
             
-            // Keep F1 for help only
-            if (event.key === 'F1') {
-                event.preventDefault();
-                alert(`🎮 BOTEMIA KEYBOARD SHORTCUTS:\n\n📢 Audio:\nCtrl+M = Toggle Microphone\nCtrl+U = Toggle Mute\n\n👁️ Visibility:\nCtrl+S = Show Widget\nCtrl+R = Restart\n\nℹ️ Press Escape to close overlays`);
+            switch(event.key) {
+                case 'F1':
+                    event.preventDefault();
+                    alert(`🎮 BOTEMIA KEYBOARD SHORTCUTS:\n\n📢 Audio:\nCtrl+M = Toggle Microphone\nCtrl+U = Toggle Mute\n\n👁️ Visibility:\nCtrl+S = Show Widget\nCtrl+R = Restart\n\n🚀 Quick Actions:\nF2 = Testimonial\nF3 = Communication\nF4 = Video\nF1 = This Help`);
+                    break;
+                case 'F2':
+                    event.preventDefault();
+                    this.showTestimonialCenter();
+                    break;
+                case 'F3':
+                    event.preventDefault();
+                    this.showCommunicationCenter();
+                    break;
+                case 'F4':
+                    event.preventDefault();
+                    this.showVideoCenter();
+                    break;
             }
         });
     }
@@ -427,32 +413,70 @@ class BotemiaBridge {
         console.log('[Bridge] Session restarted');
     }
     
+    fixOverlayButtons() {
+        document.getElementById('show-testimonial')?.addEventListener('click', () => {
+            this.showTestimonialCenter();
+        });
+
+        document.getElementById('show-commcenter')?.addEventListener('click', () => {
+            this.showCommunicationCenter();
+        });
+
+        document.getElementById('show-videocenter')?.addEventListener('click', () => {
+            this.showVideoCenter();
+        });
+    }
+    
     setupLeadMagnetButtons() {
         document.getElementById('free-book-btn')?.addEventListener('click', () => {
             console.log('[Bridge] Free Book requested');
-            // Let script.js handle the CTA
-            if (window.showCTA && typeof window.showCTA === 'function') {
-                window.showCTA('book');
-            }
+            this.offerLeadMagnet('Free AI Business Book', '#');
         });
 
         document.getElementById('mobile-report-btn')?.addEventListener('click', () => {
             console.log('[Bridge] Mobile Report requested');
-            // Let script.js handle the CTA
-            if (window.showCTA && typeof window.showCTA === 'function') {
-                window.showCTA('report');
-            }
+            this.offerLeadMagnet('Free Mobile Report', '#');
         });
     }
     
     setupCueButtons() {
-        // These should trigger website overlays via script.js
         for (let i = 1; i <= 4; i++) {
             document.getElementById(`cue-${i}`)?.addEventListener('click', () => {
-                console.log(`[Bridge] Cue ${i} clicked - letting script.js handle overlay`);
-                // script.js will handle this via its own event listeners
+                this.triggerCueSegment(i);
             });
         }
+    }
+    
+    async showTestimonialCenter() {
+        await this.widget.sendMessage('Let me show you our Testimonial Center with real client results.');
+        document.getElementById('testimonial-overlay').style.display = 'flex';
+        this.widget.setAttribute('controlled-widget-state', 'minimized');
+    }
+    
+    async showCommunicationCenter() {
+        await this.widget.sendMessage('Perfect! Let me open our Communication Center to connect you with our team.');
+        document.getElementById('commcenter-overlay').style.display = 'flex';
+    }
+    
+    async showVideoCenter() {
+        await this.widget.sendMessage("I'll show you exactly how it works in our Video Center.");
+        document.getElementById('videocenter-overlay').style.display = 'flex';
+        this.widget.setAttribute('controlled-widget-state', 'minimized');
+    }
+    
+    async offerLeadMagnet(offerName, downloadUrl) {
+        await this.widget.sendMessage(`I'd be happy to send you our ${offerName}. Let me get that for you.`);
+        document.getElementById('cta-header').style.display = 'block';
+    }
+    
+    async triggerCueSegment(cueNumber) {
+        const messages = [
+            "Let me explain how our AI system works...",
+            "Here's what makes our technology unique...",
+            "Let me show you some key features...",
+            "Here are the results you can expect..."
+        ];
+        await this.widget.sendMessage(messages[cueNumber - 1]);
     }
 }
 
@@ -460,10 +484,9 @@ class BotemiaBridge {
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         window.botemiaBridge = new BotemiaBridge();
-        console.log('[Bridge] Botemia Bridge READY - Avatar Controls Only');
+        console.log('[Bridge] Botemia Bridge READY with Smart Zoom Fix!');
         console.log('✅ Auto-fix enabled');
         console.log('✅ Zoom detection active');
-        console.log('✅ Escape protection active');
-        console.log('✅ No overlay interference');
+        console.log('✅ Visual indicator added');
     }, 2000);
 });
