@@ -24,94 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateStatus('Ready');
 });
 
-// LEAD MAGNET & CTA FUNCTIONALITY
-
-// CTA Data Objects - USING LOCAL FILES
-const ctaData = {
-    book: {
-        image: 'assets/lead-magnets/book-cover.png',  // ← LOCAL PATH
-        text: 'Get Your FREE Copy of "AI Powered Business" - Limited Time Offer!',
-        buttonText: 'Download Free Book',
-        buttonLink: 'https://freeaibook.info'  // ← UPDATE THIS LINK
-    },
-    report: {
-        image: 'assets/lead-magnets/mobile-report.png',  // ← LOCAL PATH
-        text: 'FREE Mobile Marketing Report: Boost Your Conversions by 300%',
-        buttonText: 'Get Free Report',
-        buttonLink: 'https://freemobilereport.com'  // ← UPDATE THIS LINK
-    }
-};
-
-// Lead Magnet Button Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
-    const freeBookBtn = document.getElementById('free-book-btn');
-    const mobileReportBtn = document.getElementById('mobile-report-btn');
-    const ctaHeader = document.getElementById('cta-header');
-    const ctaImage = document.getElementById('cta-image');
-    const ctaText = document.getElementById('cta-text');
-    const ctaActionBtn = document.getElementById('cta-action-btn');
-    const ctaClose = document.getElementById('cta-close');
-    
-    // Free Book Button
-    if (freeBookBtn) {
-        freeBookBtn.addEventListener('click', function() {
-            showCTA('book');
-        });
-    }
-    
-    // Mobile Report Button
-    if (mobileReportBtn) {
-        mobileReportBtn.addEventListener('click', function() {
-            showCTA('report');
-        });
-    }
-    
-    // CTA Close Button
-    if (ctaClose) {
-        ctaClose.addEventListener('click', hideCTA);
-    }
-    
-    // CTA Action Button
-    if (ctaActionBtn) {
-        ctaActionBtn.addEventListener('click', function() {
-            const currentType = ctaActionBtn.dataset.type;
-            if (currentType && ctaData[currentType]) {
-                window.open(ctaData[currentType].buttonLink, '_blank');
-            }
-        });
-    }
-});
-
-// Function to show CTA
-function showCTA(type) {
-    const ctaHeader = document.getElementById('cta-header');
-    const ctaImage = document.getElementById('cta-image');
-    const ctaText = document.getElementById('cta-text');
-    const ctaActionBtn = document.getElementById('cta-action-btn');
-    
-    if (ctaData[type]) {
-        ctaImage.src = ctaData[type].image;
-        ctaText.textContent = ctaData[type].text;
-        ctaActionBtn.textContent = ctaData[type].buttonText;
-        ctaActionBtn.dataset.type = type;
-        ctaHeader.style.display = 'flex';
-        
-        // Auto-hide after 30 seconds
-        setTimeout(hideCTA, 30000);
-    }
-}
-
-// Function to hide CTA
-function hideCTA() {
-    const ctaHeader = document.getElementById('cta-header');
-    ctaHeader.style.display = 'none';
-}
-
-// Optional: Auto-show CTA on page load after 60 seconds
-setTimeout(() => {
-    showCTA('book');
-}, 60000);
-
 function showWebsiteOverlay(num) {
     // Hide any other website overlay first
     hideAllWebsiteOverlays();
@@ -120,7 +32,6 @@ function showWebsiteOverlay(num) {
     const overlay = document.getElementById(`website-${num}-overlay`);
     if (overlay) {
         overlay.classList.add('active');
-        overlay.style.display = 'flex';
         console.log(`Showing website overlay ${num}`);
         updateStatus(`Website Example ${num}`);
     }
@@ -130,13 +41,19 @@ function hideAllWebsiteOverlays() {
     // Hide all website overlays
     for (let i = 1; i <= 4; i++) {
         const overlay = document.getElementById(`website-${i}-overlay`);
-        if (overlay) {
-            overlay.classList.remove('active');
-            overlay.style.display = 'none';
-        }
+        if (overlay) overlay.classList.remove('active');
     }
     updateStatus('Ready');
 }
+
+// Update button listeners
+document.getElementById('cue-1').addEventListener('click', () => showWebsiteOverlay(1));
+// ... same for 2, 3, 4
+
+// Close button
+document.querySelectorAll('.website-close').forEach(btn => {
+    btn.addEventListener('click', hideAllWebsiteOverlays);
+});
 
 // ================= SLIDE MANAGEMENT =================
 function loadSlide(index) {
@@ -170,88 +87,38 @@ function prevSlide() {
 // ================= OVERLAY CONTROLS =================
 function showOverlay(overlayKey) {
     // First, close any other open overlays
-    hideAllOverlays();
-    
+    for (const key in overlays) {
+        if (overlays[key] && overlays[key].classList.contains('active')) {
+            overlays[key].classList.remove('active');
+        }
+    }
     // Show the requested overlay
     if (overlays[overlayKey]) {
         overlays[overlayKey].classList.add('active');
-        overlays[overlayKey].style.display = 'flex';
         console.log(`Showing overlay: ${overlayKey}`);
         updateStatus(`${overlayKey.replace('-', ' ')} active`);
     }
 }
 
 function hideAllOverlays() {
-    // Hide ALL overlay types with both class and style changes
     for (const key in overlays) {
         if (overlays[key]) {
             overlays[key].classList.remove('active');
-            overlays[key].style.display = 'none';
         }
     }
-    
-    // Hide video modal
-    if (videoModal) {
-        videoModal.classList.remove('active');
-        videoModal.style.display = 'none';
-    }
-    
-    // Hide CTA header
-    const ctaHeader = document.getElementById('cta-header');
-    if (ctaHeader) {
-        ctaHeader.style.display = 'none';
-    }
-    
-    // Hide all website overlays
-    hideAllWebsiteOverlays();
-    
-    // Stop any playing video
+    videoModal.classList.remove('active');
     if (demoVideo) {
         demoVideo.pause();
         demoVideo.currentTime = 0;
     }
-    
-    console.log('All overlays force-closed.');
+    console.log('All overlays closed.');
     updateStatus('Ready');
-}
-
-// ================= ESCAPE KEY FIX =================
-function handleEscapeKey(e) {
-    if (e.key === 'Escape' || e.keyCode === 27) {
-        // Prevent default and stop propagation FIRST
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        
-        console.log('Escape key handled - preventing widget interference');
-        
-        // Check if any overlays are open
-        const anyOverlayOpen = document.querySelector('.website-overlay.active, .overlay.active, .video-modal.active');
-        if (anyOverlayOpen) {
-            hideAllOverlays();
-            
-            // Add extra protection: prevent widget from restarting
-            setTimeout(() => {
-                const widget = document.querySelector('lemon-slice-widget');
-                if (widget) {
-                    // Try to prevent widget from restarting
-                    widget.blur();
-                }
-            }, 10);
-            
-            return false;
-        }
-        
-        // If no overlays are open, allow normal behavior
-        return true;
-    }
 }
 
 // ================= VIDEO CONTROLS =================
 function playDemoVideo() {
     if (demoVideo) {
         videoModal.classList.add('active');
-        videoModal.style.display = 'flex';
         demoVideo.play();
         console.log('Playing demo video.');
         updateStatus('Playing testimonial video');
@@ -334,20 +201,18 @@ function setupEventListeners() {
     document.getElementById('next-slide').addEventListener('click', nextSlide);
     document.getElementById('prev-slide').addEventListener('click', prevSlide);
     
-    // Website Example Buttons (1-4)
-    document.getElementById('cue-1').addEventListener('click', () => showOverlay('website1'));
-    document.getElementById('cue-2').addEventListener('click', () => showOverlay('website2'));
-    document.getElementById('cue-3').addEventListener('click', () => showOverlay('website3'));
-    document.getElementById('cue-4').addEventListener('click', () => showOverlay('website4'));
-    
-    // Close any overlay when clicking any close button
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('overlay-close') || 
-            e.target.classList.contains('website-close') ||
-            e.target.classList.contains('video-close')) {
-            hideAllOverlays();
-        }
-    });
+   // Website Example Buttons (1-4)
+document.getElementById('cue-1').addEventListener('click', () => showOverlay('website1'));
+document.getElementById('cue-2').addEventListener('click', () => showOverlay('website2'));
+document.getElementById('cue-3').addEventListener('click', () => showOverlay('website3'));
+document.getElementById('cue-4').addEventListener('click', () => showOverlay('website4'));
+
+// Close any overlay when clicking any close button
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('overlay-close')) {
+        hideAllOverlays();
+    }
+});
     
     // Overlay Controls
     document.getElementById('show-testimonial').addEventListener('click', () => showOverlay('testimonial'));
@@ -364,44 +229,34 @@ function setupEventListeners() {
     document.getElementById('close-video').addEventListener('click', hideAllOverlays);
     
     // Botemia Control Buttons (if they exist)
-    if (document.getElementById('botemia-pause')) {
-        document.getElementById('botemia-pause').addEventListener('click', pauseBotemia);
-        document.getElementById('botemia-stop').addEventListener('click', stopBotemia);
-        document.getElementById('toggle-mic').addEventListener('click', toggleMic);
-    }
-    
-    // Keyboard Shortcuts (Fixed to prevent widget interference)
-    // Add Escape handler with capture phase (runs before widget handlers)
-    document.addEventListener('keydown', handleEscapeKey, true);
-    
-    // Keep arrow keys separate
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            nextSlide();
-        } else if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            prevSlide();
-        }
-        // Don't handle Escape here - handled by handleEscapeKey
-    });
-    
-    // Also add a backup click handler to close overlays when clicking outside
-    document.addEventListener('click', function(e) {
-        const anyOverlayOpen = document.querySelector('.website-overlay.active, .overlay.active, .video-modal.active');
-        if (anyOverlayOpen && 
-            !e.target.closest('.overlay-content') && 
-            !e.target.closest('.website-content') &&
-            !e.target.closest('.video-modal-content')) {
-            hideAllOverlays();
-        }
-    });
-    
-    console.log('All event listeners attached.');
+if (document.getElementById('botemia-pause')) {
+    document.getElementById('botemia-pause').addEventListener('click', pauseBotemia);
+    document.getElementById('botemia-stop').addEventListener('click', stopBotemia);
+    document.getElementById('toggle-mic').addEventListener('click', toggleMic);
 }
 
-// ================= OVERLAY VISIBILITY CHECK =================
-// Helper function to check if any overlay is visible
-function isAnyOverlayVisible() {
-    return document.querySelector('.website-overlay.active, .overlay.active, .video-modal.active, #cta-header[style*="display: flex"]') !== null;
+   // Footer Botemia Controls (if they exist)
+// MOVED TO bridge.js for centralized control
+// if (document.getElementById('footer-pause')) {
+//     document.getElementById('footer-pause').addEventListener('click', pauseAvatar);
+//     document.getElementById('footer-stop').addEventListener('click', stopAvatar);
+//     document.getElementById('footer-mic').addEventListener('click', toggleAvatarMic);
+//     document.getElementById('footer-chat').addEventListener('click', openAvatarChat);
+//     document.getElementById('footer-restart').addEventListener('click', restartAvatarSession);
+// }
+    
+    // Keyboard Shortcuts (Optional)
+    document.addEventListener('keydown', (e) => {
+        switch(e.key) {
+            case 'ArrowRight': e.preventDefault(); nextSlide(); break;
+            case 'ArrowLeft': e.preventDefault(); prevSlide(); break;
+            case 'Escape': hideAllOverlays(); break;
+        }
+    });
+    
+    // At the very end of script.js, add:
+window.hideAllOverlays = hideAllOverlays;
+window.showCTA = showCTA;
+    
+    console.log('All event listeners attached.');
 }
