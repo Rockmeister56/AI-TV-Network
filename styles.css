@@ -218,6 +218,78 @@ body {
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
+/* CALL TO ACTION HEADER */
+.cta-header {
+    position: absolute;
+    top: 0;
+    right: 320px; /* Adjust based on your right panel width */
+    left: 80px; /* Adjust based on your left dock width */
+    height: 60px;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 2px solid #00ff88;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.cta-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.cta-image {
+    height: 45px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.cta-text {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #00ff88, #00cc6a);
+    color: black;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.6);
+}
+
+.cta-close {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.cta-close:hover {
+    color: #ff4444;
+}
+
 /* Botemia Footer Control Bar */
 .botemia-footer {
     position: fixed;
