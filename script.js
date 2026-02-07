@@ -120,6 +120,7 @@ function showWebsiteOverlay(num) {
     const overlay = document.getElementById(`website-${num}-overlay`);
     if (overlay) {
         overlay.classList.add('active');
+        overlay.style.display = 'flex';
         console.log(`Showing website overlay ${num}`);
         updateStatus(`Website Example ${num}`);
     }
@@ -129,19 +130,13 @@ function hideAllWebsiteOverlays() {
     // Hide all website overlays
     for (let i = 1; i <= 4; i++) {
         const overlay = document.getElementById(`website-${i}-overlay`);
-        if (overlay) overlay.classList.remove('active');
+        if (overlay) {
+            overlay.classList.remove('active');
+            overlay.style.display = 'none';
+        }
     }
     updateStatus('Ready');
 }
-
-// Update button listeners
-document.getElementById('cue-1').addEventListener('click', () => showWebsiteOverlay(1));
-// ... same for 2, 3, 4
-
-// Close button
-document.querySelectorAll('.website-close').forEach(btn => {
-    btn.addEventListener('click', hideAllWebsiteOverlays);
-});
 
 // ================= SLIDE MANAGEMENT =================
 function loadSlide(index) {
@@ -175,38 +170,88 @@ function prevSlide() {
 // ================= OVERLAY CONTROLS =================
 function showOverlay(overlayKey) {
     // First, close any other open overlays
-    for (const key in overlays) {
-        if (overlays[key] && overlays[key].classList.contains('active')) {
-            overlays[key].classList.remove('active');
-        }
-    }
+    hideAllOverlays();
+    
     // Show the requested overlay
     if (overlays[overlayKey]) {
         overlays[overlayKey].classList.add('active');
+        overlays[overlayKey].style.display = 'flex';
         console.log(`Showing overlay: ${overlayKey}`);
         updateStatus(`${overlayKey.replace('-', ' ')} active`);
     }
 }
 
 function hideAllOverlays() {
+    // Hide ALL overlay types with both class and style changes
     for (const key in overlays) {
         if (overlays[key]) {
             overlays[key].classList.remove('active');
+            overlays[key].style.display = 'none';
         }
     }
-    videoModal.classList.remove('active');
+    
+    // Hide video modal
+    if (videoModal) {
+        videoModal.classList.remove('active');
+        videoModal.style.display = 'none';
+    }
+    
+    // Hide CTA header
+    const ctaHeader = document.getElementById('cta-header');
+    if (ctaHeader) {
+        ctaHeader.style.display = 'none';
+    }
+    
+    // Hide all website overlays
+    hideAllWebsiteOverlays();
+    
+    // Stop any playing video
     if (demoVideo) {
         demoVideo.pause();
         demoVideo.currentTime = 0;
     }
-    console.log('All overlays closed.');
+    
+    console.log('All overlays force-closed.');
     updateStatus('Ready');
+}
+
+// ================= ESCAPE KEY FIX =================
+function handleEscapeKey(e) {
+    if (e.key === 'Escape' || e.keyCode === 27) {
+        // Prevent default and stop propagation FIRST
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        
+        console.log('Escape key handled - preventing widget interference');
+        
+        // Check if any overlays are open
+        const anyOverlayOpen = document.querySelector('.website-overlay.active, .overlay.active, .video-modal.active');
+        if (anyOverlayOpen) {
+            hideAllOverlays();
+            
+            // Add extra protection: prevent widget from restarting
+            setTimeout(() => {
+                const widget = document.querySelector('lemon-slice-widget');
+                if (widget) {
+                    // Try to prevent widget from restarting
+                    widget.blur();
+                }
+            }, 10);
+            
+            return false;
+        }
+        
+        // If no overlays are open, allow normal behavior
+        return true;
+    }
 }
 
 // ================= VIDEO CONTROLS =================
 function playDemoVideo() {
     if (demoVideo) {
         videoModal.classList.add('active');
+        videoModal.style.display = 'flex';
         demoVideo.play();
         console.log('Playing demo video.');
         updateStatus('Playing testimonial video');
@@ -289,18 +334,20 @@ function setupEventListeners() {
     document.getElementById('next-slide').addEventListener('click', nextSlide);
     document.getElementById('prev-slide').addEventListener('click', prevSlide);
     
-   // Website Example Buttons (1-4)
-document.getElementById('cue-1').addEventListener('click', () => showOverlay('website1'));
-document.getElementById('cue-2').addEventListener('click', () => showOverlay('website2'));
-document.getElementById('cue-3').addEventListener('click', () => showOverlay('website3'));
-document.getElementById('cue-4').addEventListener('click', () => showOverlay('website4'));
-
-// Close any overlay when clicking any close button
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('overlay-close')) {
-        hideAllOverlays();
-    }
-});
+    // Website Example Buttons (1-4)
+    document.getElementById('cue-1').addEventListener('click', () => showOverlay('website1'));
+    document.getElementById('cue-2').addEventListener('click', () => showOverlay('website2'));
+    document.getElementById('cue-3').addEventListener('click', () => showOverlay('website3'));
+    document.getElementById('cue-4').addEventListener('click', () => showOverlay('website4'));
+    
+    // Close any overlay when clicking any close button
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('overlay-close') || 
+            e.target.classList.contains('website-close') ||
+            e.target.classList.contains('video-close')) {
+            hideAllOverlays();
+        }
+    });
     
     // Overlay Controls
     document.getElementById('show-testimonial').addEventListener('click', () => showOverlay('testimonial'));
@@ -317,30 +364,44 @@ document.addEventListener('click', function(e) {
     document.getElementById('close-video').addEventListener('click', hideAllOverlays);
     
     // Botemia Control Buttons (if they exist)
-if (document.getElementById('botemia-pause')) {
-    document.getElementById('botemia-pause').addEventListener('click', pauseBotemia);
-    document.getElementById('botemia-stop').addEventListener('click', stopBotemia);
-    document.getElementById('toggle-mic').addEventListener('click', toggleMic);
-}
-
-   // Footer Botemia Controls (if they exist)
-// MOVED TO bridge.js for centralized control
-// if (document.getElementById('footer-pause')) {
-//     document.getElementById('footer-pause').addEventListener('click', pauseAvatar);
-//     document.getElementById('footer-stop').addEventListener('click', stopAvatar);
-//     document.getElementById('footer-mic').addEventListener('click', toggleAvatarMic);
-//     document.getElementById('footer-chat').addEventListener('click', openAvatarChat);
-//     document.getElementById('footer-restart').addEventListener('click', restartAvatarSession);
-// }
+    if (document.getElementById('botemia-pause')) {
+        document.getElementById('botemia-pause').addEventListener('click', pauseBotemia);
+        document.getElementById('botemia-stop').addEventListener('click', stopBotemia);
+        document.getElementById('toggle-mic').addEventListener('click', toggleMic);
+    }
     
-    // Keyboard Shortcuts (Optional)
+    // Keyboard Shortcuts (Fixed to prevent widget interference)
+    // Add Escape handler with capture phase (runs before widget handlers)
+    document.addEventListener('keydown', handleEscapeKey, true);
+    
+    // Keep arrow keys separate
     document.addEventListener('keydown', (e) => {
-        switch(e.key) {
-            case 'ArrowRight': e.preventDefault(); nextSlide(); break;
-            case 'ArrowLeft': e.preventDefault(); prevSlide(); break;
-            case 'Escape': hideAllOverlays(); break;
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevSlide();
+        }
+        // Don't handle Escape here - handled by handleEscapeKey
+    });
+    
+    // Also add a backup click handler to close overlays when clicking outside
+    document.addEventListener('click', function(e) {
+        const anyOverlayOpen = document.querySelector('.website-overlay.active, .overlay.active, .video-modal.active');
+        if (anyOverlayOpen && 
+            !e.target.closest('.overlay-content') && 
+            !e.target.closest('.website-content') &&
+            !e.target.closest('.video-modal-content')) {
+            hideAllOverlays();
         }
     });
     
     console.log('All event listeners attached.');
+}
+
+// ================= OVERLAY VISIBILITY CHECK =================
+// Helper function to check if any overlay is visible
+function isAnyOverlayVisible() {
+    return document.querySelector('.website-overlay.active, .overlay.active, .video-modal.active, #cta-header[style*="display: flex"]') !== null;
 }
