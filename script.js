@@ -281,9 +281,19 @@ function updateStatus(message) {
 
 // ================= EVENT LISTENER SETUP =================
 function setupEventListeners() {
+    // Helper function to safely add listeners
+    function safeAddListener(id, event, func) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener(event, func);
+        } else {
+            console.warn(`[Setup Warning] Element with ID '${id}' not found.`);
+        }
+    }
+
     // Slide Navigation
-    document.getElementById('next-slide').addEventListener('click', nextSlide);
-    document.getElementById('prev-slide').addEventListener('click', prevSlide);
+    safeAddListener('next-slide', 'click', nextSlide);
+    safeAddListener('prev-slide', 'click', prevSlide);
     
     // Close any overlay when clicking any close button
     document.addEventListener('click', function(e) {
@@ -293,24 +303,24 @@ function setupEventListeners() {
     });
     
     // Overlay Controls
-    document.getElementById('show-testimonial').addEventListener('click', () => showOverlay('testimonial'));
-    document.getElementById('show-commcenter').addEventListener('click', () => showOverlay('commcenter'));
-    document.getElementById('show-videocenter').addEventListener('click', () => showOverlay('videocenter'));
+    safeAddListener('show-testimonial', 'click', () => showOverlay('testimonial'));
+    safeAddListener('show-commcenter', 'click', () => showOverlay('commcenter'));
+    safeAddListener('show-videocenter', 'click', () => showOverlay('videocenter'));
     
     // Overlay Close Buttons
-    document.getElementById('close-testimonial').addEventListener('click', hideAllOverlays);
-    document.getElementById('close-commcenter').addEventListener('click', hideAllOverlays);
-    document.getElementById('close-videocenter').addEventListener('click', hideAllOverlays);
+    safeAddListener('close-testimonial', 'click', hideAllOverlays);
+    safeAddListener('close-commcenter', 'click', hideAllOverlays);
+    safeAddListener('close-videocenter', 'click', hideAllOverlays);
     
     // Video Controls
-    document.getElementById('testimonial-video-trigger').addEventListener('click', playDemoVideo);
-    document.getElementById('close-video').addEventListener('click', hideAllOverlays);
+    safeAddListener('testimonial-video-trigger', 'click', playDemoVideo);
+    safeAddListener('close-video', 'click', hideAllOverlays);
     
     // Botemia Control Buttons (if they exist)
     if (document.getElementById('botemia-pause')) {
-        document.getElementById('botemia-pause').addEventListener('click', pauseBotemia);
-        document.getElementById('botemia-stop').addEventListener('click', stopBotemia);
-        document.getElementById('toggle-mic').addEventListener('click', toggleMic);
+        safeAddListener('botemia-pause', 'click', pauseBotemia);
+        safeAddListener('botemia-stop', 'click', stopBotemia);
+        safeAddListener('toggle-mic', 'click', toggleMic);
     }
 
     // Keyboard Shortcuts (Optional)
@@ -325,38 +335,51 @@ function setupEventListeners() {
     console.log('All event listeners attached.');
 
     // ============================================
-// MULTI-DECK SLIDE NAVIGATION
-// ============================================
+    // MULTI-DECK SLIDE NAVIGATION
+    // ============================================
 
-let deck2Index = 0;
-let deck3Index = 0;
-const slideContainer = document.getElementById('slide-content');
+    let deck2Index = 0;
+    let deck3Index = 0;
+    const slideContainer = document.getElementById('slide-content');
 
-function showDeckSlide(deckSlides, index) {
-    if (index < 0 || index >= deckSlides.length) return;
-    if (slideContainer && deckSlides[index].content) {
-        slideContainer.innerHTML = deckSlides[index].content;
+    function showDeckSlide(deckSlides, index) {
+        if (index < 0 || index >= deckSlides.length) return;
+        if (slideContainer && deckSlides[index].content) {
+            slideContainer.innerHTML = deckSlides[index].content;
+        }
     }
-}
 
-// Deck 2 nav
-document.querySelector('.deck2-prev').addEventListener('click', function() {
-    deck2Index = Math.max(0, deck2Index - 1);
-    showDeckSlide(slides2, deck2Index);
-});
-document.querySelector('.deck2-next').addEventListener('click', function() {
-    deck2Index = Math.min(slides2.length - 1, deck2Index + 1);
-    showDeckSlide(slides2, deck2Index);
-});
+    // Deck 2 nav - Safe Check Added
+    const deck2Prev = document.querySelector('.deck2-prev');
+    const deck2Next = document.querySelector('.deck2-next');
+    
+    if (deck2Prev) {
+        deck2Prev.addEventListener('click', function() {
+            deck2Index = Math.max(0, deck2Index - 1);
+            showDeckSlide(slides2, deck2Index);
+        });
+    }
+    if (deck2Next) {
+        deck2Next.addEventListener('click', function() {
+            deck2Index = Math.min(slides2.length - 1, deck2Index + 1);
+            showDeckSlide(slides2, deck2Index);
+        });
+    }
 
-// Deck 3 nav
-document.querySelector('.deck3-prev').addEventListener('click', function() {
-    deck3Index = Math.max(0, deck3Index - 1);
-    showDeckSlide(slides3, deck3Index);
-});
-document.querySelector('.deck3-next').addEventListener('click', function() {
-    deck3Index = Math.min(slides3.length - 1, deck3Index + 1);
-    showDeckSlide(slides3, deck3Index);
-});
+    // Deck 3 nav - Safe Check Added
+    const deck3Prev = document.querySelector('.deck3-prev');
+    const deck3Next = document.querySelector('.deck3-next');
 
+    if (deck3Prev) {
+        deck3Prev.addEventListener('click', function() {
+            deck3Index = Math.max(0, deck3Index - 1);
+            showDeckSlide(slides3, deck3Index);
+        });
+    }
+    if (deck3Next) {
+        deck3Next.addEventListener('click', function() {
+            deck3Index = Math.min(slides3.length - 1, deck3Index + 1);
+            showDeckSlide(slides3, deck3Index);
+        });
+    }
 }
