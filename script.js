@@ -134,10 +134,6 @@ function hideAllWebsiteOverlays() {
     updateStatus('Ready');
 }
 
-// Update button listeners
-document.getElementById('cue-1').addEventListener('click', () => showWebsiteOverlay(1));
-// ... same for 2, 3, 4
-
 // Close button
 document.querySelectorAll('.website-close').forEach(btn => {
     btn.addEventListener('click', hideAllWebsiteOverlays);
@@ -289,12 +285,6 @@ function setupEventListeners() {
     document.getElementById('next-slide').addEventListener('click', nextSlide);
     document.getElementById('prev-slide').addEventListener('click', prevSlide);
     
-   // Website Example Buttons (1-4)
-document.getElementById('cue-1').addEventListener('click', () => showOverlay('website1'));
-document.getElementById('cue-2').addEventListener('click', () => showOverlay('website2'));
-document.getElementById('cue-3').addEventListener('click', () => showOverlay('website3'));
-document.getElementById('cue-4').addEventListener('click', () => showOverlay('website4'));
-
 // Close any overlay when clicking any close button
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('overlay-close')) {
