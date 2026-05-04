@@ -343,4 +343,39 @@ if (document.getElementById('botemia-pause')) {
     });
     
     console.log('All event listeners attached.');
+
+    // ============================================
+// MULTI-DECK SLIDE NAVIGATION
+// ============================================
+
+let deck2Index = 0;
+let deck3Index = 0;
+const slideContainer = document.getElementById('slide-content');
+
+function showDeckSlide(deckSlides, index) {
+    if (index < 0 || index >= deckSlides.length) return;
+    if (slideContainer && deckSlides[index].content) {
+        slideContainer.innerHTML = deckSlides[index].content;
+    }
+}
+
+// Deck 2 nav
+document.querySelector('.deck2-prev').addEventListener('click', function() {
+    deck2Index = Math.max(0, deck2Index - 1);
+    showDeckSlide(slides2, deck2Index);
+});
+document.querySelector('.deck2-next').addEventListener('click', function() {
+    deck2Index = Math.min(slides2.length - 1, deck2Index + 1);
+    showDeckSlide(slides2, deck2Index);
+});
+
+// Deck 3 nav
+document.querySelector('.deck3-prev').addEventListener('click', function() {
+    deck3Index = Math.max(0, deck3Index - 1);
+    showDeckSlide(slides3, deck3Index);
+});
+document.querySelector('.deck3-next').addEventListener('click', function() {
+    deck3Index = Math.min(slides3.length - 1, deck3Index + 1);
+    showDeckSlide(slides3, deck3Index);
+});
 }

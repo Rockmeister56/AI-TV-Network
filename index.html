@@ -22,34 +22,44 @@
     
     <div class="container">
         <!-- LEFT CONTROL DOCK -->
-        <nav class="control-dock">
-            <div class="dock-section">
-                <div class="button-glow-group">
-                    <button class="ctrl-btn nav-btn" id="prev-slide" title="Previous Slide"><i class="fas fa-backward"></i></button>
-                    <button class="ctrl-btn nav-btn" id="next-slide" title="Next Slide"><i class="fas fa-forward"></i></button>
-                </div>
-                <div class="section-label">Slide Nav</div>
-            </div>
+<nav class="control-dock">
+    <!-- SLIDE DECK 1: Smart AI Demo -->
+    <div class="dock-section">
+        <div class="button-glow-group">
+            <button class="ctrl-btn nav-btn deck1-prev" title="Previous Slide"><i class="fas fa-backward"></i></button>
+            <button class="ctrl-btn nav-btn deck1-next" title="Next Slide"><i class="fas fa-forward"></i></button>
+        </div>
+        <div class="section-label">Smart AI Demo</div>
+    </div>
 
-            <div class="dock-section">
-                <div class="button-glow-group">
-                    <button class="ctrl-btn cue-btn" id="cue-1" data-cue-id="segment_1">1</button>
-                    <button class="ctrl-btn cue-btn" id="cue-2" data-cue-id="segment_2">2</button>
-                    <button class="ctrl-btn cue-btn" id="cue-3" data-cue-id="segment_3">3</button>
-                    <button class="ctrl-btn cue-btn" id="cue-4" data-cue-id="segment_4">4</button>
-                </div>
-                <div class="section-label">Cue Botemia</div>
-            </div>
+    <!-- SLIDE DECK 2: AI Review Publisher -->
+    <div class="dock-section">
+        <div class="button-glow-group">
+            <button class="ctrl-btn nav-btn deck2-prev" title="Previous Slide"><i class="fas fa-backward"></i></button>
+            <button class="ctrl-btn nav-btn deck2-next" title="Next Slide"><i class="fas fa-forward"></i></button>
+        </div>
+        <div class="section-label">AI Review Publisher</div>
+    </div>
 
-            <div class="dock-section">
-                <div class="button-glow-group">
-                    <button class="ctrl-btn action-btn" id="show-testimonial" title="Show Testimonial Center"><i class="fas fa-play-circle"></i></button>
-                    <button class="ctrl-btn action-btn" id="show-commcenter" title="Show Communication Center"><i class="fas fa-comments"></i></button>
-                    <button class="ctrl-btn action-btn" id="show-videocenter" title="Show Video Center"><i class="fas fa-video"></i></button>
-                </div>
-                <div class="section-label">Overlays</div>
-            </div>
-        </nav>
+    <!-- SLIDE DECK 3: AI Performance Plan -->
+    <div class="dock-section">
+        <div class="button-glow-group">
+            <button class="ctrl-btn nav-btn deck3-prev" title="Previous Slide"><i class="fas fa-backward"></i></button>
+            <button class="ctrl-btn nav-btn deck3-next" title="Next Slide"><i class="fas fa-forward"></i></button>
+        </div>
+        <div class="section-label">AI Performance Plan</div>
+    </div>
+
+    <!-- OVERLAYS -->
+    <div class="dock-section">
+        <div class="button-glow-group">
+            <button class="ctrl-btn action-btn" id="show-testimonial" title="Show Testimonial Center"><i class="fas fa-play-circle"></i></button>
+            <button class="ctrl-btn action-btn" id="show-commcenter" title="Show Communication Center"><i class="fas fa-comments"></i></button>
+            <button class="ctrl-btn action-btn" id="show-videocenter" title="Show Video Center"><i class="fas fa-video"></i></button>
+        </div>
+        <div class="section-label">Overlays</div>
+    </div>
+</nav>
 
         <!-- MAIN CONTENT AREA -->
         <main class="main-content">
@@ -169,6 +179,8 @@
     <!-- JavaScript -->
      <script src="bridge.js"></script>
     <script src="slides.js"></script>
+    <script src="slides2.js"></script>
+    <script src="slides3.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
