@@ -285,12 +285,12 @@ function setupEventListeners() {
     document.getElementById('next-slide').addEventListener('click', nextSlide);
     document.getElementById('prev-slide').addEventListener('click', prevSlide);
     
-// Close any overlay when clicking any close button
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('overlay-close')) {
-        hideAllOverlays();
-    }
-});
+    // Close any overlay when clicking any close button
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('overlay-close')) {
+            hideAllOverlays();
+        }
+    });
     
     // Overlay Controls
     document.getElementById('show-testimonial').addEventListener('click', () => showOverlay('testimonial'));
@@ -307,22 +307,12 @@ document.addEventListener('click', function(e) {
     document.getElementById('close-video').addEventListener('click', hideAllOverlays);
     
     // Botemia Control Buttons (if they exist)
-if (document.getElementById('botemia-pause')) {
-    document.getElementById('botemia-pause').addEventListener('click', pauseBotemia);
-    document.getElementById('botemia-stop').addEventListener('click', stopBotemia);
-    document.getElementById('toggle-mic').addEventListener('click', toggleMic);
-}
+    if (document.getElementById('botemia-pause')) {
+        document.getElementById('botemia-pause').addEventListener('click', pauseBotemia);
+        document.getElementById('botemia-stop').addEventListener('click', stopBotemia);
+        document.getElementById('toggle-mic').addEventListener('click', toggleMic);
+    }
 
-   // Footer Botemia Controls (if they exist)
-// MOVED TO bridge.js for centralized control
-// if (document.getElementById('footer-pause')) {
-//     document.getElementById('footer-pause').addEventListener('click', pauseAvatar);
-//     document.getElementById('footer-stop').addEventListener('click', stopAvatar);
-//     document.getElementById('footer-mic').addEventListener('click', toggleAvatarMic);
-//     document.getElementById('footer-chat').addEventListener('click', openAvatarChat);
-//     document.getElementById('footer-restart').addEventListener('click', restartAvatarSession);
-// }
-    
     // Keyboard Shortcuts (Optional)
     document.addEventListener('keydown', (e) => {
         switch(e.key) {
@@ -368,4 +358,5 @@ document.querySelector('.deck3-next').addEventListener('click', function() {
     deck3Index = Math.min(slides3.length - 1, deck3Index + 1);
     showDeckSlide(slides3, deck3Index);
 });
+
 }
