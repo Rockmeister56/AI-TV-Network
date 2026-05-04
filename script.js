@@ -281,49 +281,100 @@ function updateStatus(message) {
 
 // ================= EVENT LISTENER SETUP =================
 function setupEventListeners() {
-    // Helper function to safely add listeners
-    function safeAddListener(id, event, func) {
-        const el = document.getElementById(id);
-        if (el) {
-            el.addEventListener(event, func);
-        } else {
-            console.warn(`[Setup Warning] Element with ID '${id}' not found.`);
-        }
+    console.log('Attaching listeners for Multi-Deck System...');
+
+    // ----------------------------------------------------
+    // 1. DECK 1 (Smart AI Demo)
+    // ----------------------------------------------------
+    const d1Prev = document.querySelector('.deck1-prev');
+    const d1Next = document.querySelector('.deck1-next');
+
+    if (d1Prev) d1Prev.addEventListener('click', prevSlide); // Uses existing prevSlide logic
+    if (d1Next) d1Next.addEventListener('click', nextSlide);   // Uses existing nextSlide logic
+
+    // ----------------------------------------------------
+    // 2. DECK 2 (AI Review Publisher)
+    // ----------------------------------------------------
+    let deck2Index = 0;
+    const d2Prev = document.querySelector('.deck2-prev');
+    const d2Next = document.querySelector('.deck2-next');
+
+    if (d2Prev) {
+        d2Prev.addEventListener('click', () => {
+            // Ensure slides2 exists and has content
+            if (typeof slides2 !== 'undefined') {
+                deck2Index = Math.max(0, deck2Index - 1);
+                loadSpecificSlide(slides2, deck2Index);
+            } else {
+                console.warn('slides2 data not found');
+            }
+        });
     }
 
-    // Slide Navigation
-    safeAddListener('next-slide', 'click', nextSlide);
-    safeAddListener('prev-slide', 'click', prevSlide);
+    if (d2Next) {
+        d2Next.addEventListener('click', () => {
+            if (typeof slides2 !== 'undefined') {
+                deck2Index = Math.min(slides2.length - 1, deck2Index + 1);
+                loadSpecificSlide(slides2, deck2Index);
+            } else {
+                console.warn('slides2 data not found');
+            }
+        });
+    }
+
+    // ----------------------------------------------------
+    // 3. DECK 3 (AI Performance Plan)
+    // ----------------------------------------------------
+    let deck3Index = 0;
+    const d3Prev = document.querySelector('.deck3-prev');
+    const d3Next = document.querySelector('.deck3-next');
+
+    if (d3Prev) {
+        d3Prev.addEventListener('click', () => {
+            if (typeof slides3 !== 'undefined') {
+                deck3Index = Math.max(0, deck3Index - 1);
+                loadSpecificSlide(slides3, deck3Index);
+            } else {
+                console.warn('slides3 data not found');
+            }
+        });
+    }
+
+    if (d3Next) {
+        d3Next.addEventListener('click', () => {
+            if (typeof slides3 !== 'undefined') {
+                deck3Index = Math.min(slides3.length - 1, deck3Index + 1);
+                loadSpecificSlide(slides3, deck3Index);
+            } else {
+                console.warn('slides3 data not found');
+            }
+        });
+    }
+
+    // ----------------------------------------------------
+    // OVERLAY CONTROLS
+    // ----------------------------------------------------
+    // These match your HTML IDs, so they should work fine now
     
-    // Close any overlay when clicking any close button
+    const btnTestimonial = document.getElementById('show-testimonial');
+    const btnCommCenter = document.getElementById('show-commcenter');
+    const btnVideoCenter = document.getElementById('show-videocenter');
+
+    if (btnTestimonial) btnTestimonial.addEventListener('click', () => showOverlay('testimonial'));
+    if (btnCommCenter) btnCommCenter.addEventListener('click', () => showOverlay('commcenter'));
+    if (btnVideoCenter) btnVideoCenter.addEventListener('click', () => showOverlay('videocenter'));
+
+    // Global Close Button logic (for generic overlay-close classes)
     document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('overlay-close')) {
+        if (e.target.closest('.overlay-close') || e.target.classList.contains('overlay-close')) {
             hideAllOverlays();
         }
     });
-    
-    // Overlay Controls
-    safeAddListener('show-testimonial', 'click', () => showOverlay('testimonial'));
-    safeAddListener('show-commcenter', 'click', () => showOverlay('commcenter'));
-    safeAddListener('show-videocenter', 'click', () => showOverlay('videocenter'));
-    
-    // Overlay Close Buttons
-    safeAddListener('close-testimonial', 'click', hideAllOverlays);
-    safeAddListener('close-commcenter', 'click', hideAllOverlays);
-    safeAddListener('close-videocenter', 'click', hideAllOverlays);
-    
-    // Video Controls
-    safeAddListener('testimonial-video-trigger', 'click', playDemoVideo);
-    safeAddListener('close-video', 'click', hideAllOverlays);
-    
-    // Botemia Control Buttons (if they exist)
-    if (document.getElementById('botemia-pause')) {
-        safeAddListener('botemia-pause', 'click', pauseBotemia);
-        safeAddListener('botemia-stop', 'click', stopBotemia);
-        safeAddListener('toggle-mic', 'click', toggleMic);
-    }
 
-    // Keyboard Shortcuts (Optional)
+    // ----------------------------------------------------
+    // KEYBOARD SHORTCUTS
+    // ----------------------------------------------------
+    // Currently mapped to Deck 1. 
     document.addEventListener('keydown', (e) => {
         switch(e.key) {
             case 'ArrowRight': e.preventDefault(); nextSlide(); break;
@@ -331,55 +382,27 @@ function setupEventListeners() {
             case 'Escape': hideAllOverlays(); break;
         }
     });
+
+    console.log('✅ All Multi-Deck event listeners attached.');
+}
+
+// --------------------------------------------------------
+// HELPER FUNCTION FOR MULTI-DECK LOADING
+// --------------------------------------------------------
+// This separates the "which slide" logic from the "render" logic
+// so Deck 2 and 3 can reuse the rendering code cleanly.
+function loadSpecificSlide(slideDeckArray, index) {
+    if (!slideDeckArray || index < 0 || index >= slideDeckArray.length) {
+        console.error('Invalid slide deck or index.');
+        return;
+    }
+
+    const slide = slideDeckArray[index];
+    const slideContentEl = document.getElementById('slide-content');
     
-    console.log('All event listeners attached.');
-
-    // ============================================
-    // MULTI-DECK SLIDE NAVIGATION
-    // ============================================
-
-    let deck2Index = 0;
-    let deck3Index = 0;
-    const slideContainer = document.getElementById('slide-content');
-
-    function showDeckSlide(deckSlides, index) {
-        if (index < 0 || index >= deckSlides.length) return;
-        if (slideContainer && deckSlides[index].content) {
-            slideContainer.innerHTML = deckSlides[index].content;
-        }
-    }
-
-    // Deck 2 nav - Safe Check Added
-    const deck2Prev = document.querySelector('.deck2-prev');
-    const deck2Next = document.querySelector('.deck2-next');
-    
-    if (deck2Prev) {
-        deck2Prev.addEventListener('click', function() {
-            deck2Index = Math.max(0, deck2Index - 1);
-            showDeckSlide(slides2, deck2Index);
-        });
-    }
-    if (deck2Next) {
-        deck2Next.addEventListener('click', function() {
-            deck2Index = Math.min(slides2.length - 1, deck2Index + 1);
-            showDeckSlide(slides2, deck2Index);
-        });
-    }
-
-    // Deck 3 nav - Safe Check Added
-    const deck3Prev = document.querySelector('.deck3-prev');
-    const deck3Next = document.querySelector('.deck3-next');
-
-    if (deck3Prev) {
-        deck3Prev.addEventListener('click', function() {
-            deck3Index = Math.max(0, deck3Index - 1);
-            showDeckSlide(slides3, deck3Index);
-        });
-    }
-    if (deck3Next) {
-        deck3Next.addEventListener('click', function() {
-            deck3Index = Math.min(slides3.length - 1, deck3Index + 1);
-            showDeckSlide(slides3, deck3Index);
-        });
+    if (slideContentEl && slide.content) {
+        slideContentEl.innerHTML = slide.content;
+        console.log(`Loaded Slide ${index + 1} from deck: ${slide.title}`);
+        updateStatus(`Slide: ${slide.title}`);
     }
 }
