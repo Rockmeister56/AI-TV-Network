@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/5/2026, 7:32:10 AM
+// Generated: 5/5/2026, 9:02:06 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -16,14 +16,14 @@
         "id": "ai-tv-network",
         "name": "AI TV Network",
         "websiteUrl": "https://aitvnetwork.netlify.app/",
-        "agentId": "`agent_1db77d60ec132469`",
+        "agentId": "agent_1db77d60ec132469",
         "modules": {
             "preQualification": {
                 "triggerPhrase": "let's get started",
                 "triggerPhraseLegacy": "let's get started"
             },
             "emailConfig": {"loanOfficerEmail":"loans@clientcompany.com","ccEmail":"","emailSubject":"New Pre-Qual Lead: {{firstName}} {{lastName}}","clientEmail":"mobilewise.ai@gmail.com","supportPhone":"949-228-5263","emailTriggers":[],"phoneTriggers":[]},
-            "splashScreen": {"enabled":true,"agentId":"`agent_1db77d60ec132469`","title":"Meet Tess","subtitle":"Your Personal AI Web Guide","tessVideoUrl":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/sign/processed-videos/tess-button.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNjJjNGVkZS0wYzRiLTQyMzAtOGE5MC1jMDhmNjhlNDVkNTciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9jZXNzZWQtdmlkZW9zL3Rlc3MtYnV0dG9uLm1wNCIsImlhdCI6MTc3MzgwNDA4MSwiZXhwIjoxODA1MzQwMDgxfQ.07K0XCnTt3zAZPp2ZAgZ-SzYhZj6nW1Vun8WW-zDAVQ","tessVideoFit":"cover","tickerKeywords":"","gradientCenter":"#1e4a8a","gradientOuter":"#0a1a2f","primaryButton":{"text":"Get AI help with Tess","gradientTop":"#f8c400","gradientBottom":"#d4a000","hoverTop":"#ffd700","hoverBottom":"#e0b000","textColor":"#0a0f1e"},"secondaryButton":{"text":"Just Browsing","gradientTop":"#3a4050","gradientBottom":"#2a2f3f","hoverTop":"#4a5060","hoverBottom":"#3a4050","textColor":"#ffffff"},"persistentButton":{"enabled":true,"position":"middle-right","action":"activate-tess","gradientTop":"#f8c400","gradientBottom":"#d4a000"},"branding":{"name":"","logo":""}},
+            "splashScreen": {"enabled":true,"agentId":"agent_1db77d60ec132469","title":"Meet Tess","subtitle":"Your Personal AI Web Guide","tessVideoUrl":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/sign/processed-videos/tess-button.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNjJjNGVkZS0wYzRiLTQyMzAtOGE5MC1jMDhmNjhlNDVkNTciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9jZXNzZWQtdmlkZW9zL3Rlc3MtYnV0dG9uLm1wNCIsImlhdCI6MTc3MzgwNDA4MSwiZXhwIjoxODA1MzQwMDgxfQ.07K0XCnTt3zAZPp2ZAgZ-SzYhZj6nW1Vun8WW-zDAVQ","tessVideoFit":"cover","tickerKeywords":"","gradientCenter":"#1e4a8a","gradientOuter":"#0a1a2f","primaryButton":{"text":"Get AI help with Tess","gradientTop":"#f8c400","gradientBottom":"#d4a000","hoverTop":"#ffd700","hoverBottom":"#e0b000","textColor":"#0a0f1e"},"secondaryButton":{"text":"Just Browsing","gradientTop":"#3a4050","gradientBottom":"#2a2f3f","hoverTop":"#4a5060","hoverBottom":"#3a4050","textColor":"#ffffff"},"persistentButton":{"enabled":true,"position":"middle-right","action":"activate-tess","gradientTop":"#f8c400","gradientBottom":"#d4a000"},"branding":{"name":"","logo":""}},
             "smartScreen": {"action":"showBestMatch","images":[]}
         }
     };
@@ -108,8 +108,8 @@
         window.tessSessionId = sessionId;
         widget.setAttribute('room-id', sessionId);
         widget.roomId = sessionId;
-        widget.setAttribute('agent-id', '`agent_1db77d60ec132469`');
-        widget.agentId = '`agent_1db77d60ec132469`';
+        widget.setAttribute('agent-id', 'agent_1db77d60ec132469');
+        widget.agentId = 'agent_1db77d60ec132469';
         const apiKey = "sk_lemon_Tleyq2zh6NoMpllEHf7mYNRxzIED6YcP";
         widget.setAttribute('api-key', apiKey);
         widget.apiKey = apiKey;
@@ -1020,7 +1020,7 @@
 
     function createMainWidget() {
         const widget = document.createElement('lemon-slice-widget');
-        widget.setAttribute('agent-id', '`agent_1db77d60ec132469`');
+        widget.setAttribute('agent-id', 'agent_1db77d60ec132469');
         let clientId = window.BotemiaConfig?.id || "mortgage-assist-demo";
         widget.setAttribute('client-id', clientId);
         widget.clientId = clientId;
