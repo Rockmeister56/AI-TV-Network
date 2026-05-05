@@ -352,51 +352,19 @@ function setupEventListeners() {
     }
 
    // ============================================
-// DEMO ANALYTICS — Populate with sample data
+// DEMO ANALYTICS — Simple standalone version
 // ============================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    const demoBtn = document.getElementById('demo-analytics-btn');
+setTimeout(function() {
+    var demoBtn = document.getElementById('demo-analytics-btn');
     if (demoBtn) {
         demoBtn.addEventListener('click', function() {
-            // Create analytics data if it doesn't exist
-            if (!window.analyticsData) {
-                window.analyticsData = {
-                    totalLeads: 0, phoneCalls: 0, tessClicks: 0,
-                    totalVisitors: 0, completedInterviews: 0,
-                    sessions: [], peakHours: {}, recentActivity: []
-                };
-            }
-            
-            // Populate with realistic demo data
-            window.analyticsData.totalLeads = 42;
-            window.analyticsData.phoneCalls = 7;
-            window.analyticsData.tessClicks = 128;
-            window.analyticsData.totalVisitors = 2100;
-            window.analyticsData.completedInterviews = 38;
-            window.analyticsData.peakHours = {
-                '9:00': 12, '10:00': 18, '11:00': 22, '12:00': 15,
-                '13:00': 10, '14:00': 24, '15:00': 20, '16:00': 7
-            };
-            window.analyticsData.recentActivity = [
-                { type: 'lead', email: 'john@abcmortgage.com', value: 150, time: '2:45 PM' },
-                { type: 'lead', email: 'sarah@homeloans.com', value: 150, time: '1:30 PM' },
-                { type: 'phone', time: '12:15 PM' },
-                { type: 'lead', email: 'mike@premierlending.com', value: 150, time: '11:00 AM' },
-                { type: 'lead', email: 'lisa@coastalfunding.com', value: 150, time: '10:20 AM' }
-            ];
-            
-            // Show a popup with the demo data
-            alert('📊 DEMO ANALYTICS\n\n✅ 42 Pre-Qualified Leads (22 above 20-lead baseline)\n📞 7 Phone Calls\n🖱️ 128 Tess Activations\n👥 2,100 Visitors (2.0% conversion)\n💰 Revenue: $3,300\n\nPeak Hours: 2-3 PM\n\nCheck console for full data.');
-            
-            console.log('📊 Demo analytics loaded:');
-            console.log('  Leads:', window.analyticsData.totalLeads);
-            console.log('  Calls:', window.analyticsData.phoneCalls);
-            console.log('  Clicks:', window.analyticsData.tessClicks);
-            console.log('  Revenue: $' + (22 * 150));
+            alert('📊 DEMO ANALYTICS\n\n✅ 42 Pre-Qualified Leads (22 above 20-lead baseline)\n📞 7 Phone Calls\n🖱️ 128 Tess Activations\n👥 2,100 Visitors (2.0% conversion)\n💰 Revenue: $3,300\n\nPeak Hours: 2-3 PM\nTop Converting Day: Thursday');
+            console.log('📊 Demo analytics displayed');
         });
+        console.log('✅ Demo analytics button ready');
     }
-});
+}, 1000);
 
     // ----------------------------------------------------
     // OVERLAY CONTROLS
