@@ -351,6 +351,48 @@ function setupEventListeners() {
         });
     }
 
+    // ============================================
+// DEMO ANALYTICS — Populate with sample data
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const demoBtn = document.getElementById('demo-analytics-btn');
+    if (demoBtn) {
+        demoBtn.addEventListener('click', function() {
+            // Populate analytics with realistic demo data
+            if (window.analyticsData) {
+                window.analyticsData.totalLeads = 42;
+                window.analyticsData.phoneCalls = 7;
+                window.analyticsData.tessClicks = 128;
+                window.analyticsData.totalVisitors = 2100;
+                window.analyticsData.completedInterviews = 38;
+                window.analyticsData.sessions = [
+                    { type: 'click', time: Date.now() - 120000 },
+                    { type: 'interview_start', time: Date.now() - 90000 }
+                ];
+                window.analyticsData.peakHours = {
+                    '9:00': 12, '10:00': 18, '11:00': 22, '12:00': 15,
+                    '13:00': 10, '14:00': 24, '15:00': 20, '16:00': 7
+                };
+                window.analyticsData.recentActivity = [
+                    { type: 'lead', email: 'john@abcmortgage.com', value: 150, time: '2:45 PM' },
+                    { type: 'lead', email: 'sarah@homeloans.com', value: 150, time: '1:30 PM' },
+                    { type: 'phone', time: '12:15 PM' },
+                    { type: 'lead', email: 'mike@premierlending.com', value: 150, time: '11:00 AM' },
+                    { type: 'lead', email: 'lisa@coastalfunding.com', value: 150, time: '10:20 AM' }
+                ];
+                
+                // Refresh the display
+                if (typeof refreshAnalyticsDisplay === 'function') {
+                    refreshAnalyticsDisplay();
+                }
+                
+                console.log('📊 Demo analytics loaded — 42 leads, 7 calls, 128 clicks');
+            }
+        });
+    }
+});
+
     // ----------------------------------------------------
     // OVERLAY CONTROLS
     // ----------------------------------------------------
