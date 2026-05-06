@@ -19,7 +19,7 @@ const slides = [
         title: "Bounce Rate",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides2/slide2jpeg" 
+                <img src="assets/slides2/slide2.jpeg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
