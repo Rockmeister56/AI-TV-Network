@@ -16,10 +16,10 @@ const slides = [
     },
     {
         id: 2,
-        title: "Just Ask AI",
+        title: "Bounce Rate",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide2-just-ask-ai.png" 
+                <img src="assets/slides2/slide2jpeg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
