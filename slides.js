@@ -5,7 +5,7 @@
 const slides = [
     {
         id: 1,
-        title: "Top 3 Problems",
+        title: "slide1",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
                 <img src="assets/slides1/slide1.jpg" 
