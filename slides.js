@@ -27,10 +27,10 @@ const slides = [
     },
     {
         id: 3,
-        title: "The AI Boost Factor",
+        title: "51 percent bounce rate",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide3-ai-boost-factor.png" 
+                <img src="assets/slides1/slide3.jpeg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
