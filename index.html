@@ -174,6 +174,14 @@
     </div>
 </div>
 
+<!-- ANALYTICS OVERLAY -->
+<div class="overlay" id="analytics-overlay" style="display:none; align-items:center; justify-content:center;">
+    <div class="overlay-content" style="width:95vw; height:90vh; background:#0a0f1e; border-radius:16px; overflow:hidden; position:relative;">
+        <button class="overlay-close" onclick="document.getElementById('analytics-overlay').style.display='none'" style="position:absolute; top:10px; right:15px; background:#f44336; color:white; border:none; font-size:1.5rem; cursor:pointer; z-index:10; width:40px; height:40px; border-radius:50%;">&times;</button>
+        <iframe src="https://mobilewise.netlify.app/dashboard?clientId=ai-tv-network" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+</div>
+
     <!-- JavaScript -->
      <script src="script.js"></script>
     <script src="bridge-ai-tv-network.js"></script>

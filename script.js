@@ -351,16 +351,18 @@ function setupEventListeners() {
         });
     }
 
-   // ============================================
-// DEMO ANALYTICS — Simple standalone version
+  // ============================================
+// DEMO ANALYTICS — Opens dashboard overlay
 // ============================================
 
 setTimeout(function() {
     var demoBtn = document.getElementById('demo-analytics-btn');
     if (demoBtn) {
         demoBtn.addEventListener('click', function() {
-            alert('📊 DEMO ANALYTICS\n\n✅ 42 Pre-Qualified Leads (22 above 20-lead baseline)\n📞 7 Phone Calls\n🖱️ 128 Tess Activations\n👥 2,100 Visitors (2.0% conversion)\n💰 Revenue: $3,300\n\nPeak Hours: 2-3 PM\nTop Converting Day: Thursday');
-            console.log('📊 Demo analytics displayed');
+            var overlay = document.getElementById('analytics-overlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+            }
         });
         console.log('✅ Demo analytics button ready');
     }
@@ -386,15 +388,18 @@ setTimeout(function() {
         }
     });
 
-    // ----------------------------------------------------
+        // ----------------------------------------------------
     // KEYBOARD SHORTCUTS
     // ----------------------------------------------------
-    // Currently mapped to Deck 1. 
     document.addEventListener('keydown', (e) => {
         switch(e.key) {
             case 'ArrowRight': e.preventDefault(); nextSlide(); break;
             case 'ArrowLeft': e.preventDefault(); prevSlide(); break;
-            case 'Escape': hideAllOverlays(); break;
+            case 'Escape': 
+                var analyticsOverlay = document.getElementById('analytics-overlay');
+                if (analyticsOverlay) analyticsOverlay.style.display = 'none';
+                hideAllOverlays(); 
+                break;
         }
     });
 
