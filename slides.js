@@ -5,10 +5,10 @@
 const slides = [
     {
         id: 1,
-        title: "AI TV Network",
+        title: "Top 3 Problems",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
-                <img src="assets/slides/slide1-ainetworkscreen.png" 
+                <img src="assets/slides1/slide1.jpg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
