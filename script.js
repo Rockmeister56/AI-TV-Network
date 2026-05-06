@@ -388,6 +388,26 @@ setTimeout(function() {
         }
     });
 
+    // Real-time activity listener
+if (window.supabaseChannel) {
+    window.supabaseChannel.on('broadcast', { event: 'analytics_event' }, function(payload) {
+        var event = payload.payload;
+        var ticker = document.getElementById('live-activity');
+        var text = document.getElementById('live-activity-text');
+        
+        switch(event.event_type) {
+            case 'splash_view': text.textContent = '👀 Visitor viewing splash screen'; break;
+            case 'activate_tess': text.textContent = '🤖 Visitor activated Tess'; break;
+            case 'prequal_start': text.textContent = '📋 Pre-qualification interview started'; break;
+            case 'lead_captured': text.textContent = '📧 Lead captured: ' + (event.event_data?.email || 'new lead'); break;
+            case 'phone_connect': text.textContent = '📞 Phone call initiated'; break;
+        }
+        
+        ticker.style.display = 'block';
+        setTimeout(function() { ticker.style.display = 'none'; }, 4000);
+    });
+}
+
         // ----------------------------------------------------
     // KEYBOARD SHORTCUTS
     // ----------------------------------------------------
