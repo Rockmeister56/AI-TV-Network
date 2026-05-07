@@ -5,7 +5,7 @@
 const slides = [
     {
         id: 1,
-        title: "Top 3 Problems",
+        title: "Mobile Wise Ai",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
                 <img src="assets/slides1/slide1.jpeg" 
@@ -16,7 +16,7 @@ const slides = [
     },
     {
         id: 2,
-        title: "Bounce Rate",
+        title: "Top 3 Problems",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides1/slide2.jpeg" 
@@ -27,7 +27,7 @@ const slides = [
     },
     {
         id: 3,
-        title: "51 percent bounce rate",
+        title: "Bounce Rate",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides1/slide3.jpeg" 
@@ -38,10 +38,10 @@ const slides = [
     },
     {
         id: 4,
-        title: "Show on the Road",
+        title: "51 percent",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide4-show-on-the-road.png"
+                <img src="assets/slides1/slide4.jpeg"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
