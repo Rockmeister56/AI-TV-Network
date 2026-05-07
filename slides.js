@@ -52,7 +52,7 @@ const slides = [
         title: "Attention span",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
-                <img src="assets/slides/slide5.jpg"
+                <img src="assets/slides1/slide5.jpg"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -63,7 +63,7 @@ const slides = [
         title: "Splash Screen",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide6.jpg"
+                <img src="assets/slides1/slide6.jpg"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -74,7 +74,7 @@ const slides = [
         title: "90 percent boost",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide7.jpg"
+                <img src="assets/slides1/slide7.jpg"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -85,7 +85,7 @@ const slides = [
         title: "97 percent bail",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide8-97-percent-bail2.png"
+                <img src="assets/slides1/slide8-97-percent-bail2.png"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -96,7 +96,7 @@ const slides = [
         title: "Kiss of Death",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide9-kiss-of-death2.png" // CHANGED FROM slide10 to slide9
+                <img src="assets/slides1/slide9-kiss-of-death2.png" // CHANGED FROM slide10 to slide9
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -107,7 +107,7 @@ const slides = [
         title: "The AI Comparison Factor",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide10-bot-comparison.png" 
+                <img src="assets/slides1/slide10-bot-comparison.png" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -118,7 +118,7 @@ const slides = [
         title: "Just Text",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide11-just-text.png" 
+                <img src="assets/slides1/slide11-just-text.png" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -129,7 +129,7 @@ const slides = [
         title: "Boteemia",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide12-boteemia.png" 
+                <img src="assets/slides1/slide12-boteemia.png" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -140,7 +140,7 @@ const slides = [
         title: "Builds Trust",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide13-builds-trust.png" 
+                <img src="assets/slides1/slide13-builds-trust.png" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -151,7 +151,7 @@ const slides = [
         title: "VidGuide in Action",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide14-vidguide-ai-in-action.png"  // CHANGED FROM slide10 to slide9
+                <img src="assets/slides1/slide14-vidguide-ai-in-action.png"  // CHANGED FROM slide10 to slide9
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -162,7 +162,7 @@ const slides = [
         title: "Mortgage VidGuide AI Example",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide15-mortgage-web.png" 
+                <img src="assets/slides1/slide15-mortgage-web.png" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -174,7 +174,7 @@ const slides = [
         title: "Pre Sold Lead",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide16-hot-lead.png"  // CHANGED FROM slide10 to slide9
+                <img src="assets/slides1/slide16-hot-lead.png"  // CHANGED FROM slide10 to slide9
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -185,7 +185,7 @@ const slides = [
         title: "Proof is in the Analystics",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide17-analystics.png" 
+                <img src="assets/slides1/slide17-analystics.png" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -196,7 +196,7 @@ const slides = [
         title: "Just Ask AI with Boteemia",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide18-just-ask-ai-with-boteemia.png" 
+                <img src="assets/slides1/slide18-just-ask-ai-with-boteemia.png" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -208,7 +208,7 @@ const slides = [
         title: "Free Gifts",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide19-free-gifts.png" 
+                <img src="assets/slides1/slide19-free-gifts.png" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -219,7 +219,7 @@ const slides = [
         title: "Thank You for Joining Us",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide20-thank-you.png" 
+                <img src="assets/slides1/slide20-thank-you.png" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
