@@ -27,7 +27,7 @@ const slides = [
     },
     {
         id: 3,
-        title: "Bounce Rate",
+        title: "The 3 top problems",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides1/slide3.jpeg" 
@@ -38,7 +38,7 @@ const slides = [
     },
     {
         id: 4,
-        title: "51 percent",
+        title: "Bounce Rate",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides1/slide4.jpeg"
@@ -49,10 +49,10 @@ const slides = [
     },
     {
         id: 5,
-        title: "The Number One Problem AI Solves",
+        title: "51 percent",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
-                <img src="assets/slides/slide5-number-one-problem-AI-solves.png" 
+                <img src="assets/slides/slide5.jpg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
