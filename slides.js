@@ -49,7 +49,7 @@ const slides = [
     },
     {
         id: 5,
-        title: "51 percent",
+        title: "Attention span",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
                 <img src="assets/slides/slide5.jpg" 
@@ -60,10 +60,10 @@ const slides = [
     },
     {
         id: 6,
-        title: "The Conversion Crises",
+        title: "Splash Screen",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide6-conversion-crises2.png" 
+                <img src="assets/slides/slide6.jpg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -71,10 +71,10 @@ const slides = [
     },
     {
         id: 7,
-        title: "Bleeding Money",
+        title: "90 percent boost",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide7-bleeding-money.png" 
+                <img src="assets/slides/slide7.jpg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
