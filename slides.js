@@ -27,7 +27,7 @@ const slides = [
     },
     {
         id: 3,
-        title: "The 3 top problems",
+        title: "The 3 top problems shown",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides1/slide3.jpeg" 
@@ -52,7 +52,7 @@ const slides = [
         title: "Attention span",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
-                <img src="assets/slides/slide5.jpg" 
+                <img src="assets/slides/slide5.jpeg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -63,7 +63,7 @@ const slides = [
         title: "Splash Screen",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide6.jpg" 
+                <img src="assets/slides/slide6.jpeg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -74,7 +74,7 @@ const slides = [
         title: "90 percent boost",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide7.jpg" 
+                <img src="assets/slides/slide7.jpeg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
