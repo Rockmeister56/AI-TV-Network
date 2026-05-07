@@ -52,7 +52,7 @@ const slides = [
         title: "Attention span",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
-                <img src="assets/slides/slide5.png" 
+                <img src="assets/slides/slide5.jpg"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -63,7 +63,7 @@ const slides = [
         title: "Splash Screen",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide6.jpg" 
+                <img src="assets/slides/slide6.jpg"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -74,7 +74,7 @@ const slides = [
         title: "90 percent boost",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide7.jpg" 
+                <img src="assets/slides/slide7.jpg"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -85,7 +85,7 @@ const slides = [
         title: "97 percent bail",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide8-97-percent-bail2.png" 
+                <img src="assets/slides/slide8-97-percent-bail2.png"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -96,7 +96,7 @@ const slides = [
         title: "Kiss of Death",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides/slide9-kiss-of-death2.png"  // CHANGED FROM slide10 to slide9
+                <img src="assets/slides/slide9-kiss-of-death2.png" // CHANGED FROM slide10 to slide9
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
