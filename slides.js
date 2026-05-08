@@ -71,7 +71,7 @@ const slides = [
     },
     {
         id: 7,
-        title: "90 percent boost",
+        title: "Form Abandonment Compare",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides1/slide7.jpeg"
@@ -82,7 +82,7 @@ const slides = [
     },
     {
         id: 8,
-        title: "97 percent bail",
+        title: "Form Bot Not",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides1/slide8-97-percent-bail2.png"
