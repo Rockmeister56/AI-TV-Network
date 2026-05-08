@@ -115,7 +115,7 @@ const slides = [
          },
     {
         id: 11,
-        title: "Just Text",
+        title: "70 perent abandonment",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides1/slide11.jpeg" 
@@ -126,10 +126,10 @@ const slides = [
     },
     {
         id: 12,
-        title: "Boteemia",
+        title: "pre qualification interview",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide12.jpeg" 
+                <img src="assets/slides1/slide12.jpg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
