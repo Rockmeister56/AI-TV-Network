@@ -60,10 +60,10 @@ const slides = [
     },
     {
         id: 6,
-        title: "Splash Screen",
+        title: "According to Google Gemini",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide6.jpg"
+                <img src="assets/slides1/slide6.jpeg"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
