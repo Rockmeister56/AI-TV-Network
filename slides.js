@@ -140,7 +140,7 @@ const slides = [
         title: "Builds Trust",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide13.jpeg" 
+                <img src="assets/slides1/slide13.jpg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
@@ -151,7 +151,7 @@ const slides = [
         title: "VidGuide in Action",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide14.jpeg"   
+                <img src="assets/slides1/slide14.jpg"   
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
