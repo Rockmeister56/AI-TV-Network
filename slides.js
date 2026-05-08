@@ -104,10 +104,10 @@ const slides = [
     },
     {
         id: 10,
-        title: "The AI Comparison Factor",
+        title: "Lost Patience",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide10.jpeg" 
+                <img src="assets/slides1/slide10.jpg" 
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
