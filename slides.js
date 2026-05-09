@@ -7,7 +7,7 @@ const slides = [
         id: 1,
         title: "Mobile Wise Ai",
         content: `
-            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
+            <div style="width:93%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
                 <img src="assets/slides1/slide1.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
@@ -18,9 +18,9 @@ const slides = [
         id: 2,
         title: "Top 3 Problems",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide2.jpeg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide2.jpeg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_2"
@@ -29,9 +29,9 @@ const slides = [
         id: 3,
         title: "The 3 top problems shown",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide3.jpeg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide3.jpeg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_3"
@@ -40,9 +40,9 @@ const slides = [
         id: 4,
         title: "Bounce Rate",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
                 <img src="assets/slides1/slide4.jpeg"
-                     style="max-width:100%; max-height:100%;">
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_4"
@@ -51,9 +51,9 @@ const slides = [
         id: 5,
         title: "According to Google Gemini",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
+            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
                 <img src="assets/slides1/slide5.jpeg"
-                     style="max-width:100%; max-height:100%;">
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_5"
@@ -62,9 +62,9 @@ const slides = [
         id: 6,
         title: "According to Google Gemini",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
                 <img src="assets/slides1/slide6.jpg"
-                     style="max-width:100%; max-height:100%;">
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_6"
@@ -73,9 +73,9 @@ const slides = [
         id: 7,
         title: "Form Abandonment Compare",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
                 <img src="assets/slides1/slide7.jpeg"
-                     style="max-width:100%; max-height:100%;">
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_7"
@@ -95,9 +95,9 @@ const slides = [
         id: 9,
         title: "Kiss of Death",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide9.jpeg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide9.jpeg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_9"
@@ -106,9 +106,9 @@ const slides = [
         id: 10,
         title: "Lost Patience",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide10.jpg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide10.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_10"
