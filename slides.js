@@ -7,7 +7,7 @@ const slides = [
         id: 1,
         title: "Mobile Wise Ai",
         content: `
-            <div style="width:93%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
                 <img src="assets/slides1/slide1.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
@@ -18,8 +18,8 @@ const slides = [
         id: 2,
         title: "Top 3 Problems",
         content: `
-            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
-                <img src="assets/slides1/slide2.jpeg"
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide2.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
@@ -29,8 +29,8 @@ const slides = [
         id: 3,
         title: "The 3 top problems shown",
         content: `
-            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
-                <img src="assets/slides1/slide3.jpeg"
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide3.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
@@ -41,7 +41,7 @@ const slides = [
         title: "Bounce Rate",
         content: `
             <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
-                <img src="assets/slides1/slide4.jpeg"
+                <img src="assets/slides1/slide4.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
