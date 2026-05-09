@@ -50,9 +50,9 @@ const slides = [
     {
         id: 5,
         title: "According to Google Gemini",
-        content: `
-            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
-                <img src="assets/slides1/slide5.jpeg"
+       content: `
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide5.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
@@ -62,7 +62,7 @@ const slides = [
         id: 6,
         title: "According to Google Gemini",
         content: `
-            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
                 <img src="assets/slides1/slide6.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
@@ -73,8 +73,8 @@ const slides = [
         id: 7,
         title: "Form Abandonment Compare",
         content: `
-            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
-                <img src="assets/slides1/slide7.jpeg"
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide7.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
@@ -84,8 +84,8 @@ const slides = [
         id: 8,
         title: "Form Bot Not",
         content: `
-            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
-                <img src="assets/slides1/slide8.jpeg"
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide8.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
@@ -95,8 +95,8 @@ const slides = [
         id: 9,
         title: "Kiss of Death",
         content: `
-            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
-                <img src="assets/slides1/slide9.jpeg"
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide9.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
@@ -106,7 +106,7 @@ const slides = [
         id: 10,
         title: "Lost Patience",
         content: `
-            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
                 <img src="assets/slides1/slide10.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
@@ -117,9 +117,9 @@ const slides = [
         id: 11,
         title: "70 perent abandonment",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide11.jpeg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide11.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_11"
@@ -128,9 +128,9 @@ const slides = [
         id: 12,
         title: "pre qualification interview",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide12.jpg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide12.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_12"
@@ -139,9 +139,9 @@ const slides = [
         id: 13,
         title: "Builds Trust",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide13.jpg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide13.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_13"
@@ -150,9 +150,9 @@ const slides = [
         id: 14,
         title: "VidGuide in Action",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide14.jpg"   
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide14.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_14"
@@ -161,9 +161,9 @@ const slides = [
         id: 15,
         title: "Mortgage VidGuide AI Example",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide15.jpeg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide15.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_15"
@@ -173,9 +173,9 @@ const slides = [
         id: 16,
         title: "Pre Sold Lead",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide16.jpeg"   
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide16.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_16"
@@ -184,9 +184,9 @@ const slides = [
         id: 17,
         title: "Proof is in the Analystics",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide17.jpeg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide17.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_17"
@@ -195,9 +195,9 @@ const slides = [
         id: 18,
         title: "Just Ask AI with Boteemia",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide18.jpeg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide18.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_18"
@@ -207,9 +207,9 @@ const slides = [
         id: 19,
         title: "Free Gifts",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide19.jpeg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide19.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_19"
@@ -218,13 +218,35 @@ const slides = [
         id: 20,
         title: "Thank You for Joining Us",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide20.jpeg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide20.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_20"
-    }
+     },
+    {
+        id: 21,
+        title: "Thank You for Joining Us",
+        content: `
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide21.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
+            </div>
+        `,
+        botemiaCueId: "segment_21"
+    },
+    {
+     id: 22,
+        title: "Thank You for Joining Us",
+        content: `
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide22.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
+            </div>
+        `,
+        botemiaCueId: "segment_22"
+        },
 
     // TO ADD MORE SLIDES: Copy the block above, increment id, and add new image to assets/slides/
     // {
