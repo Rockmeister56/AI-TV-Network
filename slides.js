@@ -40,7 +40,7 @@ const slides = [
         id: 4,
         title: "Bounce Rate",
         content: `
-            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
                 <img src="assets/slides1/slide4.jpeg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
