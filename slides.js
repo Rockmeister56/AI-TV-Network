@@ -7,9 +7,9 @@ const slides = [
         id: 1,
         title: "Mobile Wise Ai",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
-                <img src="assets/slides1/slide01.jpg" 
-                     style="max-width:100%; max-height:100%;">
+            <div style="width:95%; height:95%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide1.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
         botemiaCueId: "segment_1"
