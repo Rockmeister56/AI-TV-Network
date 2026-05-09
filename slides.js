@@ -49,10 +49,10 @@ const slides = [
     },
     {
         id: 5,
-        title: "Attention span",
+        title: "According to Google Gemini",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#000;">
-                <img src="assets/slides1/slide5.jpg"
+                <img src="assets/slides1/slide5.jpeg"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
