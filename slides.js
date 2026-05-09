@@ -84,7 +84,7 @@ const slides = [
         id: 8,
         title: "Form Bot Not",
         content: `
-            <div style="width:95%; height:90%; display:flex; align-items:left; justify-content:left; background:#111;">
+            <div style="width:95%; height:90%; display:flex; align-items:left; justify-content:left; background:#000;">
                 <img src="assets/slides1/slide8.jpeg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
