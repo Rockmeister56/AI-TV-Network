@@ -35,7 +35,7 @@ body {
     background: transparent; /* WAS: rgba(5, 10, 20, 0.7) */
     border-radius: 12px;
     border: 1px solid var(--border-glow);
-    box-shadow: 0 0 40px rgba(0, 150, 255, 0.2);
+    box-shadow: 0 0 40px rgb(0, 0, 0);
     overflow: hidden;
 }
 
