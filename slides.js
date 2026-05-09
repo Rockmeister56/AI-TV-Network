@@ -86,7 +86,7 @@ const slides = [
         content: `
             <div style="width:90%; height:90%; display:flex; align-items:center; justify-content:left; background:#111;">
                 <img src="assets/slides1/slide8.jpeg"
-                     style="max-width:90%; max-height:90%;">
+                     style="max-width:100%; max-height:100%;">
             </div>
         `,
         botemiaCueId: "segment_8"
