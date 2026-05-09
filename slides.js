@@ -74,7 +74,7 @@ const slides = [
         title: "Form Abandonment Compare",
         content: `
             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
-                <img src="assets/slides1/slide7.jpg"
+                <img src="assets/slides1/slide7.jpeg"
                      style="max-width:100%; max-height:100%;">
             </div>
         `,
