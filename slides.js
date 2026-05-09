@@ -84,9 +84,9 @@ const slides = [
         id: 8,
         title: "Form Bot Not",
         content: `
-            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
+            <div style="width:90%; height:90%; display:flex; align-items:center; justify-content:left; background:#111;">
                 <img src="assets/slides1/slide8.jpeg"
-                     style="max-width:100%; max-height:100%;">
+                     style="max-width:90%; max-height:90%;">
             </div>
         `,
         botemiaCueId: "segment_8"
@@ -117,7 +117,7 @@ const slides = [
         id: 11,
         title: "70 perent abandonment",
         content: `
-            <div style="width:100%; height:90%; display:flex; align-items:center; justify-content:center; background:#111;">
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111;">
                 <img src="assets/slides1/slide11.jpeg" 
                      style="max-width:100%; max-height:100%;">
             </div>
