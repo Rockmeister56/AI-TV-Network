@@ -44,8 +44,6 @@ const ctaData = {
 
 // Lead Magnet Button Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
-    const freeBookBtn = document.getElementById('free-book-btn');
-    const mobileReportBtn = document.getElementById('mobile-report-btn');
     const ctaHeader = document.getElementById('cta-header');
     const ctaImage = document.getElementById('cta-image');
     const ctaText = document.getElementById('cta-text');
@@ -367,6 +365,32 @@ setTimeout(function() {
         console.log('✅ Demo analytics button ready');
     }
 }, 1000);
+
+// Audio cue buttons
+const audioFiles = {
+    'audio-smart-ai': 'assets/audio/audio-smart-ai.mp3',
+    'audio-perf-plan': 'assets/audio/audio-performance-plan.mp3',
+    'audio-review': 'assets/audio/audio-review-publisher.mp3'
+};
+
+let currentAudio = null;
+
+document.querySelectorAll('.audio-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const audioKey = this.id;
+        const audioSrc = audioFiles[audioKey];
+        
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio = null;
+        }
+        
+        if (audioSrc) {
+            currentAudio = new Audio(audioSrc);
+            currentAudio.play();
+        }
+    });
+});
 
     // ----------------------------------------------------
     // OVERLAY CONTROLS
