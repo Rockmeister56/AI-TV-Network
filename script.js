@@ -366,27 +366,36 @@ setTimeout(function() {
     }
 }, 1000);
 
-// Audio cue buttons
-const audioFiles = {
+// Audio cue popup
+document.getElementById('audio-cues-btn').addEventListener('click', function() {
+    var popup = document.getElementById('audio-popup');
+    popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
+});
+
+// Close popup when clicking outside
+document.addEventListener('click', function(e) {
+    var popup = document.getElementById('audio-popup');
+    var btn = document.getElementById('audio-cues-btn');
+    if (popup.style.display === 'block' && e.target !== btn && !btn.contains(e.target) && !popup.contains(e.target)) {
+        popup.style.display = 'none';
+    }
+});
+
+// Audio playback
+var audioFiles = {
     'audio-smart-ai': 'assets/audio/audio-smart-ai.mp3',
     'audio-perf-plan': 'assets/audio/audio-performance-plan.mp3',
     'audio-review': 'assets/audio/audio-review-publisher.mp3'
 };
+var currentAudio = null;
 
-let currentAudio = null;
-
-document.querySelectorAll('.audio-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const audioKey = this.id;
-        const audioSrc = audioFiles[audioKey];
-        
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio = null;
-        }
-        
-        if (audioSrc) {
-            currentAudio = new Audio(audioSrc);
+document.querySelectorAll('.audio-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var key = this.id;
+        if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+        if (audioFiles[key]) {
+            currentAudio = new Audio(audioFiles[key]);
             currentAudio.play();
         }
     });

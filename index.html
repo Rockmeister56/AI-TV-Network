@@ -136,19 +136,10 @@
         </div>
     </div>
 
-   <div class="footer-left">
-    <div class="footer-label">Audio Cues</div>
-    <div class="lead-magnet-controls">
-        <button class="footer-btn audio-btn" id="audio-smart-ai" title="Smart AI Segment">
-            <i class="fas fa-robot"></i> Smart AI
-        </button>
-        <button class="footer-btn audio-btn" id="audio-perf-plan" title="Performance Plan">
-            <i class="fas fa-chart-line"></i> Perf Plan
-        </button>
-        <button class="footer-btn audio-btn" id="audio-review" title="Review Publisher">
-            <i class="fas fa-star"></i> Reviews
-        </button>
-    </div>
+   <<div class="footer-left">
+    <button class="footer-btn" id="audio-cues-btn" title="Audio Cues">
+        <i class="fas fa-volume-up"></i> Audio
+    </button>
 </div>
         
         <div class="footer-center">
@@ -179,6 +170,20 @@
 <div id="analytics-overlay" style="display:none; position:fixed; top:-980%; left:50%; transform:translate(-50%, 0); width:90vw; height:85vh; background:#0a0f1e; border-radius:16px; overflow:hidden; z-index:10000; box-shadow:0 20px 60px rgba(0,0,0,0.8);">
     <button onclick="document.getElementById('analytics-overlay').style.display='none'" style="position:absolute; top:10px; right:15px; background:#f44336; color:white; border:none; font-size:1.5rem; cursor:pointer; z-index:10; width:40px; height:40px; border-radius:50%;">&times;</button>
     <iframe src="https://mobilewise.netlify.app/dashboard?clientId=ai-tv-network&demo=true" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+
+<!-- AUDIO CUES POPUP -->
+<div id="audio-popup" style="display:none; position:fixed; bottom:80px; left:20px; background:rgba(10,20,40,0.95); backdrop-filter:blur(10px); border:1px solid rgba(0,150,255,0.5); border-radius:12px; padding:15px; z-index:10000; min-width:200px;">
+    <div style="color:#88ccff; font-weight:600; font-size:0.8rem; text-transform:uppercase; margin-bottom:10px;">Audio Segments</div>
+    <button class="footer-btn audio-btn" id="audio-smart-ai" style="width:100%; margin-bottom:8px; justify-content:flex-start;">
+        <i class="fas fa-robot"></i> Smart AI
+    </button>
+    <button class="footer-btn audio-btn" id="audio-perf-plan" style="width:100%; margin-bottom:8px; justify-content:flex-start;">
+        <i class="fas fa-chart-line"></i> Perf Plan
+    </button>
+    <button class="footer-btn audio-btn" id="audio-review" style="width:100%; justify-content:flex-start;">
+        <i class="fas fa-star"></i> Reviews
+    </button>
 </div>
 
     <!-- JavaScript -->
