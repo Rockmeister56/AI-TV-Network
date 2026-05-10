@@ -4,6 +4,17 @@
 
 const slides = [
     {
+        id: 0,
+        title: "Mobile Wise Ai",
+        content: `
+            <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
+                <img src="assets/slides1/slide0.jpg"
+                     style="width:100%; height:100%; object-fit: contain;">
+            </div>
+        `,
+        botemiaCueId: "segment_0"
+    }, 
+    {
         id: 1,
         title: "Mobile Wise Ai",
         content: `
