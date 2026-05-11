@@ -373,6 +373,48 @@ if (window.supabaseChannel) {
     console.log('✅ All Multi-Deck event listeners attached.');
 }
 
+// Preload all slide images on page load
+(function() {
+    const slides = [
+        'assets/slides1/slide1.jpg',
+        'assets/slides1/slide2.jpg',
+        'assets/slides1/slide3.jpg',
+        'assets/slides1/slide4.jpg',
+        'assets/slides1/slide5.jpg',
+        'assets/slides1/slide6.jpg',
+        'assets/slides1/slide7.jpg',
+        'assets/slides1/slide8.jpg',
+        'assets/slides1/slide9.jpg',
+        'assets/slides1/slide10.jpg',
+        'assets/slides1/slide11.jpg',
+        'assets/slides1/slide12.jpg',
+        'assets/slides1/slide13.jpg',
+        'assets/slides1/slide14.jpg',
+        'assets/slides1/slide15.jpg',
+        'assets/slides1/slide16.jpg',
+        'assets/slides1/slide17.jpg',
+        'assets/slides1/slide18.jpg',
+        'assets/slides1/slide19.jpg',
+        'assets/slides1/slide20.jpg',
+        'assets/slides1/slide21.jpg',
+        'assets/slides1/slide22.jpg',
+        'assets/slides1/slide23.jpg',
+        'assets/slides1/slide24.jpg',
+        'assets/slides1/slide25.jpg',
+        'assets/slides1/slide26.jpg',
+        'assets/slides1/slide27.jpg',
+        'assets/slides1/slide28.jpg',
+        'assets/slides1/slide29.jpg',
+        'assets/slides1/slide30.jpg'
+    ];
+    
+    console.log('📥 Preloading ' + slides.length + ' slide images...');
+    slides.forEach(function(src) {
+        var img = new Image();
+        img.src = src;
+    });
+})();
+
 // --------------------------------------------------------
 // HELPER FUNCTION FOR MULTI-DECK LOADING
 // --------------------------------------------------------
