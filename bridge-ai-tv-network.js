@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/12/2026, 4:52:50 AM
+// Generated: 5/12/2026, 6:17:56 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -27,7 +27,7 @@
             "smartScreen": {"action":"showBestMatch","images":[]},
             "testimonial": {"groups":[{"name":"Conversational Sales AI success stories","triggerPhrase":"Allow me to share my personal success stories","category":"results","videos":["https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/sign/video-testimonials/Mortgage%20Broker.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lNjg4MGUyOC0zMDRhLTQ5NzItYmNiMS1iY2U5YjNkOWU1YTkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby10ZXN0aW1vbmlhbHMvTW9ydGdhZ2UgQnJva2VyLm1wNCIsImlhdCI6MTc3ODQ4Nzk1OSwiZXhwIjoxODEwMDIzOTU5fQ.tgQN7OH0GPUmFIYWHKvNnrlNrFEQgOtIfBWue2cyMzU"]}]},
             "videoVault": {"videos":[]},
-            "websiteInfo": {"triggers":[],"infoType":"navigation","action":"showSmartNavigation"}
+            "websiteInfo": {"triggers":[],"links":[]}
         }
     };
 
@@ -581,16 +581,36 @@
                     
                     // --- WEBSITE INFO ---
                     if (mod === "website_info") {
-                        var webTriggers = window.BotemiaConfig?.modules?.websiteInfo?.triggers || [];
-                        for (var w = 0; w < webTriggers.length; w++) {
-                            if (webTriggers[w] && phrase.indexOf(webTriggers[w].toLowerCase()) !== -1) {
-                                result = { success: true, message: "✅ Website Info trigger matched" };
+                        var webInfo = window.BotemiaConfig?.modules?.websiteInfo;
+                        var webLinks = webInfo?.links || [];
+                        for (var w = 0; w < webLinks.length; w++) {
+                            if (webLinks[w].triggerPhrase && phrase.indexOf(webLinks[w].triggerPhrase.toLowerCase()) !== -1) {
+                                result = { success: true, message: "✅ Website Info: " + webLinks[w].title };
+                                // Show the link overlay
+                                var webOverlay = document.createElement("div");
+                                webOverlay.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(10,15,30,0.98);z-index:999998;display:flex;flex-direction:column;padding:0;border-radius:16px;max-width:90vw;max-height:85vh;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.8);border:2px solid #f8c400;";
+                                var webHeader = document.createElement("div");
+                                webHeader.style.cssText = "display:flex;justify-content:space-between;align-items:center;padding:15px 20px;background:rgba(0,0,0,0.5);border-bottom:1px solid #f8c400;";
+                                var webTitle = document.createElement("span");
+                                webTitle.style.cssText = "color:#f8c400;font-size:1.1rem;font-weight:600;";
+                                webTitle.textContent = webLinks[w].title;
+                                webHeader.appendChild(webTitle);
+                                var webClose = document.createElement("button");
+                                webClose.textContent = "✕";
+                                webClose.style.cssText = "background:#f44336;color:white;border:none;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer;";
+                                webClose.onclick = function() { webOverlay.remove(); };
+                                webHeader.appendChild(webClose);
+                                webOverlay.appendChild(webHeader);
+                                var webFrame = document.createElement("iframe");
+                                webFrame.src = webLinks[w].url;
+                                webFrame.style.cssText = "width:85vw;height:75vh;border:none;";
+                                webOverlay.appendChild(webFrame);
+                                document.body.appendChild(webOverlay);
                                 break;
                             }
                         }
-                        if (!result.success) result.message = "❌ No website trigger matched";
+                        if (!result.success) result.message = "❌ No website info trigger matched";
                     }
-                    
                     // --- TESTIMONIALS ---
                     if (mod === "testimonials") {
                         var groups = window.BotemiaConfig?.modules?.testimonial?.groups || [];
@@ -1014,6 +1034,36 @@
         }
     }
 
+                        // --- WEBSITE INFO TRIGGER (normal mode) ---
+                        var webInfo = window.BotemiaConfig?.modules?.websiteInfo;
+                        if (webInfo?.links && webInfo.links.length > 0) {
+                            for (var wi = 0; wi < webInfo.links.length; wi++) {
+                                var link = webInfo.links[wi];
+                                if (link.triggerPhrase && lowerText.indexOf(link.triggerPhrase.toLowerCase()) !== -1) {
+                                    console.log("🌐 Website Info matched:", link.title);
+                                    var webOverlay = document.createElement("div");
+                                    webOverlay.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(10,15,30,0.98);z-index:999998;display:flex;flex-direction:column;padding:0;border-radius:16px;max-width:90vw;max-height:85vh;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.8);border:2px solid #f8c400;";
+                                    var webHeader = document.createElement("div");
+                                    webHeader.style.cssText = "display:flex;justify-content:space-between;align-items:center;padding:15px 20px;background:rgba(0,0,0,0.5);border-bottom:1px solid #f8c400;";
+                                    var webTitle = document.createElement("span");
+                                    webTitle.style.cssText = "color:#f8c400;font-size:1.1rem;font-weight:600;";
+                                    webTitle.textContent = link.title;
+                                    webHeader.appendChild(webTitle);
+                                    var webClose = document.createElement("button");
+                                    webClose.textContent = "✕";
+                                    webClose.style.cssText = "background:#f44336;color:white;border:none;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer;";
+                                    webClose.onclick = function() { webOverlay.remove(); };
+                                    webHeader.appendChild(webClose);
+                                    webOverlay.appendChild(webHeader);
+                                    var webFrame = document.createElement("iframe");
+                                    webFrame.src = link.url;
+                                    webFrame.style.cssText = "width:85vw;height:75vh;border:none;";
+                                    webOverlay.appendChild(webFrame);
+                                    document.body.appendChild(webOverlay);
+                                    break;
+                                }
+                            }
+                        }
     // ==========================================
     // 🍋 UNIVERSAL LISTENER (For PostMessages)
     // ==========================================
