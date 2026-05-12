@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/12/2026, 6:17:56 AM
+// Generated: 5/12/2026, 7:25:55 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -27,7 +27,7 @@
             "smartScreen": {"action":"showBestMatch","images":[]},
             "testimonial": {"groups":[{"name":"Conversational Sales AI success stories","triggerPhrase":"Allow me to share my personal success stories","category":"results","videos":["https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/sign/video-testimonials/Mortgage%20Broker.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lNjg4MGUyOC0zMDRhLTQ5NzItYmNiMS1iY2U5YjNkOWU1YTkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby10ZXN0aW1vbmlhbHMvTW9ydGdhZ2UgQnJva2VyLm1wNCIsImlhdCI6MTc3ODQ4Nzk1OSwiZXhwIjoxODEwMDIzOTU5fQ.tgQN7OH0GPUmFIYWHKvNnrlNrFEQgOtIfBWue2cyMzU"]}]},
             "videoVault": {"videos":[]},
-            "websiteInfo": {"triggers":[],"links":[]}
+            "websiteInfo": {"triggers":["here is our no risk performance plan"],"links":[{"title":"AI Performance Plan","url":"https://aitvnetwork.netlify.app/ai-performance-plan","triggerPhrase":"here is our no risk performance plan"}]}
         }
     };
 
