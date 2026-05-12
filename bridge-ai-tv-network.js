@@ -586,6 +586,13 @@
                         for (var w = 0; w < webLinks.length; w++) {
                             if (webLinks[w].triggerPhrase && phrase.indexOf(webLinks[w].triggerPhrase.toLowerCase()) !== -1) {
                                 result = { success: true, message: "✅ Website Info: " + webLinks[w].title };
+                                if (window.supabaseChannel) {
+    window.supabaseChannel.send({
+        type: "broadcast",
+        event: "trigger_test_result",
+        payload: { module: mod, success: true, message: "✅ Website Info: " + webLinks[w].title, timestamp: Date.now() }
+    });
+}
                                 // Show the link overlay
                                 var webOverlay = document.createElement("div");
                                 webOverlay.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(10,15,30,0.98);z-index:999998;display:flex;flex-direction:column;padding:0;border-radius:16px;max-width:90vw;max-height:85vh;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.8);border:2px solid #f8c400;";
