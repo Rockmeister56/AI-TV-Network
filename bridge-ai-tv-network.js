@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/12/2026, 7:25:55 AM
+// Generated: 5/12/2026, 7:56:41 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -1024,16 +1024,7 @@
                             console.log("📞 Phone trigger detected!");
                             window.open("tel:" + (emailCfg.supportPhone || "949-228-5263"), "_blank");
                         }
-                    }
-                });
-            } else {
-                console.warn("⚠️ Daily API did not return room_url");
-            }
-        } catch(e) { 
-            console.error("❌ Daily init error:", e); 
-        }
-    }
-
+                        
                         // --- WEBSITE INFO TRIGGER (normal mode) ---
                         var webInfo = window.BotemiaConfig?.modules?.websiteInfo;
                         if (webInfo?.links && webInfo.links.length > 0) {
@@ -1064,6 +1055,16 @@
                                 }
                             }
                         }
+                    }
+                });
+            } else {
+                console.warn("⚠️ Daily API did not return room_url");
+            }
+        } catch(e) { 
+            console.error("❌ Daily init error:", e); 
+        }
+    }
+
     // ==========================================
     // 🍋 UNIVERSAL LISTENER (For PostMessages)
     // ==========================================
