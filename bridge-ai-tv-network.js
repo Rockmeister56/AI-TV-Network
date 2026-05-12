@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/12/2026, 3:30:10 AM
+// Generated: 5/12/2026, 4:52:50 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -619,6 +619,11 @@
                                     var vidCaption = document.createElement("div");
                                     vidCaption.style.cssText = "color:white;font-size:1.3rem;margin-top:15px;font-weight:600;";
                                     vidCaption.textContent = matchedGroup.name;
+                                var closeBtn = document.createElement("button");
+                                closeBtn.textContent = "✕ Close";
+                                closeBtn.style.cssText = "margin-top:12px;padding:8px 25px;background:#f8c400;color:#0a0f1e;border:none;border-radius:30px;font-size:0.9rem;font-weight:600;cursor:pointer;";
+                                closeBtn.onclick = function() { videoOverlay.remove(); };
+                                videoOverlay.appendChild(closeBtn);
                                     videoOverlay.appendChild(vidCaption);
                                 }
                                 document.body.appendChild(videoOverlay);
@@ -652,6 +657,11 @@
                                 var vidCaption = document.createElement("div");
                                 vidCaption.style.cssText = "color:white;font-size:1.3rem;margin-top:15px;font-weight:600;";
                                 vidCaption.textContent = matchedVideo.name;
+                                var closeBtn = document.createElement("button");
+                                closeBtn.textContent = "✕ Close";
+                                closeBtn.style.cssText = "margin-top:12px;padding:8px 25px;background:#f8c400;color:#0a0f1e;border:none;border-radius:30px;font-size:0.9rem;font-weight:600;cursor:pointer;";
+                                closeBtn.onclick = function() { videoOverlay.remove(); };
+                                videoOverlay.appendChild(closeBtn);
                                 videoOverlay.appendChild(vidCaption);
                             }
                             document.body.appendChild(videoOverlay);
