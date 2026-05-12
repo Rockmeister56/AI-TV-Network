@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/11/2026, 9:22:02 AM
+// Generated: 5/12/2026, 1:57:00 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -24,7 +24,7 @@
             },
             "emailConfig": {"loanOfficerEmail":"loans@clientcompany.com","ccEmail":"","emailSubject":"New Pre-Qual Lead: {{firstName}} {{lastName}}","clientEmail":"mobilewise.ai@gmail.com","supportPhone":"949-357-0655","emailTriggers":["Your confirmation email has been sent"],"phoneTriggers":["Let me get you connected"]},
             "splashScreen": {"enabled":true,"agentId":"agent_1db77d60ec132469","title":"Meet Tess","subtitle":"Your Personal AI Web Guide","tessVideoUrl":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/sign/processed-videos/tess-button.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNjJjNGVkZS0wYzRiLTQyMzAtOGE5MC1jMDhmNjhlNDVkNTciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9jZXNzZWQtdmlkZW9zL3Rlc3MtYnV0dG9uLm1wNCIsImlhdCI6MTc3MzgwNDA4MSwiZXhwIjoxODA1MzQwMDgxfQ.07K0XCnTt3zAZPp2ZAgZ-SzYhZj6nW1Vun8WW-zDAVQ","tessVideoFit":"cover","tickerKeywords":"","gradientCenter":"#1e4a8a","gradientOuter":"#0a1a2f","primaryButton":{"text":"Get AI help with Tess","gradientTop":"#f8c400","gradientBottom":"#d4a000","hoverTop":"#ffd700","hoverBottom":"#e0b000","textColor":"#0a0f1e"},"secondaryButton":{"text":"Just Browsing","gradientTop":"#3a4050","gradientBottom":"#2a2f3f","hoverTop":"#4a5060","hoverBottom":"#3a4050","textColor":"#ffffff"},"persistentButton":{"enabled":true,"position":"middle-right","action":"activate-tess","gradientTop":"#f8c400","gradientBottom":"#d4a000"},"branding":{"name":"","logo":""}},
-            "smartScreen": {"action":"showBestMatch","images":[]},
+            "smartScreen": {"action":"showBestMatch","images":[]},            
             "testimonial": {"groups":[{"name":"Conversational Sales AI success stories","triggerPhrase":"Allow me to share my personal success stories","category":"results","videos":["https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/sign/video-testimonials/Mortgage%20Broker.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lNjg4MGUyOC0zMDRhLTQ5NzItYmNiMS1iY2U5YjNkOWU1YTkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby10ZXN0aW1vbmlhbHMvTW9ydGdhZ2UgQnJva2VyLm1wNCIsImlhdCI6MTc3ODQ4Nzk1OSwiZXhwIjoxODEwMDIzOTU5fQ.tgQN7OH0GPUmFIYWHKvNnrlNrFEQgOtIfBWue2cyMzU"]}]},
             "videoVault": {"videos":[]},
             "websiteInfo": {"triggers":[],"infoType":"navigation","action":"showSmartNavigation"}
@@ -594,44 +594,71 @@
                     // --- TESTIMONIALS ---
                     if (mod === "testimonials") {
                         var groups = window.BotemiaConfig?.modules?.testimonial?.groups || [];
+                        var matchedGroup = null;
                         for (var g = 0; g < groups.length; g++) {
                             if (groups[g].triggerPhrase && phrase.indexOf(groups[g].triggerPhrase.toLowerCase()) !== -1) {
-                                result = { success: true, message: "✅ Testimonial matched: " + groups[g].triggerPhrase };
+                                matchedGroup = groups[g];
                                 break;
                             }
                         }
-                        if (!result.success) result.message = "❌ No testimonial trigger matched";
+                        if (matchedGroup) {
+                            result = { success: true, message: "✅ Testimonial playing: " + matchedGroup.triggerPhrase };
+                            // Play the first video in the matched group
+                            if (matchedGroup.videos && matchedGroup.videos.length > 0) {
+                                var videoUrl = matchedGroup.videos[0];
+                                var videoOverlay = document.createElement("div");
+                                videoOverlay.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:999999;display:flex;align-items:center;justify-content:center;flex-direction:column;";
+                                videoOverlay.onclick = function() { videoOverlay.remove(); };
+                                var videoEl = document.createElement("video");
+                                videoEl.src = videoUrl;
+                                videoEl.controls = true;
+                                videoEl.autoplay = true;
+                                videoEl.style.cssText = "max-width:90%;max-height:80vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.5);";
+                                videoOverlay.appendChild(videoEl);
+                                if (matchedGroup.name) {
+                                    var vidCaption = document.createElement("div");
+                                    vidCaption.style.cssText = "color:white;font-size:1.3rem;margin-top:15px;font-weight:600;";
+                                    vidCaption.textContent = matchedGroup.name;
+                                    videoOverlay.appendChild(vidCaption);
+                                }
+                                document.body.appendChild(videoOverlay);
+                            }
+                        } else {
+                            result.message = "❌ No testimonial trigger matched";
+                        }
                     }
-                    
                     // --- VIDEO VAULT ---
                     if (mod === "video_vault") {
                         var videos = window.BotemiaConfig?.modules?.videoVault?.videos || [];
+                        var matchedVideo = null;
                         for (var v = 0; v < videos.length; v++) {
                             if (videos[v].triggerPhrase && phrase.indexOf(videos[v].triggerPhrase.toLowerCase()) !== -1) {
-                                result = { success: true, message: "✅ Video matched: " + videos[v].triggerPhrase };
+                                matchedVideo = videos[v];
                                 break;
                             }
                         }
-                        if (!result.success) result.message = "❌ No video trigger matched";
-                    }
-                    
-                    // Send result back to TCS
-                    if (window.supabaseChannel) {
-                        window.supabaseChannel.send({
-                            type: "broadcast",
-                            event: "trigger_test_result",
-                            payload: {
-                                module: mod,
-                                success: result.success,
-                                message: result.message,
-                                timestamp: Date.now()
+                        if (matchedVideo) {
+                            result = { success: true, message: "✅ Video playing: " + matchedVideo.triggerPhrase };
+                            var videoOverlay = document.createElement("div");
+                            videoOverlay.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:999999;display:flex;align-items:center;justify-content:center;flex-direction:column;";
+                            videoOverlay.onclick = function() { videoOverlay.remove(); };
+                            var videoEl = document.createElement("video");
+                            videoEl.src = matchedVideo.url;
+                            videoEl.controls = true;
+                            videoEl.autoplay = true;
+                            videoEl.style.cssText = "max-width:90%;max-height:80vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.5);";
+                            videoOverlay.appendChild(videoEl);
+                            if (matchedVideo.name) {
+                                var vidCaption = document.createElement("div");
+                                vidCaption.style.cssText = "color:white;font-size:1.3rem;margin-top:15px;font-weight:600;";
+                                vidCaption.textContent = matchedVideo.name;
+                                videoOverlay.appendChild(vidCaption);
                             }
-                        });
+                            document.body.appendChild(videoOverlay);
+                        } else {
+                            result.message = "❌ No video trigger matched";
+                        }
                     }
-                    console.log("📤 Test result sent to TCS:", result);
-                }
-            });
-            
             tcsChannel.subscribe(function(status) { 
                 if (status === "SUBSCRIBED") console.log("✅ [REALTIME] Connected to Supabase"); 
             });
@@ -837,6 +864,14 @@
                                     window.preQualController.sendEmail();
                                     window.preQualController.isActive = false;
                                     console.log("✅ Email sent via trigger during interview");
+                            
+                                    // Show confirmation overlay after email sent
+                                    var confirmOverlay = document.createElement("div");
+                                    confirmOverlay.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.95);z-index:999998;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:30px 40px;border-radius:16px;border:2px solid #f8c400;";
+                                    confirmOverlay.innerHTML = '<div style="color:#f8c400;font-size:1.5rem;margin-bottom:10px;">📧</div><div style="color:white;font-size:1.3rem;font-weight:600;text-align:center;">Email confirmation sent!</div><div style="color:rgba(255,255,255,0.6);font-size:0.9rem;margin-top:8px;">Check your inbox</div>';
+                                    confirmOverlay.onclick = function() { confirmOverlay.remove(); };
+                                    document.body.appendChild(confirmOverlay);
+                                    setTimeout(function() { if (confirmOverlay.parentNode) confirmOverlay.remove(); }, 5000);
                                 }
                             }
                             // --- PHONE TRIGGER (during interview) ---
