@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/12/2026, 8:09:23 AM
+// Generated: 5/12/2026, 2:43:25 PM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -587,12 +587,11 @@
                             if (webLinks[w].triggerPhrase && phrase.indexOf(webLinks[w].triggerPhrase.toLowerCase()) !== -1) {
                                 result = { success: true, message: "✅ Website Info: " + webLinks[w].title };
                                 if (window.supabaseChannel) {
-    window.supabaseChannel.send({
-        type: "broadcast",
-        event: "trigger_test_result",
-        payload: { module: mod, success: true, message: "✅ Website Info: " + webLinks[w].title, timestamp: Date.now() }
-    });
-}
+                                    window.supabaseChannel.send({
+                                        type: "broadcast", event: "trigger_test_result",
+                                        payload: { module: mod, success: true, message: "✅ Website Info: " + webLinks[w].title, timestamp: Date.now() }
+                                    });
+                                }
                                 // Show the link overlay
                                 var webOverlay = document.createElement("div");
                                 webOverlay.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(10,15,30,0.98);z-index:999998;display:flex;flex-direction:column;padding:0;border-radius:16px;max-width:90vw;max-height:85vh;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.8);border:2px solid #f8c400;";
@@ -610,9 +609,15 @@
                                 webOverlay.appendChild(webHeader);
                                 var webFrame = document.createElement("iframe");
                                 webFrame.src = webLinks[w].url;
-                                webFrame.style.cssText = "width:85vw;height:75vh;border:none;";
+                                webFrame.style.cssText = "width:800px;max-width:90vw;height:75vh;border:none;";
                                 webOverlay.appendChild(webFrame);
                                 document.body.appendChild(webOverlay);
+                                if (window.supabaseChannel) {
+                                    window.supabaseChannel.send({
+                                        type: "broadcast", event: "trigger_test_result",
+                                        payload: { module: mod, success: result.success, message: result.message, timestamp: Date.now() }
+                                    });
+                                }
                                 break;
                             }
                         }
@@ -1055,7 +1060,7 @@
                                     webOverlay.appendChild(webHeader);
                                     var webFrame = document.createElement("iframe");
                                     webFrame.src = link.url;
-                                    webFrame.style.cssText = "width:85vw;height:75vh;border:none;";
+                                    webFrame.style.cssText = "width:800px;max-width:90vw;height:75vh;border:none;";
                                     webOverlay.appendChild(webFrame);
                                     document.body.appendChild(webOverlay);
                                     break;
