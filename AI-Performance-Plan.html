@@ -7,173 +7,173 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: #0a0f1e;
-            color: white;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #f5f5f0;
+            color: #2c3e50;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            padding: 40px 20px;
         }
-        .plan-card {
-            background: linear-gradient(145deg, #0f1a2f, #1a2f4a);
-            border: 2px solid #f8c400;
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 650px;
+        .document {
+            background: #ffffff;
+            max-width: 750px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            border-radius: 4px;
+            line-height: 1.7;
         }
-        .plan-card h1 {
-            color: #f8c400;
+        .document h1 {
+            font-family: 'Segoe UI', system-ui, sans-serif;
             font-size: 2rem;
-            margin-bottom: 10px;
+            color: #1a3a5c;
             text-align: center;
-        }
-        .plan-card .subtitle {
-            color: rgba(255,255,255,0.7);
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1rem;
-        }
-        .section {
-            background: rgba(0,0,0,0.3);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 4px solid #f8c400;
-        }
-        .section h2 {
-            color: #f8c400;
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-        }
-        .section p {
-            color: rgba(255,255,255,0.85);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .math-box {
-            background: #0a0f1e;
-            border: 1px solid rgba(248,196,0,0.3);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            margin: 20px 0;
-        }
-        .math-box .big-number {
-            font-size: 2.5rem;
-            color: #f8c400;
+            margin-bottom: 5px;
             font-weight: 700;
         }
-        .math-box .math-row {
-            color: rgba(255,255,255,0.8);
+        .document .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 35px;
+            font-style: italic;
+        }
+        .document h2 {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 1.2rem;
+            color: #1a3a5c;
+            margin: 30px 0 12px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #f8c400;
+        }
+        .document p {
             font-size: 0.95rem;
-            margin: 8px 0;
+            margin-bottom: 12px;
+            color: #444;
+        }
+        .math-box {
+            background: #fafaf5;
+            border: 1px solid #e8e8e0;
+            border-radius: 6px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .math-box .math-row {
+            font-size: 0.95rem;
+            color: #555;
+            margin: 6px 0;
+        }
+        .math-box .big-number {
+            font-size: 2.2rem;
+            color: #1a3a5c;
+            font-weight: 700;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
         .tiers {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 15px;
             margin: 20px 0;
         }
         .tier {
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            padding: 15px;
+            background: #fafaf5;
+            border: 1px solid #e0e0d8;
+            border-radius: 6px;
+            padding: 18px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
         }
         .tier.best {
             border-color: #f8c400;
-            background: rgba(248,196,0,0.08);
+            border-width: 2px;
+            background: #fffef5;
         }
         .tier .tier-name {
-            color: #f8c400;
+            color: #1a3a5c;
             font-weight: 600;
             font-size: 0.9rem;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
         .tier .tier-price {
-            color: white;
-            font-size: 1.3rem;
+            color: #2c3e50;
+            font-size: 1.4rem;
             font-weight: 700;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
         .tier .tier-term {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.75rem;
+            color: #888;
+            font-size: 0.8rem;
         }
         .guarantee {
             text-align: center;
-            padding: 15px;
-            background: rgba(76,175,80,0.1);
-            border: 1px solid #4caf50;
-            border-radius: 10px;
-            margin-top: 20px;
+            padding: 18px;
+            background: #f0faf0;
+            border: 1px solid #c8e6c9;
+            border-radius: 6px;
+            margin-top: 25px;
         }
         .guarantee p {
-            color: #4caf50;
+            color: #2e7d32;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .divider {
+            text-align: center;
+            color: #ccc;
+            margin: 25px 0;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
-    <div class="plan-card">
-        <h1>💰 AI Performance Plan</h1>
+    <div class="document">
+        <h1>AI Performance Plan</h1>
         <p class="subtitle">You only pay for leads Tess delivers above your current baseline</p>
         
-        <div class="section">
-            <h2>How It Works</h2>
-            <p>We establish your <strong>baseline</strong> — the average number of qualified leads your website already generates each month from forms. You only pay for leads Tess delivers <strong>above that number</strong>. If she doesn't outperform your current forms, you owe nothing.</p>
+        <h2>How It Works</h2>
+        <p>We establish your <strong>baseline</strong> — the average number of qualified leads your website already generates each month from forms. You only pay for leads Tess delivers <strong>above that number</strong>. If she doesn't outperform your current forms, you owe nothing. Period.</p>
+        
+        <h2>Real Example</h2>
+        <div class="math-box">
+            <div class="math-row">Your current baseline: <strong>20 qualified leads/month</strong></div>
+            <div class="math-row">Month 1 with Tess: <strong>42 qualified leads</strong></div>
+            <div class="math-row">Incremental leads: <strong>42 − 20 = 22 billable leads</strong></div>
+            <div class="math-row" style="margin-top:12px;">At $150/lead (1-Year Term):</div>
+            <div class="big-number">$3,300<span style="font-size:1rem;color:#888;">/month</span></div>
         </div>
         
-        <div class="section">
-            <h2>Real Example</h2>
-            <div class="math-box">
-                <div class="math-row">Your current baseline: <strong>20 qualified leads/month</strong></div>
-                <div class="math-row">Month 1 with Tess: <strong style="color:#f8c400;">42 qualified leads</strong></div>
-                <div class="math-row">Incremental leads: <strong>42 − 20 = 22 billable leads</strong></div>
-                <div class="math-row" style="margin-top:10px;">At $150/lead (1-Year Term):</div>
-                <div class="big-number">$3,300<span style="font-size:1rem;color:rgba(255,255,255,0.5);">/month</span></div>
+        <h2>Pricing Tiers</h2>
+        <div class="tiers">
+            <div class="tier">
+                <div class="tier-name">Month-to-Month</div>
+                <div class="tier-price">$175</div>
+                <div class="tier-term">per lead</div>
+            </div>
+            <div class="tier best">
+                <div class="tier-name">⭐ 1 Year</div>
+                <div class="tier-price">$150</div>
+                <div class="tier-term">per lead</div>
+            </div>
+            <div class="tier">
+                <div class="tier-name">2 Years</div>
+                <div class="tier-price">$125</div>
+                <div class="tier-term">per lead</div>
             </div>
         </div>
+        <p style="text-align:center; color:#888; font-size:0.85rem;">The longer we work together, the more you save per lead.</p>
         
-        <div class="section">
-            <h2>Pricing Tiers</h2>
-            <div class="tiers">
-                <div class="tier">
-                    <div class="tier-name">Month-to-Month</div>
-                    <div class="tier-price">$175</div>
-                    <div class="tier-term">per lead</div>
-                </div>
-                <div class="tier best">
-                    <div class="tier-name">⭐ 1 Year</div>
-                    <div class="tier-price">$150</div>
-                    <div class="tier-term">per lead</div>
-                </div>
-                <div class="tier">
-                    <div class="tier-name">2 Years</div>
-                    <div class="tier-price">$125</div>
-                    <div class="tier-term">per lead</div>
-                </div>
-            </div>
-            <p style="text-align:center; color:rgba(255,255,255,0.5); font-size:0.85rem;">The longer we work together, the more you save per lead.</p>
-        </div>
+        <div class="divider">✦</div>
         
-        <div class="section">
-            <h2>What Counts as a Qualified Lead?</h2>
-            <p>A visitor who engages with Tess, completes a pre-qualification or contact interview, and provides verifiable contact info — <strong>name, email, and phone</strong>. Not a form fill. A real conversation.</p>
-        </div>
+        <h2>What Counts as a Qualified Lead?</h2>
+        <p>A visitor who engages with Tess, completes a pre-qualification or contact interview, and provides verifiable contact info — <strong>name, email, and phone</strong>. Not just a form fill. A real conversation with a real person ready to talk to a loan officer.</p>
         
-        <div class="section">
-            <h2>Billing</h2>
-            <p>Invoiced by the 5th of each month. Payment due within 15 days via Square, ACH, or check. You receive a lead report from your analytics dashboard showing exactly what you're paying for.</p>
-        </div>
+        <h2>Billing & Payment</h2>
+        <p>Invoiced by the 5th of each month. Payment due within 15 days via Square, ACH, or check. You receive a detailed lead report from your analytics dashboard showing exactly what you're paying for. No hidden fees. No minimums.</p>
         
         <div class="guarantee">
-            <p>🛡️ Zero Risk — If Tess doesn't outperform your forms, you owe nothing.</p>
+            <p>🛡️ Zero Risk Guarantee — If Tess doesn't outperform your forms, you owe nothing.</p>
         </div>
     </div>
 </body>
