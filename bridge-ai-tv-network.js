@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/13/2026, 2:54:31 AM
+// Generated: 5/13/2026, 3:29:58 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -514,12 +514,12 @@
                                 if (imgTriggers[j] && phrase.indexOf(imgTriggers[j].toLowerCase()) !== -1) {
                                     result = { success: true, message: "✅ Smart Screen launched: " + images[i].name };
                                     var overlay = document.createElement("div");
-                                    overlay.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:999999;display:flex;align-items:center;justify-content:center;flex-direction:column;";
+                                    overlay.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.95);z-index:999998;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px;border-radius:16px;max-width:90vw;";
                                     overlay.id = "tcs-test-overlay";
                                     overlay.onclick = function() { overlay.remove(); };
                                     var imgEl = document.createElement("img");
                                     imgEl.src = images[i].url;
-                                    imgEl.style.cssText = "max-width:90%;max-height:80vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.5);";
+                                    imgEl.style.cssText = "max-width:100%;max-height:70vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);";
                                     overlay.appendChild(imgEl);
                                     if (images[i].name) {
                                         var caption = document.createElement("div");
