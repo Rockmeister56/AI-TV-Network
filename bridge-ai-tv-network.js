@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/13/2026, 1:39:00 AM
+// Generated: 5/13/2026, 2:25:18 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -24,7 +24,7 @@
             },
             "emailConfig": {"loanOfficerEmail":"loans@clientcompany.com","ccEmail":"","emailSubject":"New Pre-Qual Lead: {{firstName}} {{lastName}}","clientEmail":"mobilewise.ai@gmail.com","supportPhone":"949-357-0655","emailTriggers":["Your confirmation email has been sent"],"phoneTriggers":["Let me get you connected"]},
             "splashScreen": {"enabled":true,"agentId":"agent_1db77d60ec132469","title":"Meet Tess","subtitle":"Your Personal AI Web Guide","tessVideoUrl":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/sign/processed-videos/tess-button.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNjJjNGVkZS0wYzRiLTQyMzAtOGE5MC1jMDhmNjhlNDVkNTciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9jZXNzZWQtdmlkZW9zL3Rlc3MtYnV0dG9uLm1wNCIsImlhdCI6MTc3MzgwNDA4MSwiZXhwIjoxODA1MzQwMDgxfQ.07K0XCnTt3zAZPp2ZAgZ-SzYhZj6nW1Vun8WW-zDAVQ","tessVideoFit":"cover","tickerKeywords":"","gradientCenter":"#1e4a8a","gradientOuter":"#0a1a2f","primaryButton":{"text":"Get AI help with Tess","gradientTop":"#f8c400","gradientBottom":"#d4a000","hoverTop":"#ffd700","hoverBottom":"#e0b000","textColor":"#0a0f1e"},"secondaryButton":{"text":"Just Browsing","gradientTop":"#3a4050","gradientBottom":"#2a2f3f","hoverTop":"#4a5060","hoverBottom":"#3a4050","textColor":"#ffffff"},"persistentButton":{"enabled":true,"position":"middle-right","action":"activate-tess","gradientTop":"#f8c400","gradientBottom":"#d4a000"},"branding":{"name":"","logo":""}},
-            "smartScreen": {"action":"showBestMatch","images":[{"name":"Next-Gen Technology","url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/sign/Smart%20Screens%20Demo/botemia-intro.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNjJjNGVkZS0wYzRiLTQyMzAtOGE5MC1jMDhmNjhlNDVkNTciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTbWFydCBTY3JlZW5zIERlbW8vYm90ZW1pYS1pbnRyby5qcGciLCJpYXQiOjE3Nzg2NDE1MTQsImV4cCI6MTgxMDE3NzUxNH0.XD9aNC8QaBMzkOchwsB8sSrL0DlYiGR-tdQgQMNZIR0","caption":"Mobile-Wise AI","link":"","triggerMatch":["Instant recognition when needed"],"imageSize":"auto","backgroundColor":"rgba(0,0,0,0.7)","backdropOpacity":"0.5","showTitle":true,"displayDuration":5}]},
+            "smartScreen": {"action":"showBestMatch","images":[{"url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/sign/Smart%20Screens%20Demo/botemia-intro.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNjJjNGVkZS0wYzRiLTQyMzAtOGE5MC1jMDhmNjhlNDVkNTciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTbWFydCBTY3JlZW5zIERlbW8vYm90ZW1pYS1pbnRyby5qcGciLCJpYXQiOjE3Nzg2NDE1MTQsImV4cCI6MTgxMDE3NzUxNH0.XD9aNC8QaBMzkOchwsB8sSrL0DlYiGR-tdQgQMNZIR0","link":"","name":"Next-Gen Technology","caption":"Mobile-Wise AI","imageSize":"auto","showTitle":true,"triggerMatch":["Instant recognition when needed"],"backdropOpacity":"0.5","backgroundColor":"rgba(0,0,0,0.7)","displayDuration":5}]},
             "testimonial": {"groups":[{"name":"Conversational Sales AI success stories","triggerPhrase":"Allow me to share my personal success stories","category":"results","videos":["https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/sign/video-testimonials/Mortgage%20Broker.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lNjg4MGUyOC0zMDRhLTQ5NzItYmNiMS1iY2U5YjNkOWU1YTkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby10ZXN0aW1vbmlhbHMvTW9ydGdhZ2UgQnJva2VyLm1wNCIsImlhdCI6MTc3ODQ4Nzk1OSwiZXhwIjoxODEwMDIzOTU5fQ.tgQN7OH0GPUmFIYWHKvNnrlNrFEQgOtIfBWue2cyMzU"]}]},
             "videoVault": {"videos":[{"name":"The How Factor","triggerPhrase":"Let's experience THE HOW FACTOR","url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/sign/processed-videos/mobile-wise-ai-how-factor.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNjJjNGVkZS0wYzRiLTQyMzAtOGE5MC1jMDhmNjhlNDVkNTciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9jZXNzZWQtdmlkZW9zL21vYmlsZS13aXNlLWFpLWhvdy1mYWN0b3IubXA0IiwiaWF0IjoxNzc4NjQxMDAyLCJleHAiOjE4MTAxNzcwMDJ9.pMZtqKdPXMNtXFcTG4rXvMEu2ghyFeGVzSZSdrDi6G0","description":"","category":"faq"}]},
             "websiteInfo": {"triggers":["here is our no risk performance plan"],"links":[{"title":"AI Performance Plan","url":"https://aitvnetwork.netlify.app/ai-performance-plan","triggerPhrase":"here is our no risk performance plan"}]}
@@ -528,6 +528,12 @@
                                         overlay.appendChild(caption);
                                     }
                                     document.body.appendChild(overlay);
+                                    if (window.supabaseChannel) {
+                                        window.supabaseChannel.send({
+                                            type: "broadcast", event: "trigger_test_result",
+                                            payload: { module: mod, success: result.success, message: result.message, timestamp: Date.now() }
+                                        });
+                                    }
                                     break;
                                 }
                             }
