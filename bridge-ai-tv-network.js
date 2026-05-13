@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/13/2026, 8:50:08 AM
+// Generated: 5/13/2026, 11:15:57 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -24,7 +24,7 @@
             },
             "emailConfig": {"loanOfficerEmail":"loans@clientcompany.com","ccEmail":"","emailSubject":"New Pre-Qual Lead: {{firstName}} {{lastName}}","clientEmail":"mobilewise.ai@gmail.com","supportPhone":"949-357-0655","emailTriggers":["Your confirmation email has been sent"],"phoneTriggers":["Let me get you connected"]},
             "splashScreen": {"enabled":true,"agentId":"agent_1db77d60ec132469","title":"Meet Tess","subtitle":"Your Personal AI Web Guide","tessVideoUrl":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/sign/processed-videos/tess-button.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNjJjNGVkZS0wYzRiLTQyMzAtOGE5MC1jMDhmNjhlNDVkNTciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9jZXNzZWQtdmlkZW9zL3Rlc3MtYnV0dG9uLm1wNCIsImlhdCI6MTc3MzgwNDA4MSwiZXhwIjoxODA1MzQwMDgxfQ.07K0XCnTt3zAZPp2ZAgZ-SzYhZj6nW1Vun8WW-zDAVQ","tessVideoFit":"cover","tickerKeywords":"","gradientCenter":"#1e4a8a","gradientOuter":"#0a1a2f","primaryButton":{"text":"Get AI help with Tess","gradientTop":"#f8c400","gradientBottom":"#d4a000","hoverTop":"#ffd700","hoverBottom":"#e0b000","textColor":"#0a0f1e"},"secondaryButton":{"text":"Just Browsing","gradientTop":"#3a4050","gradientBottom":"#2a2f3f","hoverTop":"#4a5060","hoverBottom":"#3a4050","textColor":"#ffffff"},"persistentButton":{"enabled":true,"position":"middle-right","action":"activate-tess","gradientTop":"#f8c400","gradientBottom":"#d4a000"},"branding":{"name":"","logo":""}},
-            "smartScreen": {"action":"showBestMatch","images":[{"url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/public/Smart%20screen%20images/Family_celebrating_new_home_keys_202605130341.jpeg","link":"","name":"Smart screen example","caption":"Your guide to home ownership, every step of the way","imageSize":"800px","showTitle":true,"triggerMatch":["Imagine having this on your website"],"backdropOpacity":"0.5","backgroundColor":"rgba(0,0,0,0.7)","displayDuration":10}]},
+            "smartScreen": {"action":"showBestMatch","images":[{"url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/public/Smart%20screen%20images/Family_celebrating_new_home_keys_202605130341.jpeg","link":"","name":"Smart screen example","caption":"Your guide to home ownership, every step of the way","imageSize":"800px","showTitle":true,"triggerMatch":["Imagine having this image on your website"],"backdropOpacity":"0.5","backgroundColor":"rgba(0,0,0,0.7)","displayDuration":10}]},
             "testimonial": {"groups":[{"name":"Mortgage-Broker","triggerPhrase":"Let me call out one of our Mortgage Brokers","category":"results","videos":["https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/public/Video%20Testimonials%20Public/mortgage-testimonial.mp4"]}]},
             "videoVault": {"videos":[{"name":"Mortgage Assist Demo","triggerPhrase":"let's explore a mortgage demo video","url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/public/Videos/clients/mortgage-assist-demo.mp4","description":"","category":"other"}]},
             "websiteInfo": {"triggers":["here is our no risk performance plan","Here is the web info on interest rates"],"links":[{"title":"AI Performance Plan","url":"https://aitvnetwork.netlify.app/ai-performance-plan","triggerPhrase":"here is our no risk performance plan"},{"title":"Mortgage Rates Demo","url":"https://aitvnetwork.netlify.app/latest-rates","triggerPhrase":"Here is the web info on interest rates"}]}
@@ -552,13 +552,6 @@
                                     window.preQualController.sendEmail();
                                     window.preQualController.isActive = false;
                                 }
-                                if (window.supabaseChannel) {
-                                    window.supabaseChannel.send({
-                                        type: "broadcast",
-                                        event: "trigger_test_result",
-                                        payload: { module: mod, success: result.success, message: result.message, timestamp: Date.now() }
-                                    });
-                                }
                                 break;
                             }
                         }
@@ -573,13 +566,6 @@
                                 var pn = window.BotemiaConfig?.modules?.emailConfig?.supportPhone || "949-228-5263";
                                 result = { success: true, message: "✅ Dialing " + pn };
                                 window.open("tel:" + pn, "_blank");
-                                if (window.supabaseChannel) {
-                                    window.supabaseChannel.send({
-                                        type: "broadcast",
-                                        event: "trigger_test_result",
-                                        payload: { module: mod, success: result.success, message: result.message, timestamp: Date.now() }
-                                    });
-                                }
                                 break;
                             }
                         }
