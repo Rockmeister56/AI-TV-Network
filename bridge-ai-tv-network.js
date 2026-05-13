@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/13/2026, 3:29:58 AM
+// Generated: 5/13/2026, 8:06:27 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -24,9 +24,9 @@
             },
             "emailConfig": {"loanOfficerEmail":"loans@clientcompany.com","ccEmail":"","emailSubject":"New Pre-Qual Lead: {{firstName}} {{lastName}}","clientEmail":"mobilewise.ai@gmail.com","supportPhone":"949-357-0655","emailTriggers":["Your confirmation email has been sent"],"phoneTriggers":["Let me get you connected"]},
             "splashScreen": {"enabled":true,"agentId":"agent_1db77d60ec132469","title":"Meet Tess","subtitle":"Your Personal AI Web Guide","tessVideoUrl":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/sign/processed-videos/tess-button.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNjJjNGVkZS0wYzRiLTQyMzAtOGE5MC1jMDhmNjhlNDVkNTciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9jZXNzZWQtdmlkZW9zL3Rlc3MtYnV0dG9uLm1wNCIsImlhdCI6MTc3MzgwNDA4MSwiZXhwIjoxODA1MzQwMDgxfQ.07K0XCnTt3zAZPp2ZAgZ-SzYhZj6nW1Vun8WW-zDAVQ","tessVideoFit":"cover","tickerKeywords":"","gradientCenter":"#1e4a8a","gradientOuter":"#0a1a2f","primaryButton":{"text":"Get AI help with Tess","gradientTop":"#f8c400","gradientBottom":"#d4a000","hoverTop":"#ffd700","hoverBottom":"#e0b000","textColor":"#0a0f1e"},"secondaryButton":{"text":"Just Browsing","gradientTop":"#3a4050","gradientBottom":"#2a2f3f","hoverTop":"#4a5060","hoverBottom":"#3a4050","textColor":"#ffffff"},"persistentButton":{"enabled":true,"position":"middle-right","action":"activate-tess","gradientTop":"#f8c400","gradientBottom":"#d4a000"},"branding":{"name":"","logo":""}},
-            "smartScreen": {"action":"showBestMatch","images":[{"url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/sign/Smart%20Screens%20Demo/botemia-intro.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNjJjNGVkZS0wYzRiLTQyMzAtOGE5MC1jMDhmNjhlNDVkNTciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTbWFydCBTY3JlZW5zIERlbW8vYm90ZW1pYS1pbnRyby5qcGciLCJpYXQiOjE3Nzg2NDE1MTQsImV4cCI6MTgxMDE3NzUxNH0.XD9aNC8QaBMzkOchwsB8sSrL0DlYiGR-tdQgQMNZIR0","link":"","name":"Next-Gen Technology","caption":"Mobile-Wise AI","imageSize":"auto","showTitle":true,"triggerMatch":["Instant recognition when needed"],"backdropOpacity":"0.5","backgroundColor":"rgba(0,0,0,0.7)","displayDuration":5}]},
-            "testimonial": {"groups":[{"name":"Conversational Sales AI success stories","triggerPhrase":"Allow me to share my personal success stories","category":"results","videos":["https://odetjszursuaxpapfwcy.supabase.co/storage/v1/object/sign/video-testimonials/Mortgage%20Broker.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lNjg4MGUyOC0zMDRhLTQ5NzItYmNiMS1iY2U5YjNkOWU1YTkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby10ZXN0aW1vbmlhbHMvTW9ydGdhZ2UgQnJva2VyLm1wNCIsImlhdCI6MTc3ODQ4Nzk1OSwiZXhwIjoxODEwMDIzOTU5fQ.tgQN7OH0GPUmFIYWHKvNnrlNrFEQgOtIfBWue2cyMzU"]}]},
-            "videoVault": {"videos":[{"name":"The How Factor","triggerPhrase":"Let's experience THE HOW FACTOR","url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/sign/processed-videos/mobile-wise-ai-how-factor.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNjJjNGVkZS0wYzRiLTQyMzAtOGE5MC1jMDhmNjhlNDVkNTciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9jZXNzZWQtdmlkZW9zL21vYmlsZS13aXNlLWFpLWhvdy1mYWN0b3IubXA0IiwiaWF0IjoxNzc4NjQxMDAyLCJleHAiOjE4MTAxNzcwMDJ9.pMZtqKdPXMNtXFcTG4rXvMEu2ghyFeGVzSZSdrDi6G0","description":"","category":"faq"}]},
+            "smartScreen": {"action":"showBestMatch","images":[{"name":"Smart screen example","url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/public/Smart%20screen%20images/Family_celebrating_new_home_keys_202605130341.jpeg","caption":"Your guide to home ownership, every step of the way","link":"","triggerMatch":["Imagine having this on your website"],"imageSize":"800px","backgroundColor":"rgba(0,0,0,0.7)","backdropOpacity":"0.5","showTitle":true,"displayDuration":10}]},
+            "testimonial": {"groups":[{"name":"Mortgage-Broker","triggerPhrase":"Let me call out one of our Mortgage Brokers","category":"results","videos":["https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/public/Video%20Testimonials%20Public/mortgage-testimonial.mp4"]}]},
+            "videoVault": {"videos":[{"name":"Mortgage Assist Demo","triggerPhrase":"let's explore a mortgage demo video","url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/public/Videos/clients/mortgage-assist-demo.mp4","description":"","category":"other"}]},
             "websiteInfo": {"triggers":["here is our no risk performance plan"],"links":[{"title":"AI Performance Plan","url":"https://aitvnetwork.netlify.app/ai-performance-plan","triggerPhrase":"here is our no risk performance plan"}]}
         }
     };
@@ -514,12 +514,12 @@
                                 if (imgTriggers[j] && phrase.indexOf(imgTriggers[j].toLowerCase()) !== -1) {
                                     result = { success: true, message: "✅ Smart Screen launched: " + images[i].name };
                                     var overlay = document.createElement("div");
-                                    overlay.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.95);z-index:999998;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px;border-radius:16px;max-width:90vw;";
+                                    overlay.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.95);z-index:999998;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px;border-radius:16px;max-width:95vw;";
                                     overlay.id = "tcs-test-overlay";
                                     overlay.onclick = function() { overlay.remove(); };
                                     var imgEl = document.createElement("img");
                                     imgEl.src = images[i].url;
-                                    imgEl.style.cssText = "max-width:100%;max-height:70vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);";
+                                    imgEl.style.cssText = "width:100%;max-height:80vh;object-fit:contain;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);";
                                     overlay.appendChild(imgEl);
                                     if (images[i].name) {
                                         var caption = document.createElement("div");
