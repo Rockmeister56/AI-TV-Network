@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Mortgage Rates — [Your Brand Here]</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f5f5f0;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .page {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #0f2b4b, #1a3f5c);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header .brand {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f8c400;
+            margin-bottom: 5px;
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .header .date {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+        .content {
+            padding: 30px;
+        }
+        .intro {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+        .rate-table th {
+            background: #0f2b4b;
+            color: #f8c400;
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .rate-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e8e8e0;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .rate-table tr:hover td {
+            background: #fafaf5;
+        }
+        .rate-table .rate {
+            font-weight: 700;
+            color: #0f2b4b;
+            font-size: 1.1rem;
+        }
+        .rate-table .apr {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        .cta {
+            background: #f8c400;
+            color: #0a0f1e;
+            text-align: center;
+            padding: 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        .disclaimer {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-align: center;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+        .footer {
+            background: #fafaf5;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #e8e8e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="brand">Your Brand Here Mortgage</div>
+            <h1>📊 Current Mortgage Rates</h1>
+            <div class="date">Rates as of May 14, 2026 — Updated Daily</div>
+        </div>
+        <div class="content">
+            <p class="intro">Whether you're buying your first home, refinancing, or investing, we offer competitive rates tailored to your financial goals. Rates shown include 0% discount points unless noted.</p>
+            
+            <table class="rate-table">
+                <thead>
+                    <tr>
+                        <th>Loan Type</th>
+                        <th>Rate</th>
+                        <th>APR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>30-Year Fixed</td>
+                        <td class="rate">6.375%</td>
+                        <td class="apr">6.489%</td>
+                    </tr>
+                    <tr>
+                        <td>20-Year Fixed</td>
+                        <td class="rate">6.125%</td>
+                        <td class="apr">6.271%</td>
+                    </tr>
+                    <tr>
+                        <td>15-Year Fixed</td>
+                        <td class="rate">5.625%</td>
+                        <td class="apr">5.814%</td>
+                    </tr>
+                    <tr>
+                        <td>10-Year Fixed</td>
+                        <td class="rate">5.500%</td>
+                        <td class="apr">5.692%</td>
+                    </tr>
+                    <tr>
+                        <td>FHA 30-Year Fixed</td>
+                        <td class="rate">5.875%</td>
+                        <td class="apr">6.102%</td>
+                    </tr>
+                    <tr>
+                        <td>VA 30-Year Fixed</td>
+                        <td class="rate">5.750%</td>
+                        <td class="apr">5.943%</td>
+                    </tr>
+                    <tr>
+                        <td>5/1 ARM (30-Year)</td>
+                        <td class="rate">5.875%</td>
+                        <td class="apr">6.341%</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="cta">
+                🎯 Ready to lock in your rate? Speak with Tess on this page for a personalized quote in under 5 minutes.
+            </div>
+            
+            <p class="disclaimer">
+                Rates shown are for informational purposes only and are subject to change without notice. Actual rates may vary based on credit score, loan amount, loan-to-value ratio, property type, and other factors. This is not a commitment to lend. Equal Housing Lender. NMLS #000000.
+            </p>
+        </div>
+        <div class="footer">
+            © 2026 Your Brand Here Mortgage — All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
