@@ -552,6 +552,13 @@
                                     window.preQualController.sendEmail();
                                     window.preQualController.isActive = false;
                                 }
+                                if (window.supabaseChannel) {
+                                    window.supabaseChannel.send({
+                                        type: "broadcast",
+                                        event: "trigger_test_result",
+                                        payload: { module: mod, success: result.success, message: result.message, timestamp: Date.now() }
+                                    });
+                                }
                                 break;
                             }
                         }
@@ -566,6 +573,13 @@
                                 var pn = window.BotemiaConfig?.modules?.emailConfig?.supportPhone || "949-228-5263";
                                 result = { success: true, message: "✅ Dialing " + pn };
                                 window.open("tel:" + pn, "_blank");
+                                if (window.supabaseChannel) {
+                                    window.supabaseChannel.send({
+                                        type: "broadcast",
+                                        event: "trigger_test_result",
+                                        payload: { module: mod, success: result.success, message: result.message, timestamp: Date.now() }
+                                    });
+                                }
                                 break;
                             }
                         }
