@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/13/2026, 7:46:12 PM
+// Generated: 5/13/2026, 9:27:26 PM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -835,51 +835,8 @@
                 await dailyCallObject.join({ url: data.room_url, token: data.token });
                 console.log("✅ Joined Daily room (Server Connection Active)");
                 
-// ===== 🔧 AUTO-CORRECT FOR LEMON SLICE TRANSCRIPT BUG =====
-dailyCallObject.on("app-message", (ev) => {
-    
-    // Only fix Agent Transcriptions
-    if (ev?.data?.type !== 'agent_transcription') return;
-
-    let rawText = ev.data.transcription;
-    let cleanText = rawText;
-
-    // 🚫 DEFINE THE WRONG PHRASES (The Ghosts)
-    const wrongPhrases = [
-        "As a smart AI sales assistant, I can visually showcase success stories and key information through smart screens right within our conversation. These screens are launched seamlessly to highlight important data or testimonials, making it easier for you to see the value instantly. It's a dynamic way to share information and bring our discussions to life.",
-        "With my smart AI assistant, I can seamlessly launch interactive smart screens during a conversation — these are dynamic, visual tools that instantly showcase your success stories, loan packages, or client testimonials in real time. They appear as natural, engaging parts of the chat, helping prospects visualize their homebuying journey and build trust instantly. It’s like having a virtual sales rep that guides visitors through your offerings with precision and warmth. Would you like to see a quick example of how this works in action?"
-    ];
-
-    // ✅ DEFINE THE CORRECT SCRIPTS (The Truth)
-    const correctScript = "Absolutely! Smart Screens are visual proof cards I can pull up anytime during a conversation. If a prospect hesitates or has a concern, I can show them a success story, a rate chart, or a testimonial image right on the screen. It builds trust instantly. Here, let me show you — IMAGINE HAVING THIS IMAGE ON YOUR WEBSITE.";
-
-    // 🕵️ CHECK IF THE GHOST IS PRESENT
-    const isWrong = wrongPhrases.some(bad => cleanText.includes("visually showcase success stories") || cleanText.includes("seamlessly launch interactive smart screens"));
-
-    if (isWrong) {
-        console.warn("🚨 DETECTED SERVER BUG: Replacing bad transcript with correct script.");
-        cleanText = correctScript; // Force the correct text
-        
-        // Update the event object so the rest of your code uses the fixed text
-        ev.data.transcription = cleanText;
-    }
-
-    // ===== REST OF YOUR NORMAL LOGIC =====
-    const tessText = cleanText; // Use the cleaned text
-    const lowerText = tessText.toLowerCase();
-
-    // ... (Paste all your existing logic here: 
-    //      Email capture, Triggers, Smart Screens, etc.) 
-    //      Use 'tessText' instead of 'ev.data.transcription')
-    
-    // Your existing logging:
-    if (tessText && !tessText.trim().startsWith("<")) {
-        console.log("🤖 [DAILY] Tess said:", tessText);
-    }
-    
-    // NOTE: You will need to paste the GIANT block of logic 
-    // (User input, Smart Screen triggers, etc.) inside this function.
-    // For now, this fixes the text variable.
+                // ===== 🎧 CLEAN AUDIO LISTENER =====
+                dailyCallObject.on("app-message", (ev) => {
                     
                     // 🔥 NEW: Handle USER transcriptions during interview
                     if (window.preQualController && window.preQualController.isActive && ev?.data?.type === "user_transcription") {
@@ -905,28 +862,8 @@ dailyCallObject.on("app-message", (ev) => {
                                 console.log("👤 Captured name from Tess:", heardValue);
                             }
                         }
-                        // ===== 🐕 BLOODHOUND TEST: CHECK SOURCE ID =====
-const sourceAgentId = ev.data?.agent_id || ev.data?.participant?.user_id || "UNKNOWN_ID";
-
-console.group("🐕 BLOODHOUND ANALYSIS");
-console.log("📝 Transcript Received:", tessText);
-console.log("🔍 Source Agent ID:", sourceAgentId);
-console.log("⚖️ Expected ID: agent_7b0776ef6b855de5");
-
-if (sourceAgentId.includes("1db77d60ec132469")) {
-    console.error("🚨 GUILTY! Text is coming from the OLD Mortgage Assist Agent!");
-} else if (sourceAgentId.includes("7b0776ef6b855de5")) {
-    console.log("✅ INNOCENT! Text is coming from the correct TV Network Agent.");
-} else {
-    console.warn("⚠️ UNKNOWN SOURCE. ID:", sourceAgentId);
-}
-console.groupEnd();
-// ===========================================
-
-// Only print clean log if it's not HTML
-if (tessText && !tessText.trim().startsWith("<")) {
-    console.log("🤖 [DAILY] Tess said:", tessText);
-}
+                        // Always log Tess transcriptions
+                        console.log("🤖 [DAILY] Tess said:", tessText);
                         
                         // Always broadcast to Supabase
                         if (window.supabaseChannel) {
