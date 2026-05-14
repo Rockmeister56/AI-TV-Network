@@ -836,12 +836,28 @@
                 console.log("✅ Joined Daily room (Server Connection Active)");
                 
                 // ===== 🎧 CLEAN AUDIO LISTENER =====
-                // ===== 🕵️ TOTAL BLACKOUT TEST =====
+ // ===== 🩻 X-RAY VISION TEST =====
 dailyCallObject.on("app-message", (ev) => {
     
-    // 🔥 BLOCK EVERYTHING
-    console.warn("🛑 BLACKOUT: Message received but BLOCKED by Bridge.", ev);
+    console.group("🩻 X-RAY: INSPECTING MESSAGE PAYLOAD");
+    console.log("Full Event:", ev);
+    
+    // Look deep into the data object
+    if (ev.data) {
+        console.log("📦 Data Keys:", Object.keys(ev.data));
+        console.log("📝 Data Content:", ev.data);
+        
+        // Check for nested objects
+        for (let key in ev.data) {
+            console.log(`--- Inspecting key: "${key}" ---`);
+            console.log(ev.data[key]);
+        }
+    }
+    console.groupEnd();
+
+    // 🔥 BLOCK AFTER INSPECTION
     return; 
+});
                     
                     // 🔥 NEW: Handle USER transcriptions during interview
                     if (window.preQualController && window.preQualController.isActive && ev?.data?.type === "user_transcription") {
