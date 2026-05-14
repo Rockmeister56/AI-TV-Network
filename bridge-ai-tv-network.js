@@ -863,7 +863,12 @@
                             }
                         }
                         // Always log Tess transcriptions
-                        console.log("🤖 [DAILY] Tess said:", tessText);
+                        // 🚫 FILTER OUT HTML CODE FROM CONSOLE LOGS
+                        if (tessText && tessText.trim().startsWith("<")) {
+                        console.warn("🚫 filtered HTML/Debug message from console log");
+                        } else {
+                         console.log("🤖 [DAILY] Tess said:", tessText);
+                         }
                         
                         // Always broadcast to Supabase
                         if (window.supabaseChannel) {
