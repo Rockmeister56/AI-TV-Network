@@ -836,7 +836,12 @@
                 console.log("✅ Joined Daily room (Server Connection Active)");
                 
                 // ===== 🎧 CLEAN AUDIO LISTENER =====
-                dailyCallObject.on("app-message", (ev) => {
+                // ===== 🕵️ TOTAL BLACKOUT TEST =====
+dailyCallObject.on("app-message", (ev) => {
+    
+    // 🔥 BLOCK EVERYTHING
+    console.warn("🛑 BLACKOUT: Message received but BLOCKED by Bridge.", ev);
+    return; 
                     
                     // 🔥 NEW: Handle USER transcriptions during interview
                     if (window.preQualController && window.preQualController.isActive && ev?.data?.type === "user_transcription") {
