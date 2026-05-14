@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/14/2026, 5:03:29 AM
+// Generated: 5/14/2026, 5:13:52 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -808,14 +808,11 @@
 
         console.log("✅ Daily SDK loaded. Creating room...");
         try {
-            const response = await fetch("https://lemonslice.com/api/liveai/rooms", {
+            const response = await fetch("https://fcgbusobfdwnpoqyuzoe.supabase.co/functions/v1/create-daily-room", {
                 method: "POST",
-                headers: { 
-                    "Content-Type": "application/json",
-                    "X-API-Key": "sk_lemon_Tleyq2zh6NoMpllEHf7mYNRxzIED6YcP"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
-                    "agent_id": "agent_1db77d60ec132469"
+                    agent_id: "agent_1db77d60ec132469"
                 })
             });
             const data = await response.json();
