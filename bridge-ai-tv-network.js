@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/14/2026, 5:13:52 AM
+// Generated: 5/14/2026, 6:56:05 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -839,6 +839,13 @@
                 
                 // ===== 🎧 CLEAN AUDIO LISTENER =====
                 dailyCallObject.on("app-message", (ev) => {
+                    
+                    // 🔥 BLOCK USER TRANSCRIPTIONS from triggering modules
+                    if (ev?.data?.type === "user_transcription") {
+                        const userText = ev.data.transcription || ev.data.text || "";
+                        console.log("👤 [DAILY] User said (ignored):", userText);
+                        return;
+                    }
                     
                     // 🔥 NEW: Handle USER transcriptions during interview
                     if (window.preQualController && window.preQualController.isActive && ev?.data?.type === "user_transcription") {
