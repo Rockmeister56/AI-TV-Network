@@ -808,15 +808,17 @@
 
         console.log("✅ Daily SDK loaded. Creating room...");
         try {
-            const response = await fetch("https://fcgbusobfdwnpoqyuzoe.supabase.co/functions/v1/create-daily-room", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-        room_name: "ai-tv-network-demo",
-        agent_id: "agent_7b0776ef6b855de5"
-    })
-});
-const data = await response.json();
+            const response = await fetch("https://lemonslice.com/api/liveai/rooms", {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "X-API-Key": "sk_lemon_Tleyq2zh6NoMpllEHf7mYNRxzIED6YcP" // Your API Key
+            },
+            body: JSON.stringify({ 
+                "agent_id": "agent_7b0776ef6b855de5" // <--- THE NEW AGENT ID
+            })
+        });
+            const data = await response.json();
             
             if (data.room_url && data.token) {
                 dailyCallObject = DailyIframe.createCallObject({ lang: "en-us" });
