@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/13/2026, 11:15:57 AM
+// Generated: 5/13/2026, 7:46:12 PM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -104,7 +104,8 @@
 
     function createSplashWidget() {
         const widget = document.createElement('lemon-slice-widget');
-        let clientId = window.BotemiaConfig?.id || "mortgage-assist-demo";
+        let clientId = window.BotemiaConfig?.id;
+        if (!clientId) { console.error("❌ CRITICAL: BotemiaConfig ID missing!"); return null; }
         widget.setAttribute('client-id', clientId);
         widget.clientId = clientId;
         const sessionId = 'session-' + crypto.randomUUID();
@@ -552,6 +553,12 @@
                                     window.preQualController.sendEmail();
                                     window.preQualController.isActive = false;
                                 }
+                                if (window.supabaseChannel) {
+                                    window.supabaseChannel.send({
+                                        type: "broadcast", event: "trigger_test_result",
+                                        payload: { module: mod, success: result.success, message: result.message, timestamp: Date.now() }
+                                    });
+                                }
                                 break;
                             }
                         }
@@ -566,6 +573,12 @@
                                 var pn = window.BotemiaConfig?.modules?.emailConfig?.supportPhone || "949-228-5263";
                                 result = { success: true, message: "✅ Dialing " + pn };
                                 window.open("tel:" + pn, "_blank");
+                                if (window.supabaseChannel) {
+                                    window.supabaseChannel.send({
+                                        type: "broadcast", event: "trigger_test_result",
+                                        payload: { module: mod, success: result.success, message: result.message, timestamp: Date.now() }
+                                    });
+                                }
                                 break;
                             }
                         }
@@ -1141,7 +1154,8 @@
     function createMainWidget() {
         const widget = document.createElement('lemon-slice-widget');
         widget.setAttribute('agent-id', 'agent_1db77d60ec132469');
-        let clientId = window.BotemiaConfig?.id || "mortgage-assist-demo";
+        let clientId = window.BotemiaConfig?.id;
+        if (!clientId) { console.error("❌ CRITICAL: BotemiaConfig ID missing!"); return null; }
         widget.setAttribute('client-id', clientId);
         widget.clientId = clientId;
         const apiKey = "sk_lemon_Tleyq2zh6NoMpllEHf7mYNRxzIED6YcP";
