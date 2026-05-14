@@ -862,13 +862,28 @@
                                 console.log("👤 Captured name from Tess:", heardValue);
                             }
                         }
-                        // Always log Tess transcriptions
-                        // 🚫 FILTER OUT HTML CODE FROM CONSOLE LOGS
-                        if (tessText && tessText.trim().startsWith("<")) {
-                        console.warn("🚫 filtered HTML/Debug message from console log");
-                        } else {
-                         console.log("🤖 [DAILY] Tess said:", tessText);
-                         }
+                        // ===== 🐕 BLOODHOUND TEST: CHECK SOURCE ID =====
+const sourceAgentId = ev.data?.agent_id || ev.data?.participant?.user_id || "UNKNOWN_ID";
+
+console.group("🐕 BLOODHOUND ANALYSIS");
+console.log("📝 Transcript Received:", tessText);
+console.log("🔍 Source Agent ID:", sourceAgentId);
+console.log("⚖️ Expected ID: agent_7b0776ef6b855de5");
+
+if (sourceAgentId.includes("1db77d60ec132469")) {
+    console.error("🚨 GUILTY! Text is coming from the OLD Mortgage Assist Agent!");
+} else if (sourceAgentId.includes("7b0776ef6b855de5")) {
+    console.log("✅ INNOCENT! Text is coming from the correct TV Network Agent.");
+} else {
+    console.warn("⚠️ UNKNOWN SOURCE. ID:", sourceAgentId);
+}
+console.groupEnd();
+// ===========================================
+
+// Only print clean log if it's not HTML
+if (tessText && !tessText.trim().startsWith("<")) {
+    console.log("🤖 [DAILY] Tess said:", tessText);
+}
                         
                         // Always broadcast to Supabase
                         if (window.supabaseChannel) {
