@@ -849,7 +849,7 @@ dailyCallObject.on("app-message", (ev) => {
         
         // Check for nested objects
         for (let key in ev.data) {
-            console.log(`--- Inspecting key: "${key}" ---`);
+            console.log("--- Inspecting key: " + key + " ---");
             console.log(ev.data[key]);
         }
     }
@@ -857,7 +857,8 @@ dailyCallObject.on("app-message", (ev) => {
 
     // 🔥 BLOCK AFTER INSPECTION
     return; 
-});
+
+// <--- Make sure there is no code hanging out right here
                     
                     // 🔥 NEW: Handle USER transcriptions during interview
                     if (window.preQualController && window.preQualController.isActive && ev?.data?.type === "user_transcription") {
