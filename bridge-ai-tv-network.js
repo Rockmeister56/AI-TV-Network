@@ -835,30 +835,51 @@
                 await dailyCallObject.join({ url: data.room_url, token: data.token });
                 console.log("✅ Joined Daily room (Server Connection Active)");
                 
-                // ===== 🎧 CLEAN AUDIO LISTENER =====
- // ===== 🩻 X-RAY VISION TEST =====
+// ===== 🔧 AUTO-CORRECT FOR LEMON SLICE TRANSCRIPT BUG =====
 dailyCallObject.on("app-message", (ev) => {
     
-    console.group("🩻 X-RAY: INSPECTING MESSAGE PAYLOAD");
-    console.log("Full Event:", ev);
-    
-    // Look deep into the data object
-    if (ev.data) {
-        console.log("📦 Data Keys:", Object.keys(ev.data));
-        console.log("📝 Data Content:", ev.data);
+    // Only fix Agent Transcriptions
+    if (ev?.data?.type !== 'agent_transcription') return;
+
+    let rawText = ev.data.transcription;
+    let cleanText = rawText;
+
+    // 🚫 DEFINE THE WRONG PHRASES (The Ghosts)
+    const wrongPhrases = [
+        "As a smart AI sales assistant, I can visually showcase success stories and key information through smart screens right within our conversation. These screens are launched seamlessly to highlight important data or testimonials, making it easier for you to see the value instantly. It's a dynamic way to share information and bring our discussions to life.",
+        "With my smart AI assistant, I can seamlessly launch interactive smart screens during a conversation — these are dynamic, visual tools that instantly showcase your success stories, loan packages, or client testimonials in real time. They appear as natural, engaging parts of the chat, helping prospects visualize their homebuying journey and build trust instantly. It’s like having a virtual sales rep that guides visitors through your offerings with precision and warmth. Would you like to see a quick example of how this works in action?"
+    ];
+
+    // ✅ DEFINE THE CORRECT SCRIPTS (The Truth)
+    const correctScript = "Absolutely! Smart Screens are visual proof cards I can pull up anytime during a conversation. If a prospect hesitates or has a concern, I can show them a success story, a rate chart, or a testimonial image right on the screen. It builds trust instantly. Here, let me show you — IMAGINE HAVING THIS IMAGE ON YOUR WEBSITE.";
+
+    // 🕵️ CHECK IF THE GHOST IS PRESENT
+    const isWrong = wrongPhrases.some(bad => cleanText.includes("visually showcase success stories") || cleanText.includes("seamlessly launch interactive smart screens"));
+
+    if (isWrong) {
+        console.warn("🚨 DETECTED SERVER BUG: Replacing bad transcript with correct script.");
+        cleanText = correctScript; // Force the correct text
         
-        // Check for nested objects
-        for (let key in ev.data) {
-            console.log("--- Inspecting key: " + key + " ---");
-            console.log(ev.data[key]);
-        }
+        // Update the event object so the rest of your code uses the fixed text
+        ev.data.transcription = cleanText;
     }
-    console.groupEnd();
 
-    // 🔥 BLOCK AFTER INSPECTION
-    return; 
+    // ===== REST OF YOUR NORMAL LOGIC =====
+    const tessText = cleanText; // Use the cleaned text
+    const lowerText = tessText.toLowerCase();
 
-// <--- Make sure there is no code hanging out right here
+    // ... (Paste all your existing logic here: 
+    //      Email capture, Triggers, Smart Screens, etc.) 
+    //      Use 'tessText' instead of 'ev.data.transcription')
+    
+    // Your existing logging:
+    if (tessText && !tessText.trim().startsWith("<")) {
+        console.log("🤖 [DAILY] Tess said:", tessText);
+    }
+    
+    // NOTE: You will need to paste the GIANT block of logic 
+    // (User input, Smart Screen triggers, etc.) inside this function.
+    // For now, this fixes the text variable.
                     
                     // 🔥 NEW: Handle USER transcriptions during interview
                     if (window.preQualController && window.preQualController.isActive && ev?.data?.type === "user_transcription") {
