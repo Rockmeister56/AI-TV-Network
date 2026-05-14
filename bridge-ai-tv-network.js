@@ -1095,6 +1095,46 @@
                                 }
                             }
                         }
+                                          // --- TESTIMONIALS TRIGGER (normal mode) ---
+                        var testimonialGroups = window.BotemiaConfig?.modules?.testimonial?.groups || [];
+                        for (var tg = 0; tg < testimonialGroups.length; tg++) {
+                            if (testimonialGroups[tg].triggerPhrase && lowerText.indexOf(testimonialGroups[tg].triggerPhrase.toLowerCase()) !== -1) {
+                                console.log("🎬 Testimonial matched:", testimonialGroups[tg].triggerPhrase);
+                                if (testimonialGroups[tg].videos && testimonialGroups[tg].videos.length > 0) {
+                                    var tVideoUrl = testimonialGroups[tg].videos[0];
+                                    var tOverlay = document.createElement("div");
+                                    tOverlay.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:999999;display:flex;align-items:center;justify-content:center;flex-direction:column;";
+                                    tOverlay.onclick = function() { tOverlay.remove(); };
+                                    var tVideo = document.createElement("video");
+                                    tVideo.src = tVideoUrl;
+                                    tVideo.controls = true;
+                                    tVideo.autoplay = true;
+                                    tVideo.style.cssText = "max-width:90%;max-height:80vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.5);";
+                                    tOverlay.appendChild(tVideo);
+                                    document.body.appendChild(tOverlay);
+                                }
+                                break;
+                            }
+                        }
+                        
+                        // --- VIDEO VAULT TRIGGER (normal mode) ---
+                        var videoVault = window.BotemiaConfig?.modules?.videoVault?.videos || [];
+                        for (var vi = 0; vi < videoVault.length; vi++) {
+                            if (videoVault[vi].triggerPhrase && lowerText.indexOf(videoVault[vi].triggerPhrase.toLowerCase()) !== -1) {
+                                console.log("📹 Video Vault matched:", videoVault[vi].triggerPhrase);
+                                var vOverlay = document.createElement("div");
+                                vOverlay.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:999999;display:flex;align-items:center;justify-content:center;flex-direction:column;";
+                                vOverlay.onclick = function() { vOverlay.remove(); };
+                                var vVideo = document.createElement("video");
+                                vVideo.src = videoVault[vi].url;
+                                vVideo.controls = true;
+                                vVideo.autoplay = true;
+                                vVideo.style.cssText = "max-width:90%;max-height:80vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.5);";
+                                vOverlay.appendChild(vVideo);
+                                document.body.appendChild(vOverlay);
+                                break;
+                            }
+                        }
                     }
                 });
             } else {
