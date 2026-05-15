@@ -1,5 +1,5 @@
 // Botemia Bridge for AI TV Network
-// Generated: 5/14/2026, 6:56:05 AM
+// Generated: 5/15/2026, 3:17:57 AM
 // Client ID: ai-tv-network
 // Version: 5.8 - LISTENER MODE (FINAL)
 
@@ -27,7 +27,7 @@
             "smartScreen": {"action":"showBestMatch","images":[{"url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/public/Smart%20screen%20images/Family_celebrating_new_home_keys_202605130341.jpeg","link":"","name":"Smart screen example","caption":"Your guide to home ownership, every step of the way","imageSize":"800px","showTitle":true,"triggerMatch":["Imagine having this image on your website"],"backdropOpacity":"0.5","backgroundColor":"rgba(0,0,0,0.7)","displayDuration":10}]},
             "testimonial": {"groups":[{"name":"Mortgage-Broker","triggerPhrase":"Let me call out one of our Mortgage Brokers","category":"results","videos":["https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/public/Video%20Testimonials%20Public/mortgage-testimonial.mp4"]}]},
             "videoVault": {"videos":[{"name":"Mortgage Assist Demo","triggerPhrase":"let's explore a mortgage demo video","url":"https://fcgbusobfdwnpoqyuzoe.supabase.co/storage/v1/object/public/Videos/clients/mortgage-assist-demo.mp4","description":"","category":"other"}]},
-            "websiteInfo": {"triggers":["here is our no risk performance plan","Here is the web info on interest rates"],"links":[{"title":"AI Performance Plan","url":"https://aitvnetwork.netlify.app/ai-performance-plan","triggerPhrase":"here is our no risk performance plan"},{"title":"Mortgage Rates Demo","url":"https://aitvnetwork.netlify.app/latest-rates","triggerPhrase":"Here is the web info on interest rates"}]}
+            "websiteInfo": {"triggers":["here is our no risk performance plan","Here is the web info on interest rates","Your wish is my command"],"links":[{"title":"AI Performance Plan","url":"https://aitvnetwork.netlify.app/ai-performance-plan","triggerPhrase":"here is our no risk performance plan"},{"title":"Mortgage Rates Demo","url":"https://aitvnetwork.netlify.app/latest-rates","triggerPhrase":"Here is the web info on interest rates"},{"title":"Mobile Report Demo","url":"https://aitvnetwork.netlify.app/prospects/pdf-viewer-demo","triggerPhrase":"Your wish is my command"}]}
         }
     };
 
@@ -1095,7 +1095,7 @@
                                 }
                             }
                         }
-                                          // --- TESTIMONIALS TRIGGER (normal mode) ---
+                        // --- TESTIMONIALS TRIGGER (normal mode) ---
                         var testimonialGroups = window.BotemiaConfig?.modules?.testimonial?.groups || [];
                         for (var tg = 0; tg < testimonialGroups.length; tg++) {
                             if (testimonialGroups[tg].triggerPhrase && lowerText.indexOf(testimonialGroups[tg].triggerPhrase.toLowerCase()) !== -1) {
@@ -1111,7 +1111,7 @@
                                     tVideo.autoplay = true;
                                     tVideo.style.cssText = "max-width:90%;max-height:80vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.5);";
                                     tOverlay.appendChild(tVideo);
-                                    document.body.appendChild(tOverlay);
+                                   setTimeout(function() { document.body.appendChild(tOverlay); }, 5000);
                                 }
                                 break;
                             }
@@ -1131,7 +1131,7 @@
                                 vVideo.autoplay = true;
                                 vVideo.style.cssText = "max-width:90%;max-height:80vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.5);";
                                 vOverlay.appendChild(vVideo);
-                                document.body.appendChild(vOverlay);
+                                setTimeout(function() { document.body.appendChild(vOverlay); }, 5000);
                                 break;
                             }
                         }
