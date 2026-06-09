@@ -16,10 +16,10 @@ const slides = [
     }, 
     {
         id: 1,
-        title: "Mobile Wise Ai",
+        title: "Just Ask AI",
         content: `
             <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
-                <img src="assets/slides1/slide1.jpg"
+                <img src="assets/slides1/slide1.png"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
