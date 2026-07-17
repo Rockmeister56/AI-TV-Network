@@ -19,7 +19,7 @@ const slides = [
         title: "Just Ask AI",
         content: `
             <div style="width:95%; height:100%; display:flex; align-items:left; justify-content:left; background:#000;">
-                <img src="assets/slides1/slide1.png"
+                <img src="assets/slides1/slide1.jpg"
                      style="width:100%; height:100%; object-fit: contain;">
             </div>
         `,
